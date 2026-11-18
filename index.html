@@ -1,20 +1,29 @@
+<!-- ... eslint-disable -->
 <!DOCTYPE html>
 <html lang="id" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <!-- PWA / Fullscreen Mobile Metas -->
+    <!-- PWA / Fullscreen Mobile Metas & Custom Icons -->
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Wisesa Karsa">
     <meta name="apple-touch-fullscreen" content="yes">
+    <!-- Apple Touch Icons & Favicon using SVG Data URI -->
+    <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cdefs%3E%3ClinearGradient id='bg' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%233B2310'/%3E%3Cstop offset='50%25' stop-color='%23211107'/%3E%3Cstop offset='100%25' stop-color='%23140A04'/%3E%3C/linearGradient%3E%3ClinearGradient id='gold' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23F2D774'/%3E%3Cstop offset='50%25' stop-color='%23DFBA52'/%3E%3Cstop offset='100%25' stop-color='%23C59B27'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='512' height='512' rx='112' fill='url(%23bg)' stroke='%23DFBA52' stroke-width='16'/%3E%3Ctext x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='Poppins, sans-serif' font-weight='900' font-size='220' fill='url(%23gold)' letter-spacing='-10'%3EWK%3C/text%3E%3C/svg%3E">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cdefs%3E%3ClinearGradient id='bg' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%233B2310'/%3E%3Cstop offset='50%25' stop-color='%23211107'/%3E%3Cstop offset='100%25' stop-color='%23140A04'/%3E%3C/linearGradient%3E%3ClinearGradient id='gold' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23F2D774'/%3E%3Cstop offset='50%25' stop-color='%23DFBA52'/%3E%3Cstop offset='100%25' stop-color='%23C59B27'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='512' height='512' rx='112' fill='url(%23bg)' stroke='%23DFBA52' stroke-width='16'/%3E%3Ctext x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='Poppins, sans-serif' font-weight='900' font-size='220' fill='url(%23gold)' letter-spacing='-10'%3EWK%3C/text%3E%3C/svg%3E">
+    
+    <!-- Dynamic Web App Manifest Data URI -->
+    <link rel="manifest" href="data:application/manifest+json,%7B%22name%22%3A%22WISESA%20KARSA%22%2C%22short_name%22%3A%22WisesaKarsa%22%2C%22start_url%22%3A%22%2F%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%23140A04%22%2C%22theme_color%22%3A%22%23140A04%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22data%3Aimage%2Fsvg%2Bxml%2C%253Csvg%2520xmlns%253D%2527http%253A%2F%2Fwww.w3.org%2F2000%2Fsvg%2527%2520viewBox%253D%25270%25200%2520512%2520512%2527%253E%253Cdefs%253E%253ClinearGradient%2520id%253D%2527bg%2527%2520x1%253D%25270%2525%2527%2527%2520y1%253D%25270%2525%2527%2527%2520x2%253D%2527100%2525%2527%2527%2527%2520y2%253D%2527100%2525%2527%253E%253Cstop%2520offset%253D%25270%2525%2527%2527%2520stop-color%253D%2527%25233B2310%2527%252F%253E%253Cstop%2520offset%253D%252750%2525%2527%2527%2520stop-color%253D%2527%2523211107%2527%252F%253E%253Cstop%2520offset%253D%2527100%2525%2527%2527%2520stop-color%253D%2527%2523140A04%2527%252F%253E%253C%2FlinearGradient%253E%253ClinearGradient%2520id%253D%2527gold%2527%2527%2520x1%253D%25270%2525%2527%2527%2527%2520y1%253D%25270%2525%2527%2527%2527%2520x2%253D%2527100%2525%2527%2527%2527%2520y2%253D%2527100%2525%2527%2527%253E%253Cstop%2520offset%253D%25270%2525%2527%2527%2527%2520stop-color%253D%2527%2523F2D774%2527%252F%253E%253Cstop%2520offset%253D%252750%2525%2527%2527%2527%2520stop-color%253D%2527%2523DFBA52%2527%252F%253E%253Cstop%2520offset%253D%2527100%2525%2527%2527%2527%2520stop-color%253D%2527%2523C59B27%2527%252F%253E%253C%2FlinearGradient%253E%253C%2Fdefs%253E%253Crect%2520width%253D%2527512%2527%2527%2520height%253D%2527512%2527%2527%2520rx%253D%2527112%2527%2527%2520fill%253D%2527url(%2523bg)%2527%2527%2520stroke%253D%2527%2523DFBA52%2527%2527%2520stroke-width%253D%252716%2527%252F%253E%253Ctext%2520x%253D%252750%2525%2527%2527%2527%2520y%253D%252754%2525%2527%2527%2527%2520dominant-baseline%253D%2527middle%2527%2527%2520text-anchor%253D%2527middle%2527%2527%2520font-family%253D%2527Poppins%2C%20sans-serif%2527%2527%2520font-weight%253D%2527900%2527%2527%2527%2520font-size%253D%2527220%2527%2527%2527%2520fill%253D%2527url(%2523gold)%2527%2527%2527%2520letter-spacing%253D%2527-10%2527%253EWK%253C%2Ftext%253E%253C%2Fsvg%253E%22%2C%22sizes%22%3A%22512x512%22%2C%22type%22%3A%22image%2svg%2Bxml%22%7D%5D%7D">
+
     <title>WISESA KARSA — Mobile Studio, Editing & Konveksi</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts: Poppins -->
+    <!-- Google Fonts: Poppins & Cormorant Garamond for Elegant Serifs -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
     <!-- Html2Canvas Library -->
@@ -28,33 +37,35 @@
                 extend: {
                     fontFamily: {
                         sans: ['"Poppins"', 'sans-serif'],
-                        serif: ['"Poppins"', 'sans-serif'],
+                        serif: ['"Cormorant Garamond"', 'serif'],
                     },
                     colors: {
                         cream: {
-                            50: '#FAF6EE',
-                            100: '#F3EFE6',
-                            200: '#EADFC9',
-                            300: '#DECBAE',
+                            50: '#FBF9F5',
+                            100: '#F4EFEA',
+                            200: '#E5DAC9',
+                            300: '#D4C2A5',
                         },
                         brown: {
-                            500: '#8A6038',
-                            600: '#6E4927',
-                            700: '#52341A',
-                            800: '#3B2310',
-                            900: '#211107',
-                            950: '#140A04',
+                            500: '#7A522E',
+                            600: '#5E3E21',
+                            700: '#422A14',
+                            800: '#2B1B0D',
+                            900: '#1A1008',
+                            950: '#0F0904',
                         },
                         gold: {
-                            300: '#F2D774',
-                            400: '#DFBA52',
-                            500: '#C59B27',
-                            600: '#9E7916',
+                            300: '#F7E396',
+                            400: '#E5C158',
+                            500: '#C9A038',
+                            600: '#A47D22',
                         }
                     },
                     boxShadow: {
-                        'luxury': '0 20px 40px -10px rgba(33, 17, 7, 0.1)',
-                        'gold-glow': '0 8px 30px -4px rgba(197, 155, 39, 0.4)',
+                        'luxury': '0 25px 50px -12px rgba(15, 9, 4, 0.8)',
+                        'gold-glow': '0 0 35px -5px rgba(229, 193, 88, 0.35)',
+                        'gold-subtle': '0 10px 30px -10px rgba(201, 160, 56, 0.2)',
+                        'floating-nav': '0 20px 40px rgba(0,0,0,0.8), 0 0 25px rgba(229, 193, 88, 0.25)',
                     }
                 }
             }
@@ -73,8 +84,8 @@
         }
         body {
             font-family: 'Poppins', sans-serif;
-            background: #0d0703;
-            color: #FAF6EE;
+            background: radial-gradient(circle at center, #1A1008 0%, #0F0904 100%);
+            color: #FBF9F5;
             touch-action: pan-x pan-y;
             -webkit-text-size-adjust: 100%;
             margin: 0;
@@ -86,17 +97,17 @@
             overflow: hidden;
             overscroll-behavior: none;
         }
-        /* Responsive Mobile App Container */
+        /* Elegant Mobile App Container with Refined Gold Border Glow */
         .mobile-app-container {
             width: 100%;
             max-width: 430px;
             height: 100dvh;
             max-height: 900px;
-            background: linear-gradient(150deg, #140a04 0%, #211107 45%, #140a04 100%);
-            color: #FAF6EE;
+            background: linear-gradient(160deg, #140D07 0%, #1A1008 50%, #0F0904 100%);
+            color: #FBF9F5;
             position: relative;
-            box-shadow: 0 25px 60px rgba(0,0,0,0.9), 0 0 0 10px #211107, 0 0 0 12px #DFBA52;
-            border-radius: 38px;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.95), 0 0 0 1px rgba(229, 193, 88, 0.3), 0 0 40px rgba(201, 160, 56, 0.15);
+            border-radius: 40px;
             display: flex;
             flex-direction: column;
             overflow: hidden;
@@ -125,11 +136,18 @@
             align-items: center;
             justify-content: center;
         }
+        /* Enhanced Luxury Glassmorphism */
         .glass-card {
-            background: rgba(33, 17, 7, 0.78);
-            backdrop-filter: blur(25px);
-            border: 1px solid rgba(223, 186, 82, 0.25);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.45);
+            background: linear-gradient(135deg, rgba(43, 27, 13, 0.75) 0%, rgba(26, 16, 8, 0.85) 100%);
+            backdrop-filter: blur(30px);
+            border: 1px solid rgba(229, 193, 88, 0.28);
+            box-shadow: 0 20px 45px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+            border-radius: 2rem;
+        }
+        .glass-card-subtle {
+            background: rgba(26, 16, 8, 0.55);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(229, 193, 88, 0.15);
             border-radius: 1.5rem;
         }
         .no-scrollbar::-webkit-scrollbar {
@@ -144,18 +162,18 @@
             height: 4px;
         }
         ::-webkit-scrollbar-track {
-            background: rgba(0,0,0,0.2);
+            background: rgba(15, 9, 4, 0.5);
         }
         ::-webkit-scrollbar-thumb {
-            background: #DFBA52;
+            background: #C9A038;
             border-radius: 9999px;
         }
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(8px); }
+            from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
         .animate-fade-in {
-            animation: fadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
     </style>
 </head>
@@ -168,215 +186,219 @@
     <div class="mobile-app-container">
 
         <!-- LANDING WELCOME GATE (TERKUNCI & TIDAK BISA SCROLL) -->
-        <div id="view-landing" class="bg-gradient-to-br from-brown-950 via-brown-900 to-brown-950 text-cream-50 p-4 transition-all duration-500">
-            <div class="absolute -top-24 -left-24 w-72 h-72 bg-gold-500/25 rounded-full blur-[110px] pointer-events-none animate-pulse"></div>
-            <div class="absolute -bottom-24 -right-24 w-72 h-72 bg-gold-600/20 rounded-full blur-[110px] pointer-events-none"></div>
+        <div id="view-landing" class="bg-gradient-to-br from-brown-950 via-brown-900 to-brown-950 text-cream-50 p-5 transition-all duration-700">
+            <div class="absolute -top-32 -left-32 w-80 h-80 bg-gold-500/15 rounded-full blur-[140px] pointer-events-none animate-pulse"></div>
+            <div class="absolute -bottom-32 -right-32 w-80 h-80 bg-gold-600/15 rounded-full blur-[140px] pointer-events-none"></div>
             
-            <div class="w-full max-w-sm glass-card rounded-[2rem] p-5 text-center space-y-3.5 relative z-10 animate-fade-in shadow-2xl border-2 border-gold-500/35 max-h-[90dvh] flex flex-col justify-center">
-                <div class="inline-flex items-center gap-2 px-3 py-0.5 rounded-full bg-gold-500/15 border border-gold-400/40 text-gold-400 text-[10px] font-bold tracking-[0.2em] uppercase mx-auto">
-                    <i data-lucide="sparkles" class="w-3 h-3 text-gold-400"></i> Creative Studio
+            <div class="w-full max-w-sm glass-card p-6 text-center space-y-4 relative z-10 animate-fade-in shadow-luxury border-2 border-gold-500/40 max-h-[92dvh] flex flex-col justify-center">
+                <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-gold-500/15 border border-gold-400/40 text-gold-300 text-[10px] font-bold tracking-[0.25em] uppercase mx-auto shadow-gold-subtle">
+                    <i data-lucide="sparkles" class="w-3.5 h-3.5 text-gold-400"></i> Haute Couture & Studio
                 </div>
 
-                <div class="w-16 h-16 mx-auto rounded-[1.25rem] bg-gradient-to-br from-brown-800 via-brown-900 to-brown-950 p-2.5 border-2 border-gold-500/70 shadow-gold-glow flex items-center justify-center shrink-0">
-                    <span class="text-3xl font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-gold-300 via-gold-400 to-cream-100">WK</span>
+                <div class="w-20 h-20 mx-auto rounded-[1.75rem] bg-gradient-to-br from-brown-800 via-brown-900 to-brown-950 p-3 border-2 border-gold-400/80 shadow-gold-glow flex items-center justify-center shrink-0">
+                    <span class="text-4xl font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-gold-300 via-gold-400 to-cream-100 font-serif">WK</span>
                 </div>
 
-                <div class="space-y-0.5">
-                    <h1 class="text-lg font-extrabold tracking-wider text-cream-50 uppercase">WISESA KARSA</h1>
-                    <p class="text-[9px] text-gold-400 font-medium tracking-wide">Crafting Visions, Shaping Masterpieces</p>
+                <div class="space-y-1">
+                    <h1 class="text-2xl font-bold tracking-widest text-cream-50 uppercase font-serif">WISESA KARSA</h1>
+                    <p class="text-[10px] text-gold-400/90 font-medium tracking-widest uppercase">Crafting Visions, Shaping Masterpieces</p>
                 </div>
 
-                <div class="space-y-2 pt-1">
-                    <button onclick="enterMainPlatform()" class="w-full py-3 rounded-xl bg-gradient-to-r from-gold-400 via-gold-500 to-gold-600 text-brown-950 font-extrabold text-xs uppercase hover:brightness-110 transition shadow-gold-glow flex items-center justify-center gap-2">
-                        <span>Lanjutkan (Customer)</span>
+                <div class="space-y-2.5 pt-2">
+                    <button onclick="enterMainPlatform()" class="w-full py-3.5 rounded-2xl bg-gradient-to-r from-gold-400 via-gold-500 to-gold-600 text-brown-950 font-bold text-xs uppercase tracking-wider hover:brightness-110 transition shadow-gold-glow flex items-center justify-center gap-2">
+                        <span>Masuk Platform (Customer)</span>
                         <i data-lucide="arrow-right" class="w-4 h-4 text-brown-950"></i>
                     </button>
 
-                    <button onclick="openOwnerLandingLogin()" class="w-full py-2.5 rounded-xl bg-brown-900/90 text-gold-400 border border-gold-500/40 font-bold text-xs tracking-wider uppercase hover:bg-brown-800 transition flex items-center justify-center gap-2 shadow">
+                    <button onclick="openOwnerLandingLogin()" class="w-full py-3 rounded-2xl bg-brown-900/90 text-gold-300 border border-gold-500/40 font-bold text-xs tracking-wider uppercase hover:bg-brown-800 transition flex items-center justify-center gap-2 shadow-gold-subtle">
                         <i data-lucide="crown" class="w-4 h-4 text-gold-400"></i>
                         <span>Login Portal Owner</span>
                     </button>
                 </div>
 
-                <div id="landing-owner-login-box" class="hidden pt-2 border-t border-gold-500/25 space-y-2 text-left animate-fade-in">
-                    <label class="block text-[10px] font-bold uppercase text-gold-400">Password Owner:</label>
+                <div id="landing-owner-login-box" class="hidden pt-3 border-t border-gold-500/25 space-y-2.5 text-left animate-fade-in">
+                    <label class="block text-[10px] font-bold uppercase tracking-wider text-gold-300">Password Owner:</label>
                     <div class="flex gap-2">
-                        <input type="password" id="landing-owner-pass" placeholder="Password..." class="flex-1 px-3 py-2 rounded-xl bg-brown-950/90 border border-gold-500/40 text-xs text-cream-50 font-mono focus:outline-none focus:border-gold-400">
-                        <button onclick="submitLandingOwnerLogin()" class="px-3.5 py-2 rounded-xl bg-gold-500 text-brown-950 text-xs font-bold shadow">Masuk</button>
+                        <input type="password" id="landing-owner-pass" placeholder="Password..." class="flex-1 px-3.5 py-2.5 rounded-xl bg-brown-950/90 border border-gold-500/40 text-xs text-cream-50 font-mono focus:outline-none focus:border-gold-300">
+                        <button onclick="submitLandingOwnerLogin()" class="px-4 py-2.5 rounded-xl bg-gradient-to-r from-gold-400 to-gold-500 text-brown-950 text-xs font-bold shadow">Masuk</button>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- MOBILE APP HEADER (DIPERBESAR) -->
-        <header class="sticky top-0 z-40 bg-brown-950/95 backdrop-blur-2xl border-b border-gold-500/30 shadow-xl shrink-0">
-            <div class="px-5 py-5 flex justify-between items-center">
-                <div onclick="navigateTo('home')" class="flex items-center gap-3 cursor-pointer group min-w-0 pr-2">
-                    <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-brown-800 via-brown-900 to-brown-950 text-gold-400 flex items-center justify-center shadow-gold-glow border border-gold-500/50 shrink-0">
-                        <span class="text-base font-extrabold tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-gold-300 via-gold-400 to-cream-100">WK</span>
+        <!-- MOBILE APP HEADER (ULTRA LUXURY GRADIENT BORDER) -->
+        <header class="sticky top-0 z-40 bg-brown-950/90 backdrop-blur-3xl border-b border-gradient border-gold-500/40 shadow-luxury shrink-0 relative">
+            <div class="absolute inset-x-0 bottom-0 h-[1px] bg-gradient-to-r from-transparent via-gold-400 to-transparent"></div>
+            <div class="px-5 py-4 flex justify-between items-center">
+                <div onclick="navigateTo('home')" class="flex items-center gap-3.5 cursor-pointer group min-w-0 pr-2">
+                    <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-brown-800 via-brown-900 to-brown-950 text-gold-400 flex items-center justify-center shadow-gold-glow border-2 border-gold-400/80 shrink-0 group-hover:scale-105 transition duration-300 relative">
+                        <div class="absolute inset-0 rounded-2xl bg-gold-400/10 animate-pulse"></div>
+                        <span class="text-lg font-bold tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-gold-300 via-gold-400 to-cream-100 font-serif relative z-10">WK</span>
                     </div>
                     <div class="min-w-0 flex-1">
-                        <h1 class="font-extrabold text-sm tracking-tight text-cream-50 leading-tight truncate">WISESA KARSA</h1>
-                        <p class="text-[10px] text-gold-400 font-medium tracking-wide mt-0.5 truncate">Crafting Visions, Shaping Masterpieces</p>
+                        <h1 class="font-bold text-sm tracking-widest text-cream-50 leading-tight truncate font-serif">WISESA KARSA</h1>
+                        <p class="text-[9px] text-gold-400/90 font-medium tracking-wider mt-0.5 truncate uppercase">Studio & Konveksi</p>
                     </div>
                 </div>
 
                 <div class="flex items-center gap-2 shrink-0">
-                    <button onclick="exitToWelcomeGate()" class="p-3 rounded-2xl bg-brown-900/90 text-gold-400 border border-gold-500/35 hover:bg-brown-800 transition flex items-center justify-center shadow-md" title="Keluar / Ganti Akun">
-                        <i data-lucide="log-out" class="w-4 h-4 text-gold-400"></i>
+                    <button onclick="exitToWelcomeGate()" class="p-2.5 rounded-2xl bg-brown-900/90 text-gold-300 border border-gold-500/35 hover:bg-brown-800 transition flex items-center justify-center shadow-gold-subtle group" title="Keluar / Ganti Akun">
+                        <i data-lucide="log-out" class="w-4 h-4 text-gold-400 group-hover:rotate-12 transition duration-300"></i>
                     </button>
                 </div>
             </div>
         </header>
 
         <!-- MAIN CONTENT VIEWPORT -->
-        <main class="flex-1 pb-28 px-4 pt-3 space-y-4 overflow-y-auto no-scrollbar">
+        <main class="flex-1 pb-32 px-4 pt-4 space-y-5 overflow-y-auto no-scrollbar">
 
             <!-- 1. HALAMAN BERANDA -->
-            <section id="view-home" class="view-section space-y-4 pb-6 animate-fade-in">
-                <div class="bg-gradient-to-br from-brown-900 via-brown-800 to-brown-950 text-cream-50 rounded-2xl p-5 shadow-xl border border-gold-500/30 relative overflow-hidden space-y-3">
-                    <div class="absolute -right-12 -top-12 w-32 h-32 bg-gold-500/20 rounded-full blur-2xl pointer-events-none"></div>
-                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gold-500/15 border border-gold-400/40 text-gold-400 text-[10px] font-bold uppercase tracking-wider">
-                        <span class="w-2 h-2 rounded-full bg-gold-400 animate-ping"></span> Premium Experience
+            <section id="view-home" class="view-section space-y-5 pb-6 animate-fade-in">
+                <div class="bg-gradient-to-br from-brown-900 via-brown-800 to-brown-950 text-cream-50 rounded-[2rem] p-6 shadow-luxury border border-gold-500/35 relative overflow-hidden space-y-3.5">
+                    <div class="absolute -right-16 -top-16 w-40 h-40 bg-gold-500/15 rounded-full blur-3xl pointer-events-none"></div>
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-gold-500/15 border border-gold-400/40 text-gold-300 text-[10px] font-bold uppercase tracking-widest shadow-gold-subtle">
+                        <span class="w-2 h-2 rounded-full bg-gold-400 animate-ping"></span> Eksklusif & Elegan
                     </div>
-                    <h2 class="text-xl font-extrabold leading-snug">Wujudkan Ide Kreatif Bersama <span class="text-transparent bg-clip-text bg-gradient-to-r from-gold-300 via-gold-400 to-cream-100">Wisesa Karsa</span></h2>
-                    <p class="text-xs text-cream-200/90 leading-relaxed font-light">Layanan desain grafis, editing video, & produksi konveksi berstandar tinggi.</p>
-                    <button onclick="navigateTo('order')" class="w-full py-3 rounded-xl bg-gradient-to-r from-gold-400 via-gold-500 to-gold-600 text-brown-950 font-bold text-xs uppercase tracking-wider shadow-gold-glow flex items-center justify-center gap-2">
-                        <i data-lucide="file-plus-2" class="w-4 h-4 text-brown-950"></i> Buat Pesanan Sekarang
+                    <h2 class="text-2xl font-bold leading-tight font-serif">Wujudkan Mahakarya Visual & Busana Bersama <span class="text-transparent bg-clip-text bg-gradient-to-r from-gold-300 via-gold-400 to-cream-100">Wisesa Karsa</span></h2>
+                    <p class="text-xs text-cream-200/80 leading-relaxed font-light">Layanan desain kelas atas, video editing sinematik, & produksi konveksi premium.</p>
+                    <button onclick="navigateTo('order')" class="w-full py-3.5 rounded-2xl bg-gradient-to-r from-gold-400 via-gold-500 to-gold-600 text-brown-950 font-bold text-xs uppercase tracking-widest shadow-gold-glow flex items-center justify-center gap-2 hover:brightness-110 transition">
+                        <i data-lucide="file-plus-2" class="w-4 h-4 text-brown-950"></i> Buat Pesanan Eksklusif
                     </button>
                 </div>
 
                 <!-- Promo Banner -->
-                <div class="space-y-1.5">
-                    <h3 class="text-[10px] font-bold uppercase tracking-widest text-gold-400 px-1">Promo & Campaign</h3>
+                <div class="space-y-2">
+                    <h3 class="text-[10px] font-bold uppercase tracking-[0.2em] text-gold-400 px-1">Penawaran Istimewa</h3>
                     <div id="promo-banners-grid" class="space-y-2"></div>
                 </div>
 
                 <!-- Katalog Layanan -->
-                <div class="space-y-2">
+                <div class="space-y-2.5">
                     <div class="flex justify-between items-center px-1 gap-2">
-                        <h3 class="text-[10px] font-bold uppercase tracking-widest text-gold-400 shrink-0">Katalog</h3>
-                        <div class="flex gap-1 bg-brown-900/60 p-0.5 rounded-xl border border-gold-500/20 overflow-x-auto no-scrollbar">
-                            <button onclick="filterCatalogCat('desain', this)" class="cat-pill px-2.5 py-1 rounded-lg text-[9px] font-bold bg-gold-500 text-brown-950 transition shadow shrink-0">Desain</button>
-                            <button onclick="filterCatalogCat('editing', this)" class="cat-pill px-2.5 py-1 rounded-lg text-[9px] font-bold text-cream-200 transition shrink-0">Editing</button>
-                            <button onclick="filterCatalogCat('konveksi', this)" class="cat-pill px-2.5 py-1 rounded-lg text-[9px] font-bold text-cream-200 transition shrink-0">Konveksi</button>
+                        <h3 class="text-[10px] font-bold uppercase tracking-[0.2em] text-gold-400 shrink-0">Katalog Layanan</h3>
+                        <div class="flex gap-1.5 bg-brown-900/80 p-1 rounded-2xl border border-gold-500/25 overflow-x-auto no-scrollbar shadow-gold-subtle">
+                            <button onclick="filterCatalogCat('desain', this)" class="cat-pill px-3 py-1.5 rounded-xl text-[10px] font-bold bg-gradient-to-r from-gold-400 to-gold-500 text-brown-950 transition shadow shrink-0">Desain</button>
+                            <button onclick="filterCatalogCat('editing', this)" class="cat-pill px-3 py-1.5 rounded-xl text-[10px] font-bold text-cream-200 transition shrink-0">Editing</button>
+                            <button onclick="filterCatalogCat('konveksi', this)" class="cat-pill px-3 py-1.5 rounded-xl text-[10px] font-bold text-cream-200 transition shrink-0">Konveksi</button>
                         </div>
                     </div>
-                    <div id="mobile-catalog-grid" class="flex gap-3 overflow-x-auto pb-2 pt-1 no-scrollbar"></div>
+                    <div id="mobile-catalog-grid" class="flex gap-4 overflow-x-auto pb-2.5 pt-1 no-scrollbar"></div>
                 </div>
 
-                <div class="w-full h-[1px] bg-gradient-to-r from-transparent via-gold-500/40 to-transparent"></div>
+                <div class="w-full h-[1px] bg-gradient-to-r from-transparent via-gold-500/40 to-transparent my-2"></div>
 
                 <!-- Portfolio -->
-                <div class="space-y-2">
+                <div class="space-y-2.5">
                     <div class="flex justify-between items-center px-1">
-                        <h3 class="text-[10px] font-bold uppercase tracking-widest text-gold-400">Portfolio Showcase</h3>
-                        <span class="text-[9px] text-cream-200/60 font-light">Geser ➔</span>
+                        <h3 class="text-[10px] font-bold uppercase tracking-[0.2em] text-gold-400">Portfolio Showcase</h3>
+                        <span class="text-[10px] text-cream-200/60 font-light tracking-wide">Geser ➔</span>
                     </div>
-                    <div id="mobile-portfolio-grid" class="flex gap-3 overflow-x-auto pb-2 pt-1 no-scrollbar"></div>
+                    <div id="mobile-portfolio-grid" class="flex gap-4 overflow-x-auto pb-2.5 pt-1 no-scrollbar"></div>
                 </div>
             </section>
 
             <!-- 2. HALAMAN ORDER -->
             <section id="view-order" class="view-section hidden space-y-4 pb-6 animate-fade-in">
                 <div class="px-1 space-y-1">
-                    <h2 class="text-lg font-extrabold text-cream-50">Formulir Pesanan</h2>
-                    <p class="text-xs text-cream-200/70 font-light">Pilih layanan & terbitkan Kartu Deal untuk transaksi.</p>
+                    <h2 class="text-xl font-bold text-cream-50 font-serif">Formulir Pesanan</h2>
+                    <p class="text-xs text-cream-200/70 font-light">Pilih layanan eksklusif & terbitkan Kartu Deal resmi.</p>
                 </div>
 
-                <div class="glass-card p-4 space-y-4">
-                    <form id="order-form" onsubmit="submitOrderForm(event)" class="space-y-3.5">
+                <div class="glass-card p-5 space-y-4">
+                    <form id="order-form" onsubmit="submitOrderForm(event)" class="space-y-4">
                         <div>
-                            <label class="block text-[10px] font-bold uppercase tracking-wider text-gold-400 mb-1">Nama Lengkap / Instansi *</label>
-                            <input type="text" id="ord-name" required placeholder="Contoh: Budi Santoso" class="w-full px-3.5 py-2.5 rounded-xl bg-brown-950/70 border border-gold-500/30 text-xs text-cream-50 placeholder-cream-200/30 focus:outline-none focus:border-gold-400">
+                            <label class="block text-[10px] font-bold uppercase tracking-widest text-gold-400 mb-1.5">Nama Lengkap / Instansi *</label>
+                            <input type="text" id="ord-name" required placeholder="Contoh: Budi Santoso" class="w-full px-4 py-3 rounded-2xl bg-brown-950/80 border border-gold-500/30 text-xs text-cream-50 placeholder-cream-200/30 focus:outline-none focus:border-gold-400 shadow-inner">
                         </div>
                         <div>
-                            <label class="block text-[10px] font-bold uppercase tracking-wider text-gold-400 mb-1">Nomor WhatsApp *</label>
-                            <input type="tel" id="ord-phone" required placeholder="08xxxxxxxxxx" class="w-full px-3.5 py-2.5 rounded-xl bg-brown-950/70 border border-gold-500/30 text-xs text-cream-50 placeholder-cream-200/30 focus:outline-none focus:border-gold-400">
+                            <label class="block text-[10px] font-bold uppercase tracking-widest text-gold-400 mb-1.5">Nomor WhatsApp *</label>
+                            <input type="tel" id="ord-phone" required placeholder="08xxxxxxxxxx" class="w-full px-4 py-3 rounded-2xl bg-brown-950/80 border border-gold-500/30 text-xs text-cream-50 placeholder-cream-200/30 focus:outline-none focus:border-gold-400 shadow-inner">
                         </div>
 
-                        <div class="space-y-2">
-                            <label class="block text-[10px] font-bold uppercase tracking-wider text-gold-400">Pilih Layanan Katalog *</label>
-                            <div class="grid grid-cols-3 gap-1.5">
-                                <button type="button" onclick="selectOrderCategory('desain', this)" class="ord-cat-pill py-2 rounded-xl text-[10px] font-bold bg-gold-500 text-brown-950 transition shadow">Desain</button>
-                                <button type="button" onclick="selectOrderCategory('editing', this)" class="ord-cat-pill py-2 rounded-xl text-[10px] font-bold bg-brown-900/80 text-cream-200 border border-gold-500/20 transition">Editing</button>
-                                <button type="button" onclick="selectOrderCategory('konveksi', this)" class="ord-cat-pill py-2 rounded-xl text-[10px] font-bold bg-brown-900/80 text-cream-200 border border-gold-500/20 transition">Konveksi</button>
+                        <div class="space-y-2.5">
+                            <label class="block text-[10px] font-bold uppercase tracking-widest text-gold-400">Pilih Kategori Katalog *</label>
+                            <div class="grid grid-cols-3 gap-2">
+                                <button type="button" onclick="selectOrderCategory('desain', this)" class="ord-cat-pill py-2.5 rounded-xl text-[10px] font-bold bg-gradient-to-r from-gold-400 to-gold-500 text-brown-950 transition shadow">Desain</button>
+                                <button type="button" onclick="selectOrderCategory('editing', this)" class="ord-cat-pill py-2.5 rounded-xl text-[10px] font-bold bg-brown-900/90 text-cream-200 border border-gold-500/30 transition">Editing</button>
+                                <button type="button" onclick="selectOrderCategory('konveksi', this)" class="ord-cat-pill py-2.5 rounded-xl text-[10px] font-bold bg-brown-900/90 text-cream-200 border border-gold-500/30 transition">Konveksi</button>
                             </div>
-                            <div id="order-service-picker-grid" class="grid grid-cols-1 gap-2 max-h-44 overflow-y-auto pr-1 pt-1"></div>
+                            <div id="order-service-picker-grid" class="grid grid-cols-1 gap-2.5 max-h-48 overflow-y-auto pr-1 pt-1"></div>
                         </div>
 
                         <!-- Keranjang -->
-                        <div class="p-3.5 rounded-2xl bg-brown-950/80 border border-gold-500/40 space-y-2.5">
-                            <div class="flex justify-between items-center text-xs border-b border-gold-500/20 pb-1.5">
-                                <span class="text-gold-300 font-bold uppercase tracking-wider text-[10px]">Keranjang Pesanan</span>
+                        <div class="p-4 rounded-2xl bg-brown-950/90 border border-gold-500/40 space-y-3 shadow-luxury">
+                            <div class="flex justify-between items-center text-xs border-b border-gold-500/20 pb-2">
+                                <span class="text-gold-300 font-bold uppercase tracking-widest text-[10px]">Keranjang Pesanan</span>
                                 <span id="cart-item-count" class="text-[10px] text-cream-200/70 font-semibold">0 Item</span>
                             </div>
                             <div id="order-cart-list" class="space-y-2 max-h-36 overflow-y-auto pr-1">
-                                <p class="text-[11px] text-cream-200/50 italic text-center py-2">Belum ada item dipilih.</p>
+                                <p class="text-[11px] text-cream-200/50 italic text-center py-3">Belum ada item dipilih.</p>
                             </div>
-                            <div class="border-t border-gold-500/20 pt-2 flex items-center justify-between">
+                            <div class="border-t border-gold-500/20 pt-2.5 flex items-center justify-between">
                                 <span class="font-bold text-xs uppercase tracking-wider text-cream-50">Total Estimasi:</span>
-                                <span id="ord-total-display" class="text-sm font-extrabold text-gold-400">Rp 0</span>
+                                <span id="ord-total-display" class="text-base font-extrabold text-gold-400 font-serif">Rp 0</span>
                             </div>
                         </div>
 
                         <div>
-                            <label class="block text-[10px] font-bold uppercase tracking-wider text-gold-400 mb-1">Catatan Tambahan</label>
-                            <textarea id="ord-notes" rows="2" placeholder="Ukuran kaos, konsep desain, atau durasi video..." class="w-full px-3.5 py-2.5 rounded-xl bg-brown-950/70 border border-gold-500/30 text-xs text-cream-50 focus:outline-none focus:border-gold-400"></textarea>
+                            <label class="block text-[10px] font-bold uppercase tracking-widest text-gold-400 mb-1.5">Catatan Tambahan</label>
+                            <textarea id="ord-notes" rows="2" placeholder="Warna, ukuran, atau detail spesifikasi pesanan..." class="w-full px-4 py-3 rounded-2xl bg-brown-950/80 border border-gold-500/30 text-xs text-cream-50 focus:outline-none focus:border-gold-400 shadow-inner"></textarea>
                         </div>
                         
-                        <button type="submit" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-gold-400 via-gold-500 to-gold-600 text-brown-950 font-bold text-xs uppercase tracking-widest shadow-gold-glow flex items-center justify-center gap-2">
-                            <i data-lucide="ticket" class="w-4 h-4"></i> Terbitkan Kartu Deal
+                        <button type="submit" class="w-full py-4 rounded-2xl bg-gradient-to-r from-gold-400 via-gold-500 to-gold-600 text-brown-950 font-bold text-xs uppercase tracking-widest shadow-gold-glow flex items-center justify-center gap-2 hover:brightness-110 transition">
+                            <i data-lucide="ticket" class="w-4 h-4"></i> Terbitkan Kartu Deal Resmi
                         </button>
                     </form>
                 </div>
 
                 <!-- Kartu Deal Placeholder / Result -->
-                <div id="order-card-empty" class="glass-card p-6 border-2 border-dashed border-gold-500/30 text-center space-y-2">
-                    <i data-lucide="qr-code" class="w-8 h-8 mx-auto text-gold-400"></i>
+                <div id="order-card-empty" class="glass-card p-8 border-2 border-dashed border-gold-500/30 text-center space-y-3">
+                    <i data-lucide="qr-code" class="w-10 h-10 mx-auto text-gold-400 animate-pulse"></i>
                     <p class="text-xs font-bold text-cream-200">Belum Ada Kartu Deal Diterbitkan</p>
                 </div>
 
-                <div id="order-card-result" class="hidden space-y-3 animate-fade-in">
-                    <div id="printable-order-card" class="bg-gradient-to-r from-brown-950 via-brown-900 to-brown-950 text-cream-50 rounded-xl p-3.5 mx-auto w-full max-w-[300px] shadow-2xl border-2 border-gold-500/60 space-y-2.5 relative overflow-hidden">
-                        <div class="flex justify-between items-center border-b border-gold-500/30 pb-2">
-                            <div class="flex items-center gap-2">
-                                <div class="w-7 h-7 rounded-lg bg-brown-800 text-gold-400 flex items-center justify-center border border-gold-500/40 font-extrabold text-[10px]">WK</div>
+                <div id="order-card-result" class="hidden space-y-4 animate-fade-in">
+                    <div id="printable-order-card" class="bg-gradient-to-r from-brown-950 via-brown-900 to-brown-950 text-cream-50 rounded-2xl p-4 mx-auto w-full max-w-[320px] shadow-luxury border-2 border-gold-500/70 space-y-3 relative overflow-hidden">
+                        <div class="absolute -right-10 -top-10 w-24 h-24 bg-gold-500/20 rounded-full blur-2xl pointer-events-none"></div>
+                        
+                        <div class="flex justify-between items-center border-b border-gold-500/30 pb-2.5">
+                            <div class="flex items-center gap-2.5">
+                                <div class="w-8 h-8 rounded-xl bg-brown-800 text-gold-400 flex items-center justify-center border border-gold-500/50 font-bold text-xs font-serif shadow-gold-subtle">WK</div>
                                 <div>
-                                    <h1 class="font-bold text-[10px] tracking-tight text-cream-50 leading-none">WISESA KARSA</h1>
-                                    <p class="text-[6px] text-gold-400 font-medium mt-0.5">Creative Studio & Konveksi</p>
+                                    <h1 class="font-bold text-[11px] tracking-widest text-cream-50 leading-none font-serif">WISESA KARSA</h1>
+                                    <p class="text-[7px] text-gold-400 font-medium mt-0.5 uppercase">Luxury Studio & Konveksi</p>
                                 </div>
                             </div>
-                            <span class="text-[8px] font-extrabold uppercase tracking-widest text-brown-950 bg-gold-400 px-2.5 py-0.5 rounded-full">ORDER DEAL</span>
+                            <span class="text-[8px] font-extrabold uppercase tracking-widest text-brown-950 bg-gradient-to-r from-gold-300 via-gold-400 to-gold-500 px-3 py-1 rounded-full shadow">DEAL PASS</span>
                         </div>
 
                         <div class="grid grid-cols-2 gap-2">
-                            <div class="bg-brown-900/70 p-2 rounded-lg border border-gold-500/30">
-                                <span class="text-[7px] uppercase tracking-wider text-gold-400/80 block">Kode Order</span>
-                                <span id="card-invoice-id" class="font-mono font-black text-[10px] text-cream-50 truncate block">#WK-0000</span>
+                            <div class="bg-brown-900/80 p-2.5 rounded-xl border border-gold-500/30">
+                                <span class="text-[7px] uppercase tracking-widest text-gold-400/90 block font-bold">Kode Order</span>
+                                <span id="card-invoice-id" class="font-mono font-black text-[11px] text-cream-50 truncate block mt-0.5">#WK-0000</span>
                             </div>
-                            <div class="bg-brown-900/70 p-2 rounded-lg border border-gold-500/30">
-                                <span class="text-[7px] uppercase tracking-wider text-gold-400/80 block">Customer</span>
-                                <span id="card-customer-name" class="font-extrabold text-[10px] text-cream-50 truncate block">-</span>
+                            <div class="bg-brown-900/80 p-2.5 rounded-xl border border-gold-500/30">
+                                <span class="text-[7px] uppercase tracking-widest text-gold-400/90 block font-bold">Customer</span>
+                                <span id="card-customer-name" class="font-extrabold text-[11px] text-cream-50 truncate block mt-0.5">-</span>
                             </div>
                         </div>
 
-                        <div class="bg-brown-900/70 p-2 rounded-lg border border-gold-500/30 flex justify-between items-center">
-                            <div>
-                                <span class="text-[7px] uppercase tracking-wider text-gold-400/80 block">Item & Catatan</span>
-                                <span id="card-customer-notes" class="text-[9px] text-cream-50 line-clamp-1 block">-</span>
+                        <div class="bg-brown-900/80 p-2.5 rounded-xl border border-gold-500/30 flex justify-between items-center">
+                            <div class="pr-2">
+                                <span class="text-[7px] uppercase tracking-widest text-gold-400/90 block font-bold">Item & Catatan</span>
+                                <span id="card-customer-notes" class="text-[9px] text-cream-50/90 line-clamp-1 block mt-0.5 italic">-</span>
                             </div>
-                            <span id="card-total-price" class="text-[10px] font-extrabold text-gold-400 shrink-0 ml-2">Rp 0</span>
+                            <span id="card-total-price" class="text-xs font-bold text-gold-400 shrink-0 font-serif">Rp 0</span>
                         </div>
 
-                        <div class="p-1.5 rounded-lg bg-white text-center space-y-0.5">
-                            <svg id="order-barcode-svg" class="mx-auto w-full h-7"></svg>
-                            <p class="text-[6px] text-brown-950 uppercase tracking-[0.15em] font-extrabold">Scan Pass Deal</p>
+                        <div class="p-2 rounded-xl bg-white text-center space-y-1 shadow-inner border border-gold-400/40">
+                            <svg id="order-barcode-svg" class="mx-auto w-full h-8"></svg>
+                            <p class="text-[7px] text-brown-950 uppercase tracking-[0.2em] font-extrabold">Authorized Order Pass</p>
                         </div>
                     </div>
 
-                    <button type="button" onclick="downloadReceiptImage()" class="w-full max-w-[300px] mx-auto py-2.5 rounded-xl bg-brown-900 text-gold-400 border border-gold-500/50 font-bold text-[10px] uppercase tracking-wider shadow flex items-center justify-center gap-1.5 hover:bg-brown-800 transition">
-                        <i data-lucide="download" class="w-3.5 h-3.5 text-gold-400"></i> Unduh Kartu Deal (PNG)
+                    <button type="button" onclick="downloadReceiptImage()" class="w-full max-w-[320px] mx-auto py-3 rounded-2xl bg-brown-900 text-gold-300 border border-gold-500/60 font-bold text-[10px] uppercase tracking-widest shadow-gold-subtle flex items-center justify-center gap-2 hover:bg-brown-800 transition">
+                        <i data-lucide="download" class="w-4 h-4 text-gold-400"></i> Unduh Kartu Deal (PNG)
                     </button>
                 </div>
             </section>
@@ -384,117 +406,113 @@
             <!-- 3. HALAMAN TESTIMONI -->
             <section id="view-testimonials" class="view-section hidden space-y-4 pb-6 animate-fade-in">
                 <div class="px-1 space-y-1">
-                    <h2 class="text-lg font-extrabold text-cream-50">Ulasan Klien</h2>
-                    <p class="text-xs text-cream-200/70 font-light">Masukkan kode tiket pesanan yang berstatus <b>Beres</b> untuk mengirim ulasan.</p>
+                    <h2 class="text-xl font-bold text-cream-50 font-serif">Ulasan Klien</h2>
+                    <p class="text-xs text-cream-200/70 font-light">Masukkan ID tiket pesanan berstatus <b>Beres</b> untuk menulis ulasan.</p>
                 </div>
 
-                <div class="glass-card p-4 space-y-3">
-                    <div id="testi-form-gate" class="space-y-3">
-                        <div class="p-3 rounded-xl bg-amber-500/10 border border-amber-500/30 text-[11px] text-amber-300 flex items-start gap-2">
-                            <i data-lucide="info" class="w-4 h-4 shrink-0 mt-0.5"></i>
-                            <span>Masukkan ID Kartu Order Anda (Contoh: <b>#WK-1024</b>) yang telah diselesaikan owner.</span>
+                <div class="glass-card p-5 space-y-4">
+                    <div id="testi-form-gate" class="space-y-3.5">
+                        <div class="p-3.5 rounded-2xl bg-amber-500/10 border border-amber-500/30 text-[11px] text-amber-300 flex items-start gap-2.5 shadow-inner">
+                            <i data-lucide="info" class="w-4 h-4 shrink-0 mt-0.5 text-amber-400"></i>
+                            <span>Masukkan ID Kartu Order (Contoh: <b>#WK-1024</b>) yang telah diselesaikan oleh owner.</span>
                         </div>
                         <div>
-                            <label class="block text-[10px] font-bold uppercase text-gold-400 mb-1">ID Tiket Pesanan *</label>
-                            <input type="text" id="testi-ticket-id" placeholder="#WK-XXXX" class="w-full px-3.5 py-2.5 rounded-xl bg-brown-950/70 border border-gold-500/30 font-mono text-xs text-cream-50 focus:outline-none focus:border-gold-400">
+                            <label class="block text-[10px] font-bold uppercase tracking-widest text-gold-400 mb-1.5">ID Tiket Pesanan *</label>
+                            <input type="text" id="testi-ticket-id" placeholder="#WK-XXXX" class="w-full px-4 py-3 rounded-2xl bg-brown-950/80 border border-gold-500/30 font-mono text-xs text-cream-50 focus:outline-none focus:border-gold-400 shadow-inner">
                         </div>
-                        <button type="button" onclick="verifyOrderForTestimonial()" class="w-full py-3 rounded-xl bg-gradient-to-r from-gold-400 to-gold-600 text-brown-950 font-bold text-xs uppercase shadow tracking-wider">Verifikasi Tiket</button>
+                        <button type="button" onclick="verifyOrderForTestimonial()" class="w-full py-3.5 rounded-2xl bg-gradient-to-r from-gold-400 to-gold-600 text-brown-950 font-bold text-xs uppercase shadow tracking-wider">Verifikasi Tiket</button>
                     </div>
 
-                    <form id="testi-active-form" onsubmit="submitTestimonial(event)" class="hidden space-y-3 animate-fade-in">
-                        <div class="p-2.5 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-[11px] text-emerald-300 flex justify-between items-center">
+                    <form id="testi-active-form" onsubmit="submitTestimonial(event)" class="hidden space-y-3.5 animate-fade-in">
+                        <div class="p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-[11px] text-emerald-300 flex justify-between items-center shadow-inner">
                             <span>Tiket Valid: <b id="verified-ticket-label">#WK-0000</b></span>
                             <button type="button" onclick="resetTestimonialGate()" class="text-[10px] underline text-cream-200">Ganti</button>
                         </div>
-                        <input type="text" id="testi-name" required placeholder="Nama Anda" class="w-full px-3.5 py-2.5 rounded-xl bg-brown-950/70 border border-gold-500/30 text-xs text-cream-50">
-                        <input type="text" id="testi-service" required placeholder="Layanan yang dipesan" class="w-full px-3.5 py-2.5 rounded-xl bg-brown-950/70 border border-gold-500/30 text-xs text-cream-50">
-                        <select id="testi-rating" class="w-full px-3.5 py-2.5 rounded-xl bg-brown-950/70 border border-gold-500/30 text-xs text-cream-50">
+                        <input type="text" id="testi-name" required placeholder="Nama / Instansi" class="w-full px-4 py-3 rounded-2xl bg-brown-950/80 border border-gold-500/30 text-xs text-cream-50 shadow-inner">
+                        <input type="text" id="testi-service" required placeholder="Layanan yang dipesan" class="w-full px-4 py-3 rounded-2xl bg-brown-950/80 border border-gold-500/30 text-xs text-cream-50 shadow-inner">
+                        <select id="testi-rating" class="w-full px-4 py-3 rounded-2xl bg-brown-950/80 border border-gold-500/30 text-xs text-cream-50 shadow-inner">
                             <option value="5" class="bg-brown-950">⭐⭐⭐⭐⭐ (Sangat Puas)</option>
                             <option value="4" class="bg-brown-950">⭐⭐⭐⭐ (Puas)</option>
                         </select>
-                        <textarea id="testi-comment" rows="2" required placeholder="Tulis ulasan Anda..." class="w-full px-3.5 py-2.5 rounded-xl bg-brown-950/70 border border-gold-500/30 text-xs text-cream-50"></textarea>
-                        <button type="submit" class="w-full py-3 rounded-xl bg-gradient-to-r from-gold-400 to-gold-600 text-brown-950 font-bold text-xs uppercase shadow">Kirim Ulasan</button>
+                        <textarea id="testi-comment" rows="2" required placeholder="Tulis ulasan eksklusif Anda..." class="w-full px-4 py-3 rounded-2xl bg-brown-950/80 border border-gold-500/30 text-xs text-cream-50 shadow-inner"></textarea>
+                        <button type="submit" class="w-full py-3.5 rounded-2xl bg-gradient-to-r from-gold-400 to-gold-600 text-brown-950 font-bold text-xs uppercase shadow tracking-wider">Kirim Ulasan</button>
                     </form>
                 </div>
 
-                <div id="all-testimonials-grid" class="space-y-2.5"></div>
+                <div id="all-testimonials-grid" class="space-y-3"></div>
             </section>
 
             <!-- 4. HALAMAN OWNER PORTAL -->
             <section id="view-owner" class="view-section hidden space-y-4 pb-6 animate-fade-in">
-                <div id="owner-login-box" class="glass-card p-6 shadow-2xl space-y-4">
-                    <div class="text-center space-y-2">
-                        <div class="w-16 h-16 rounded-full mx-auto bg-brown-800 border-2 border-gold-400 flex items-center justify-center text-gold-400 font-black text-xl shadow-gold-glow">WK</div>
-                        <h2 class="text-lg font-extrabold text-cream-50">Portal Owner</h2>
-                        <p class="text-[11px] text-cream-200/70">Masukkan password untuk akses manajemen</p>
+                <div id="owner-login-box" class="glass-card p-6 shadow-luxury space-y-4.5">
+                    <div class="text-center space-y-2.5">
+                        <div class="w-16 h-16 rounded-full mx-auto bg-brown-800 border-2 border-gold-400 flex items-center justify-center text-gold-300 font-bold text-xl shadow-gold-glow font-serif">WK</div>
+                        <h2 class="text-lg font-bold text-cream-50 font-serif">Portal Owner</h2>
+                        <p class="text-[11px] text-cream-200/70 font-light">Masukkan password eksklusif manajemen</p>
                     </div>
-                    <form onsubmit="handleOwnerLogin(event)" class="space-y-3">
-                        <input type="password" id="login-password" required placeholder="Password owner..." class="w-full px-4 py-3 rounded-xl bg-brown-950/80 border border-gold-500/40 text-xs text-cream-50 text-center tracking-widest font-mono focus:outline-none focus:border-gold-400">
-                        <button type="submit" class="w-full py-3 rounded-xl bg-gradient-to-r from-gold-400 via-gold-500 to-gold-600 text-brown-950 font-bold text-xs uppercase tracking-wider shadow-gold-glow">Masuk Dashboard</button>
+                    <form onsubmit="handleOwnerLogin(event)" class="space-y-3.5">
+                        <input type="password" id="login-password" required placeholder="Password owner..." class="w-full px-4 py-3.5 rounded-2xl bg-brown-950/90 border border-gold-500/40 text-xs text-cream-50 text-center tracking-widest font-mono focus:outline-none focus:border-gold-300 shadow-inner">
+                        <button type="submit" class="w-full py-3.5 rounded-2xl bg-gradient-to-r from-gold-400 via-gold-500 to-gold-600 text-brown-950 font-bold text-xs uppercase tracking-wider shadow-gold-glow">Masuk Dashboard</button>
                     </form>
                 </div>
 
                 <!-- Dashboard Aktif -->
                 <div id="owner-dashboard-box" class="hidden space-y-4 animate-fade-in">
-                    <div class="glass-card p-3.5 flex justify-between items-center">
-                        <div class="flex items-center gap-2.5">
-                            <div class="w-9 h-9 rounded-full bg-gold-500/20 border border-gold-400 flex items-center justify-center text-gold-400 font-bold text-sm">R</div>
+                    <div class="glass-card p-4 flex justify-between items-center shadow-luxury">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-full bg-gold-500/20 border border-gold-400 flex items-center justify-center text-gold-300 font-bold text-sm">R</div>
                             <div>
-                                <h3 class="text-xs font-bold text-cream-50">Rizal (Owner)</h3>
-                                <p class="text-[10px] text-emerald-400">● Online & Aktif</p>
+                                <h3 class="text-xs font-bold text-cream-50 font-serif">Rizal (Owner)</h3>
+                                <p class="text-[10px] text-emerald-400 font-medium">● Online & Aktif</p>
                             </div>
                         </div>
-                        <button onclick="ownerLogout()" class="px-3 py-1.5 rounded-xl bg-brown-900 text-gold-400 border border-gold-500/30 text-[10px] font-bold">Keluar</button>
+                        <button onclick="ownerLogout()" class="px-3 py-1.5 rounded-xl bg-brown-900 text-gold-300 border border-gold-500/30 text-[10px] font-bold">Keluar</button>
                     </div>
 
                     <!-- Ringkasan Keuangan -->
-                    <div class="grid grid-cols-2 gap-2.5">
-                        <div class="glass-card p-3.5 space-y-1">
-                            <span class="text-[9px] text-emerald-400 font-bold uppercase">Pemasukan (Beres)</span>
-                            <h4 id="owner-stat-income" class="text-sm font-extrabold text-cream-50">Rp 0</h4>
+                    <div class="grid grid-cols-2 gap-3">
+                        <div class="glass-card p-4 space-y-1 shadow-luxury">
+                            <span class="text-[9px] text-emerald-400 font-bold uppercase tracking-wider">Pemasukan (Beres)</span>
+                            <h4 id="owner-stat-income" class="text-base font-bold text-cream-50 font-serif">Rp 0</h4>
                         </div>
-                        <div class="glass-card p-3.5 space-y-1">
-                            <span class="text-[9px] text-rose-400 font-bold uppercase">Pengeluaran</span>
-                            <h4 id="owner-stat-expense" class="text-sm font-extrabold text-cream-50">Rp 0</h4>
+                        <div class="glass-card p-4 space-y-1 shadow-luxury">
+                            <span class="text-[9px] text-rose-400 font-bold uppercase tracking-wider">Pengeluaran</span>
+                            <h4 id="owner-stat-expense" class="text-base font-bold text-cream-50 font-serif">Rp 0</h4>
                         </div>
                     </div>
 
                     <!-- Catat Pengeluaran -->
-                    <div class="glass-card p-3.5 space-y-2.5">
-                        <h4 class="text-[10px] font-bold uppercase text-gold-400">Catat Pengeluaran Operasional</h4>
+                    <div class="glass-card p-4 space-y-3 shadow-luxury">
+                        <h4 class="text-[10px] font-bold uppercase tracking-widest text-gold-400">Catat Pengeluaran Operasional</h4>
                         <div class="flex gap-2">
-                            <input type="text" id="exp-desc" placeholder="Keterangan..." class="flex-1 px-3 py-2 rounded-xl bg-brown-950/80 border border-gold-500/30 text-xs text-cream-50">
-                            <input type="number" id="exp-amount" placeholder="Rp" class="w-24 px-3 py-2 rounded-xl bg-brown-950/80 border border-gold-500/30 text-xs text-cream-50">
-                            <button onclick="addExpense()" class="px-3 py-2 rounded-xl bg-gold-500 text-brown-950 font-bold text-xs">+</button>
+                            <input type="text" id="exp-desc" placeholder="Keterangan..." class="flex-1 px-3 py-2.5 rounded-xl bg-brown-950/80 border border-gold-500/30 text-xs text-cream-50 shadow-inner">
+                            <input type="number" id="exp-amount" placeholder="Rp" class="w-24 px-3 py-2.5 rounded-xl bg-brown-950/80 border border-gold-500/30 text-xs text-cream-50 shadow-inner">
+                            <button onclick="addExpense()" class="px-3.5 py-2.5 rounded-xl bg-gold-500 text-brown-950 font-bold text-xs shadow">+</button>
                         </div>
                     </div>
 
                     <!-- Daftar Pesanan Masuk -->
-                    <div class="space-y-2">
-                        <h4 class="text-[10px] font-bold uppercase tracking-wider text-gold-400 px-1">Daftar Pesanan Masuk</h4>
-                        <div id="owner-orders-list" class="space-y-2"></div>
+                    <div class="space-y-2.5">
+                        <h4 class="text-[10px] font-bold uppercase tracking-widest text-gold-400 px-1">Daftar Pesanan Masuk</h4>
+                        <div id="owner-orders-list" class="space-y-2.5"></div>
                     </div>
                 </div>
             </section>
         </main>
 
-        <!-- MOBILE BOTTOM NAVIGATION BAR (DIPERBESAR) -->
-        <nav class="absolute bottom-0 left-0 right-0 z-40 bg-brown-950/95 backdrop-blur-2xl border-t border-gold-500/30 px-3 py-3 flex justify-around items-center shadow-2xl">
-            <button onclick="navigateTo('home')" class="nav-btn flex flex-col items-center gap-1 text-gold-400 py-1.5 px-3 rounded-xl transition" data-target="home">
-                <i data-lucide="home" class="w-6 h-6"></i>
-                <span class="text-[10px] font-bold tracking-wider">Beranda</span>
+        <!-- ULTRA-SLEEK FLOATING BOTTOM NAVIGATION BAR -->
+        <nav class="absolute bottom-4 left-4 right-4 z-40 bg-brown-950/90 backdrop-blur-2xl border border-gold-500/40 px-4 py-2.5 flex justify-around items-center rounded-3xl shadow-floating-nav">
+            <button onclick="navigateTo('home')" class="nav-btn flex flex-col items-center gap-1 text-gold-400 py-1 px-4 rounded-2xl transition duration-300 relative group" data-target="home">
+                <i data-lucide="home" class="w-5 h-5 group-hover:scale-110 transition duration-300"></i>
+                <span class="text-[9px] font-bold tracking-widest uppercase">Beranda</span>
             </button>
-            <button onclick="navigateTo('order')" class="nav-btn flex flex-col items-center gap-1 text-cream-200/70 py-1.5 px-3 rounded-xl transition" data-target="order">
-                <i data-lucide="file-text" class="w-6 h-6"></i>
-                <span class="text-[10px] font-medium tracking-wider">Order</span>
+            <button onclick="navigateTo('order')" class="nav-btn flex flex-col items-center gap-1 text-cream-200/60 py-1 px-4 rounded-2xl transition duration-300 relative group" data-target="order">
+                <i data-lucide="file-text" class="w-5 h-5 group-hover:scale-110 transition duration-300"></i>
+                <span class="text-[9px] font-medium tracking-widest uppercase">Order</span>
             </button>
-            <button onclick="navigateTo('testimonials')" class="nav-btn flex flex-col items-center gap-1 text-cream-200/70 py-1.5 px-3 rounded-xl transition" data-target="testimonials">
-                <i data-lucide="star" class="w-6 h-6"></i>
-                <span class="text-[10px] font-medium tracking-wider">Ulasan</span>
-            </button>
-            <button onclick="navigateTo('owner')" class="nav-btn flex flex-col items-center gap-1 text-cream-200/70 py-1.5 px-3 rounded-xl transition" data-target="owner">
-                <i data-lucide="shield-check" class="w-6 h-6"></i>
-                <span class="text-[10px] font-medium tracking-wider">Owner</span>
+            <button onclick="navigateTo('testimonials')" class="nav-btn flex flex-col items-center gap-1 text-cream-200/60 py-1 px-4 rounded-2xl transition duration-300 relative group" data-target="testimonials">
+                <i data-lucide="star" class="w-5 h-5 group-hover:scale-110 transition duration-300"></i>
+                <span class="text-[9px] font-medium tracking-widest uppercase">Ulasan</span>
             </button>
         </nav>
     </div>
@@ -503,26 +521,26 @@
         const OWNER_PASS = '25220291100806';
 
         const catalogData = [
-            { id: 'd1', cat: 'desain', title: 'Logo & Brand Identity', price: 150000, desc: 'File master AI/PNG + Filosofi logo' },
-            { id: 'd2', cat: 'desain', title: 'Poster / Feed Instagram', price: 50000, desc: 'Desain promosi modern siap upload' },
-            { id: 'd3', cat: 'desain', title: 'Banner / Spanduk Event', price: 75000, desc: 'Resolusi tinggi siap cetak' },
-            { id: 'e1', cat: 'editing', title: 'Video Reels / TikTok', price: 85000, desc: 'Color grading, transisi & subtitle dinamis' },
-            { id: 'e2', cat: 'editing', title: 'Video Profil / Aftermovie', price: 250000, desc: 'Durasi 1-3 menit cinematic' },
-            { id: 'k1', cat: 'konveksi', title: 'Kaos Combed 24s + Sablon', price: 85000, desc: 'Minimal order 12 pcs, bahan adem' },
-            { id: 'k2', cat: 'konveksi', title: 'Kemeja PDH / PDL Organisasi', price: 135000, desc: 'Bahan American Drill + Bordir komputer' }
+            { id: 'd1', cat: 'desain', title: 'Logo & Brand Identity', price: 150000, desc: 'File master AI/PNG + Filosofi logo eksklusif' },
+            { id: 'd2', cat: 'desain', title: 'Poster / Feed Instagram', price: 50000, desc: 'Desain promosi modern berkelas tinggi' },
+            { id: 'd3', cat: 'desain', title: 'Banner / Spanduk Event', price: 75000, desc: 'Resolusi tinggi siap cetak premium' },
+            { id: 'e1', cat: 'editing', title: 'Video Reels / TikTok', price: 85000, desc: 'Color grading, transisi & subtitle sinematik' },
+            { id: 'e2', cat: 'editing', title: 'Video Profil / Aftermovie', price: 250000, desc: 'Durasi 1-3 menit estetika tinggi' },
+            { id: 'k1', cat: 'konveksi', title: 'Kaos Combed 24s + Sablon', price: 85000, desc: 'Minimal order 12 pcs, bahan super adem' },
+            { id: 'k2', cat: 'konveksi', title: 'Kemeja PDH / PDL Organisasi', price: 135000, desc: 'Bahan American Drill + Bordir komputer presisi' }
         ];
 
         const portfolioData = [
-            { title: 'Rebranding Sanggar Seni', tag: 'Desain Grafis', desc: 'Identitas visual & materi kampanye media sosial.' },
-            { title: 'Aftermovie Festival Kampus', tag: 'Video Editing', desc: 'Cinematic recap dengan sound design dinamis.' },
-            { title: 'Seragam PDH Departemen', tag: 'Konveksi', desc: 'Produksi 45 pcs kemeja drill bordir presisi.' }
+            { title: 'Rebranding Sanggar Seni', tag: 'Desain Grafis', desc: 'Identitas visual mewah & materi kampanye elegan.' },
+            { title: 'Aftermovie Festival Kampus', tag: 'Video Editing', desc: 'Cinematic recap dengan sound design berkelas.' },
+            { title: 'Seragam PDH Departemen', tag: 'Konveksi', desc: 'Produksi 45 pcs kemeja drill bordir eksklusif.' }
         ];
 
         let cart = [];
         let orders = JSON.parse(localStorage.getItem('wk_orders') || '[]');
         let expenses = JSON.parse(localStorage.getItem('wk_expenses') || '[]');
         let testimonials = JSON.parse(localStorage.getItem('wk_testimonials') || JSON.stringify([
-            { name: 'UKM Sanggar Harsa', service: 'Desain & Reels Promosi', rating: 5, comment: 'Hasil desain sangat rapi, elegan, dan pengerjaan tepat waktu!' }
+            { name: 'UKM Sanggar Harsa', service: 'Desain & Reels Promosi', rating: 5, comment: 'Hasil desain sangat elegan, berkelas, dan pengerjaan tepat waktu!' }
         ]));
 
         const formatRp = (num) => 'Rp ' + Number(num).toLocaleString('id-ID');
@@ -530,8 +548,8 @@
         function showToast(msg, type = 'gold') {
             const container = document.getElementById('toast-container');
             const el = document.createElement('div');
-            el.className = `px-4 py-2.5 rounded-xl text-xs font-bold shadow-xl border backdrop-blur-md animate-fade-in text-center ${
-                type === 'error' ? 'bg-rose-950/90 border-rose-500 text-rose-200' : 'bg-brown-900/95 border-gold-400 text-gold-300'
+            el.className = `px-4 py-3 rounded-2xl text-xs font-bold shadow-luxury border backdrop-blur-md animate-fade-in text-center ${
+                type === 'error' ? 'bg-rose-950/90 border-rose-500 text-rose-200' : 'bg-brown-900/95 border-gold-400 text-gold-300 shadow-gold-subtle'
             }`;
             el.innerText = msg;
             container.appendChild(el);
@@ -545,10 +563,10 @@
 
             document.querySelectorAll('.nav-btn').forEach(btn => {
                 if (btn.dataset.target === targetId) {
-                    btn.classList.remove('text-cream-200/70', 'font-medium');
+                    btn.classList.remove('text-cream-200/60', 'font-medium');
                     btn.classList.add('text-gold-400', 'font-bold');
                 } else {
-                    btn.classList.add('text-cream-200/70', 'font-medium');
+                    btn.classList.add('text-cream-200/60', 'font-medium');
                     btn.classList.remove('text-gold-400', 'font-bold');
                 }
             });
@@ -558,7 +576,7 @@
         function enterMainPlatform() {
             const landing = document.getElementById('view-landing');
             landing.classList.add('opacity-0', 'pointer-events-none');
-            setTimeout(() => landing.style.display = 'none', 500);
+            setTimeout(() => landing.style.display = 'none', 600);
         }
 
         function openOwnerLandingLogin() {
@@ -585,22 +603,22 @@
 
         function renderHome() {
             document.getElementById('promo-banners-grid').innerHTML = `
-                <div class="p-3.5 rounded-2xl bg-gradient-to-r from-gold-500/20 via-brown-900 to-brown-950 border border-gold-400/40 flex justify-between items-center">
+                <div class="p-4 rounded-2xl bg-gradient-to-r from-gold-500/20 via-brown-900 to-brown-950 border border-gold-400/40 flex justify-between items-center shadow-gold-subtle">
                     <div>
-                        <span class="text-[9px] font-extrabold uppercase bg-gold-400 text-brown-950 px-2 py-0.5 rounded-full">Diskon 15%</span>
-                        <h4 class="text-xs font-bold text-cream-50 mt-1">Paket Branding & Konten</h4>
-                        <p class="text-[10px] text-cream-200/70">Khusus pemesanan minimal 3 desain / video.</p>
+                        <span class="text-[9px] font-bold uppercase bg-gold-400 text-brown-950 px-2.5 py-0.5 rounded-full tracking-wider">Eksklusif 15%</span>
+                        <h4 class="text-xs font-bold text-cream-50 mt-1.5 font-serif text-sm">Paket Branding & Konveksi</h4>
+                        <p class="text-[10px] text-cream-200/70">Koleksi khusus pemesanan paket terpadu.</p>
                     </div>
-                    <button onclick="navigateTo('order')" class="px-3 py-1.5 rounded-xl bg-gold-500 text-brown-950 font-bold text-[10px] shrink-0">Klaim</button>
+                    <button onclick="navigateTo('order')" class="px-3.5 py-2 rounded-xl bg-gradient-to-r from-gold-400 to-gold-500 text-brown-950 font-bold text-[10px] shrink-0 shadow">Klaim</button>
                 </div>
             `;
 
             filterCatalogCat('desain', document.querySelector('.cat-pill'));
 
             document.getElementById('mobile-portfolio-grid').innerHTML = portfolioData.map(p => `
-                <div class="min-w-[210px] max-w-[210px] glass-card p-3.5 space-y-1.5 shrink-0">
-                    <span class="text-[9px] font-bold uppercase text-gold-400">${p.tag}</span>
-                    <h4 class="text-xs font-extrabold text-cream-50">${p.title}</h4>
+                <div class="min-w-[220px] max-w-[220px] glass-card p-4 space-y-2 shrink-0 shadow-luxury">
+                    <span class="text-[9px] font-bold uppercase text-gold-400 tracking-widest">${p.tag}</span>
+                    <h4 class="text-xs font-bold text-cream-50 font-serif text-sm">${p.title}</h4>
                     <p class="text-[10px] text-cream-200/70 leading-relaxed">${p.desc}</p>
                 </div>
             `).join('');
@@ -608,24 +626,24 @@
 
         function filterCatalogCat(cat, btnEl) {
             document.querySelectorAll('.cat-pill').forEach(b => {
-                b.classList.remove('bg-gold-500', 'text-brown-950', 'shadow');
-                b.classList.add('text-cream-200');
+                b.classList.remove('bg-gradient-to-r', 'from-gold-400', 'to-gold-500', 'text-brown-950', 'shadow');
+                b.classList.add('text-cream-200', 'bg-brown-900/90');
             });
             if (btnEl) {
-                btnEl.classList.add('bg-gold-500', 'text-brown-950', 'shadow');
-                btnEl.classList.remove('text-cream-200');
+                btnEl.classList.add('bg-gradient-to-r', 'from-gold-400', 'to-gold-500', 'text-brown-950', 'shadow');
+                btnEl.classList.remove('text-cream-200', 'bg-brown-900/90');
             }
 
             const items = catalogData.filter(i => i.cat === cat);
             document.getElementById('mobile-catalog-grid').innerHTML = items.map(item => `
-                <div class="min-w-[200px] max-w-[200px] glass-card p-3.5 flex flex-col justify-between space-y-2.5 shrink-0">
+                <div class="min-w-[210px] max-w-[210px] glass-card p-4 flex flex-col justify-between space-y-3 shrink-0 shadow-luxury">
                     <div class="space-y-1">
-                        <h4 class="text-xs font-bold text-cream-50 leading-snug">${item.title}</h4>
+                        <h4 class="text-xs font-bold text-cream-50 leading-snug font-serif text-sm">${item.title}</h4>
                         <p class="text-[10px] text-cream-200/70">${item.desc}</p>
                     </div>
-                    <div class="pt-2 border-t border-gold-500/20 flex justify-between items-center">
-                        <span class="text-xs font-extrabold text-gold-400">${formatRp(item.price)}</span>
-                        <button onclick="quickOrder('${item.id}')" class="px-2.5 py-1 rounded-lg bg-gold-500 text-brown-950 text-[10px] font-bold">+ Order</button>
+                    <div class="pt-2.5 border-t border-gold-500/20 flex justify-between items-center">
+                        <span class="text-xs font-bold text-gold-400 font-serif">${formatRp(item.price)}</span>
+                        <button onclick="quickOrder('${item.id}')" class="px-3 py-1.5 rounded-xl bg-gold-500 text-brown-950 text-[10px] font-bold shadow">+ Order</button>
                     </div>
                 </div>
             `).join('');
@@ -638,22 +656,22 @@
 
         function selectOrderCategory(cat, btnEl) {
             document.querySelectorAll('.ord-cat-pill').forEach(b => {
-                b.classList.remove('bg-gold-500', 'text-brown-950', 'shadow');
-                b.classList.add('bg-brown-900/80', 'text-cream-200', 'border', 'border-gold-500/20');
+                b.classList.remove('bg-gradient-to-r', 'from-gold-400', 'to-gold-500', 'text-brown-950', 'shadow');
+                b.classList.add('bg-brown-900/90', 'text-cream-200', 'border', 'border-gold-500/30');
             });
             if (btnEl) {
-                btnEl.classList.add('bg-gold-500', 'text-brown-950', 'shadow');
-                btnEl.classList.remove('bg-brown-900/80', 'text-cream-200', 'border', 'border-gold-500/20');
+                btnEl.classList.add('bg-gradient-to-r', 'from-gold-400', 'to-gold-500', 'text-brown-950', 'shadow');
+                btnEl.classList.remove('bg-brown-900/90', 'text-cream-200', 'border', 'border-gold-500/30');
             }
 
             const items = catalogData.filter(i => i.cat === cat);
             document.getElementById('order-service-picker-grid').innerHTML = items.map(item => `
-                <div class="p-2.5 rounded-xl bg-brown-950/70 border border-gold-500/25 flex justify-between items-center gap-2">
-                    <div class="min-w-0">
-                        <h5 class="text-xs font-bold text-cream-50 truncate">${item.title}</h5>
-                        <span class="text-[10px] text-gold-400 font-semibold">${formatRp(item.price)}</span>
+                <div class="p-3 rounded-2xl bg-brown-950/80 border border-gold-500/25 flex justify-between items-center gap-2 shadow-inner">
+                    <div class="min-w-0 pr-1">
+                        <h5 class="text-xs font-bold text-cream-50 truncate font-serif">${item.title}</h5>
+                        <span class="text-[10px] text-gold-400 font-semibold font-serif">${formatRp(item.price)}</span>
                     </div>
-                    <button type="button" onclick="addToCart('${item.id}')" class="px-3 py-1.5 rounded-lg bg-gold-500 text-brown-950 font-bold text-[10px] shrink-0">+ Tambah</button>
+                    <button type="button" onclick="addToCart('${item.id}')" class="px-3.5 py-1.5 rounded-xl bg-gold-500 text-brown-950 font-bold text-[10px] shrink-0 shadow">+ Tambah</button>
                 </div>
             `).join('');
         }
@@ -696,14 +714,14 @@
             }
 
             listEl.innerHTML = cart.map(item => `
-                <div class="flex justify-between items-center bg-brown-900/60 p-2 rounded-xl border border-gold-500/20">
+                <div class="flex justify-between items-center bg-brown-900/80 p-2.5 rounded-xl border border-gold-500/25 shadow-inner">
                     <div class="min-w-0 pr-2">
-                        <p class="text-[11px] font-bold text-cream-50 truncate">${item.title}</p>
-                        <p class="text-[10px] text-gold-400">${formatRp(item.price * item.qty)}</p>
+                        <p class="text-[11px] font-bold text-cream-50 truncate font-serif">${item.title}</p>
+                        <p class="text-[10px] text-gold-400 font-serif">${formatRp(item.price * item.qty)}</p>
                     </div>
                     <div class="flex items-center gap-1.5 shrink-0">
-                        <button type="button" onclick="updateCartQty('${item.id}', -1)" class="w-6 h-6 rounded-lg bg-brown-950 text-gold-400 font-bold text-xs">-</button>
-                        <span class="text-xs font-bold w-4 text-center">${item.qty}</span>
+                        <button type="button" onclick="updateCartQty('${item.id}', -1)" class="w-6 h-6 rounded-lg bg-brown-950 text-gold-400 font-bold text-xs border border-gold-500/30">-</button>
+                        <span class="text-xs font-bold w-5 text-center text-cream-50">${item.qty}</span>
                         <button type="button" onclick="updateCartQty('${item.id}', 1)" class="w-6 h-6 rounded-lg bg-gold-500 text-brown-950 font-bold text-xs">+</button>
                     </div>
                 </div>
@@ -748,7 +766,7 @@
             if (window.JsBarcode) {
                 JsBarcode("#order-barcode-svg", invoiceId.replace('#', ''), {
                     format: "CODE128",
-                    lineColor: "#140A04",
+                    lineColor: "#0F0904",
                     width: 2,
                     height: 32,
                     displayValue: false
@@ -758,7 +776,7 @@
             cart = [];
             renderCart();
             document.getElementById('order-form').reset();
-            showToast('Kartu ORDER DEAL berhasil diterbitkan!');
+            showToast('Kartu Deal Resmi Berhasil Diterbitkan!');
             document.getElementById('order-card-result').scrollIntoView({ behavior: 'smooth' });
         }
 
@@ -767,7 +785,7 @@
             if (!window.html2canvas) return;
             html2canvas(card, { scale: 3, backgroundColor: null }).then(canvas => {
                 const link = document.createElement('a');
-                link.download = `ORDER-DEAL-${document.getElementById('card-invoice-id').innerText}.png`;
+                link.download = `DEAL-PASS-${document.getElementById('card-invoice-id').innerText}.png`;
                 link.href = canvas.toDataURL('image/png');
                 link.click();
                 showToast('Kartu Deal berhasil diunduh!');
@@ -805,18 +823,18 @@
             renderTestimonials();
             resetTestimonialGate();
             document.getElementById('testi-active-form').reset();
-            showToast('Terima kasih atas ulasan Anda!');
+            showToast('Terima kasih atas ulasan eksklusif Anda!');
         }
 
         function renderTestimonials() {
             document.getElementById('all-testimonials-grid').innerHTML = testimonials.map(t => `
-                <div class="glass-card p-3.5 space-y-1">
+                <div class="glass-card p-4 space-y-1.5 shadow-luxury">
                     <div class="flex justify-between items-center">
-                        <h4 class="text-xs font-bold text-cream-50">${t.name}</h4>
+                        <h4 class="text-xs font-bold text-cream-50 font-serif text-sm">${t.name}</h4>
                         <span class="text-[10px] text-gold-400">${'⭐'.repeat(t.rating)}</span>
                     </div>
-                    <p class="text-[10px] text-gold-400/80 font-medium">${t.service}</p>
-                    <p class="text-xs text-cream-200/80 italic pt-1">"${t.comment}"</p>
+                    <p class="text-[10px] text-gold-400 font-medium font-serif">${t.service}</p>
+                    <p class="text-xs text-cream-200/90 italic pt-1 leading-relaxed">"${t.comment}"</p>
                 </div>
             `).join('');
         }
@@ -847,7 +865,7 @@
             document.getElementById('exp-desc').value = '';
             document.getElementById('exp-amount').value = '';
             renderOwnerDashboard();
-            showToast('Pengeluaran dicatat');
+            showToast('Pengeluaran operasional dicatat');
         }
 
         function markOrderDone(id) {
@@ -879,20 +897,20 @@
             }
 
             listEl.innerHTML = orders.map(o => `
-                <div class="glass-card p-3.5 space-y-2">
+                <div class="glass-card p-4 space-y-2.5 shadow-luxury">
                     <div class="flex justify-between items-start">
                         <div>
                             <span class="font-mono text-[10px] font-bold text-gold-400">${o.id} • ${o.date}</span>
-                            <h5 class="text-xs font-extrabold text-cream-50">${o.name} (${o.phone})</h5>
+                            <h5 class="text-xs font-bold text-cream-50 font-serif text-sm">${o.name} (${o.phone})</h5>
                         </div>
-                        <span class="px-2 py-0.5 rounded-full text-[9px] font-bold ${
+                        <span class="px-2.5 py-1 rounded-full text-[9px] font-bold ${
                             o.status === 'Beres' ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/40' : 'bg-amber-500/20 text-amber-300 border border-amber-500/40'
                         }">${o.status}</span>
                     </div>
-                    <p class="text-[11px] text-cream-200/80">${o.items}</p>
-                    <div class="flex justify-between items-center pt-2 border-t border-gold-500/20">
-                        <span class="text-xs font-extrabold text-gold-400">${formatRp(o.total)}</span>
-                        ${o.status !== 'Beres' ? `<button onclick="markOrderDone('${o.id}')" class="px-3 py-1 rounded-lg bg-emerald-500 text-brown-950 font-bold text-[10px]">Tandai Beres</button>` : ''}
+                    <p class="text-[11px] text-cream-200/90">${o.items}</p>
+                    <div class="flex justify-between items-center pt-2.5 border-t border-gold-500/20">
+                        <span class="text-xs font-bold text-gold-400 font-serif">${formatRp(o.total)}</span>
+                        ${o.status !== 'Beres' ? `<button onclick="markOrderDone('${o.id}')" class="px-3.5 py-1.5 rounded-xl bg-emerald-500 text-brown-950 font-bold text-[10px] shadow">Tandai Beres</button>` : ''}
                     </div>
                 </div>
             `).join('');
