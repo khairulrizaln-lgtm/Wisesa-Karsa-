@@ -1,4 +1,3 @@
-<!-- ... eslint-disable -->
 <!DOCTYPE html>
 <html lang="id" class="scroll-smooth">
 <head>
@@ -22,10 +21,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <!-- JsBarcode Library -->
     <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.6/dist/JsBarcode.all.min.js"></script>
-    <!-- QuaggaJS Library -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/quagga/0.12.1/quagga.min.js"></script>
-    <!-- JsPDF Library -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     
     <script>
         tailwind.config = {
@@ -87,49 +82,63 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
-            overflow-x: hidden;
-            overscroll-behavior-y: contain;
+            height: 100dvh;
+            overflow: hidden; /* Mencegah halaman utama bodi ikut bergeser */
+            overscroll-behavior: none;
         }
-        /* Mobile Phone Screen Frame Mockup / Full App Container */
+        /* Responsive Mobile App Container */
         .mobile-app-container {
             width: 100%;
-            max-width: 420px;
-            height: 100vh;
-            max-height: 880px;
+            max-width: 430px;
+            height: 100dvh;
+            max-height: 900px;
             background: linear-gradient(150deg, #140a04 0%, #211107 45%, #140a04 100%);
             color: #FAF6EE;
             position: relative;
-            box-shadow: 0 25px 60px rgba(0,0,0,0.9), 0 0 0 12px #211107, 0 0 0 14px #DFBA52;
-            border-radius: 40px;
+            box-shadow: 0 25px 60px rgba(0,0,0,0.9), 0 0 0 10px #211107, 0 0 0 12px #DFBA52;
+            border-radius: 38px;
             display: flex;
             flex-direction: column;
             overflow: hidden;
         }
-        @media (max-width: 480px) {
+        @media (max-width: 500px) {
             .mobile-app-container {
                 max-width: 100%;
-                height: 100vh;
-                max-height: 100vh;
+                height: 100dvh;
+                max-height: 100dvh;
                 box-shadow: none;
                 border-radius: 0;
+                padding-top: env(safe-area-inset-top);
+                padding-bottom: env(safe-area-inset-bottom);
             }
         }
-        /* Glassmorphism Elements */
+        /* Halaman Login Dikunci Penuh (Tidak Bisa Scroll) */
+        #view-landing {
+            position: absolute;
+            inset: 0;
+            z-index: 150;
+            height: 100dvh;
+            width: 100%;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
         .glass-card {
-            background: rgba(33, 17, 7, 0.75);
+            background: rgba(33, 17, 7, 0.78);
             backdrop-filter: blur(25px);
-            border: 1px solid rgba(223, 186, 82, 0.22);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
-            border-radius: 1.75rem;
+            border: 1px solid rgba(223, 186, 82, 0.25);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.45);
+            border-radius: 1.5rem;
         }
-        .glass-card-light {
-            background: rgba(255, 255, 255, 0.04);
-            backdrop-filter: blur(15px);
-            border: 1px solid rgba(223, 186, 82, 0.12);
-            border-radius: 1.25rem;
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
         }
-        /* Luxury Scrollbar */
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
         ::-webkit-scrollbar {
             width: 4px;
             height: 4px;
@@ -152,38 +161,38 @@
 </head>
 <body class="antialiased selection:bg-gold-500 selection:text-brown-950">
 
-    <!-- ================= NOTIFICATION TOAST ================= -->
-    <div id="toast-container" class="fixed top-5 left-4 right-4 z-[200] flex flex-col gap-2 pointer-events-none"></div>
+    <!-- NOTIFICATION TOAST -->
+    <div id="toast-container" class="fixed top-5 left-1/2 -translate-x-1/2 w-[90%] max-w-[390px] z-[200] flex flex-col gap-2 pointer-events-none"></div>
 
-    <!-- ================= MOBILE APP FRAME WRAPPER ================= -->
+    <!-- MOBILE APP FRAME WRAPPER -->
     <div class="mobile-app-container">
 
-        <!-- ================= LANDING WELCOME GATE ================= -->
-        <div id="view-landing" class="absolute inset-0 z-[150] bg-gradient-to-br from-brown-950 via-brown-900 to-brown-950 text-cream-50 flex flex-col items-center justify-center p-6 transition-all duration-700 overflow-hidden h-full w-full">
-            <div class="absolute -top-24 -left-24 w-80 h-80 bg-gold-500/25 rounded-full blur-[120px] pointer-events-none animate-pulse"></div>
-            <div class="absolute -bottom-24 -right-24 w-80 h-80 bg-gold-600/20 rounded-full blur-[120px] pointer-events-none"></div>
+        <!-- LANDING WELCOME GATE (TERKUNCI & TIDAK BISA SCROLL) -->
+        <div id="view-landing" class="bg-gradient-to-br from-brown-950 via-brown-900 to-brown-950 text-cream-50 p-4 transition-all duration-500">
+            <div class="absolute -top-24 -left-24 w-72 h-72 bg-gold-500/25 rounded-full blur-[110px] pointer-events-none animate-pulse"></div>
+            <div class="absolute -bottom-24 -right-24 w-72 h-72 bg-gold-600/20 rounded-full blur-[110px] pointer-events-none"></div>
             
-            <div class="w-full max-w-sm glass-card rounded-[2.55rem] p-6 text-center space-y-4 relative z-10 animate-fade-in shadow-2xl border-2 border-gold-500/30 my-auto">
-                <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-gold-500/15 border border-gold-400/40 text-gold-400 text-[10px] font-bold tracking-[0.25em] uppercase">
-                    <i data-lucide="sparkles" class="w-3.5 h-3.5 text-gold-400"></i> Next-Gen Experience
+            <div class="w-full max-w-sm glass-card rounded-[2rem] p-5 text-center space-y-3.5 relative z-10 animate-fade-in shadow-2xl border-2 border-gold-500/35 max-h-[90dvh] flex flex-col justify-center">
+                <div class="inline-flex items-center gap-2 px-3 py-0.5 rounded-full bg-gold-500/15 border border-gold-400/40 text-gold-400 text-[10px] font-bold tracking-[0.2em] uppercase mx-auto">
+                    <i data-lucide="sparkles" class="w-3 h-3 text-gold-400"></i> Creative Studio
                 </div>
 
-                <div class="w-20 h-20 mx-auto rounded-[1.75rem] bg-gradient-to-br from-brown-800 via-brown-900 to-brown-950 p-3 border-2 border-gold-500/70 shadow-gold-glow flex items-center justify-center relative group">
-                    <span class="text-4xl font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-gold-300 via-gold-400 to-cream-100">WK</span>
+                <div class="w-16 h-16 mx-auto rounded-[1.25rem] bg-gradient-to-br from-brown-800 via-brown-900 to-brown-950 p-2.5 border-2 border-gold-500/70 shadow-gold-glow flex items-center justify-center shrink-0">
+                    <span class="text-3xl font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-gold-300 via-gold-400 to-cream-100">WK</span>
                 </div>
 
-                <div class="space-y-1">
-                    <h1 class="text-xl font-extrabold tracking-wider text-cream-50 uppercase font-serif">WISESA KARSA</h1>
-                    <p class="text-[10px] text-gold-400 font-medium tracking-wide">Crafting Visions, Shaping Masterpieces</p>
+                <div class="space-y-0.5">
+                    <h1 class="text-lg font-extrabold tracking-wider text-cream-50 uppercase">WISESA KARSA</h1>
+                    <p class="text-[9px] text-gold-400 font-medium tracking-wide">Crafting Visions, Shaping Masterpieces</p>
                 </div>
 
-                <div class="space-y-2.5 pt-1">
-                    <button onclick="enterMainPlatform()" class="w-full py-3.5 rounded-2xl bg-gradient-to-r from-gold-400 via-gold-500 to-gold-600 text-brown-950 font-extrabold text-xs uppercase hover:brightness-110 transition duration-300 shadow-gold-glow flex items-center justify-center gap-2 font-sans tracking-normal">
+                <div class="space-y-2 pt-1">
+                    <button onclick="enterMainPlatform()" class="w-full py-3 rounded-xl bg-gradient-to-r from-gold-400 via-gold-500 to-gold-600 text-brown-950 font-extrabold text-xs uppercase hover:brightness-110 transition shadow-gold-glow flex items-center justify-center gap-2">
                         <span>Lanjutkan (Customer)</span>
                         <i data-lucide="arrow-right" class="w-4 h-4 text-brown-950"></i>
                     </button>
 
-                    <button onclick="openOwnerLandingLogin()" class="w-full py-3 rounded-2xl bg-brown-900/90 text-gold-400 border border-gold-500/40 font-bold text-xs tracking-wider uppercase hover:bg-brown-800 transition flex items-center justify-center gap-2 shadow">
+                    <button onclick="openOwnerLandingLogin()" class="w-full py-2.5 rounded-xl bg-brown-900/90 text-gold-400 border border-gold-500/40 font-bold text-xs tracking-wider uppercase hover:bg-brown-800 transition flex items-center justify-center gap-2 shadow">
                         <i data-lucide="crown" class="w-4 h-4 text-gold-400"></i>
                         <span>Login Portal Owner</span>
                     </button>
@@ -199,12 +208,12 @@
             </div>
         </div>
 
-        <!-- ================= MOBILE APP HEADER ================= -->
-        <header class="sticky top-0 z-40 bg-brown-950/95 backdrop-blur-2xl border-b border-gold-500/30 shadow-xl">
-            <div class="px-5 py-4 flex justify-between items-center">
-                <div onclick="navigateTo('home')" class="flex items-center gap-3 cursor-pointer group min-w-0 pr-2">
-                    <div class="w-11 h-11 rounded-2xl bg-gradient-to-br from-brown-800 via-brown-900 to-brown-950 text-gold-400 flex items-center justify-center shadow-gold-glow border border-gold-500/50 p-2 group-hover:scale-105 transition shrink-0">
-                        <span class="text-base font-extrabold tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-gold-300 via-gold-400 to-cream-100">WK</span>
+        <!-- MOBILE APP HEADER -->
+        <header class="sticky top-0 z-40 bg-brown-950/95 backdrop-blur-2xl border-b border-gold-500/30 shadow-xl shrink-0">
+            <div class="px-4 py-3.5 flex justify-between items-center">
+                <div onclick="navigateTo('home')" class="flex items-center gap-2.5 cursor-pointer group min-w-0 pr-2">
+                    <div class="w-10 h-10 rounded-2xl bg-gradient-to-br from-brown-800 via-brown-900 to-brown-950 text-gold-400 flex items-center justify-center shadow-gold-glow border border-gold-500/50 shrink-0">
+                        <span class="text-sm font-extrabold tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-gold-300 via-gold-400 to-cream-100">WK</span>
                     </div>
                     <div class="min-w-0 flex-1">
                         <h1 class="font-extrabold text-sm tracking-tight text-cream-50 leading-tight truncate">WISESA KARSA</h1>
@@ -221,954 +230,680 @@
         </header>
 
         <!-- MAIN CONTENT VIEWPORT -->
-        <main class="flex-grow pb-24 px-4 pt-3 space-y-4 overflow-y-auto">
+        <main class="flex-1 pb-24 px-4 pt-3 space-y-4 overflow-y-auto no-scrollbar">
 
             <!-- 1. HALAMAN BERANDA -->
-            <section id="view-home" class="view-section space-y-3 pb-6">
+            <section id="view-home" class="view-section space-y-4 pb-6 animate-fade-in">
                 <div class="bg-gradient-to-br from-brown-900 via-brown-800 to-brown-950 text-cream-50 rounded-2xl p-5 shadow-xl border border-gold-500/30 relative overflow-hidden space-y-3">
-                    <div class="absolute -right-16 -top-16 w-36 h-36 bg-gold-500/20 rounded-full blur-3xl pointer-events-none"></div>
-                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gold-500/15 border border-gold-400/40 text-gold-400 text-[11px] font-bold uppercase tracking-wider">
+                    <div class="absolute -right-12 -top-12 w-32 h-32 bg-gold-500/20 rounded-full blur-2xl pointer-events-none"></div>
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gold-500/15 border border-gold-400/40 text-gold-400 text-[10px] font-bold uppercase tracking-wider">
                         <span class="w-2 h-2 rounded-full bg-gold-400 animate-ping"></span> Premium Experience
                     </div>
-                    <h2 class="text-2xl font-extrabold leading-snug">Wujudkan Ide Kreatif Bersama <span class="text-transparent bg-clip-text bg-gradient-to-r from-gold-300 via-gold-400 to-cream-100">Wisesa Karsa</span></h2>
-                    <p class="text-sm text-cream-200/90 leading-relaxed font-light">Layanan desain, editing video, & konveksi berstandar tinggi.</p>
+                    <h2 class="text-xl font-extrabold leading-snug">Wujudkan Ide Kreatif Bersama <span class="text-transparent bg-clip-text bg-gradient-to-r from-gold-300 via-gold-400 to-cream-100">Wisesa Karsa</span></h2>
+                    <p class="text-xs text-cream-200/90 leading-relaxed font-light">Layanan desain grafis, editing video, & produksi konveksi berstandar tinggi.</p>
                     <button onclick="navigateTo('order')" class="w-full py-3 rounded-xl bg-gradient-to-r from-gold-400 via-gold-500 to-gold-600 text-brown-950 font-bold text-xs uppercase tracking-wider shadow-gold-glow flex items-center justify-center gap-2">
                         <i data-lucide="file-plus-2" class="w-4 h-4 text-brown-950"></i> Buat Pesanan Sekarang
                     </button>
                 </div>
 
+                <!-- Promo Banner -->
                 <div class="space-y-1.5">
-                    <div class="flex justify-between items-center px-1">
-                        <h3 class="text-[10px] font-bold uppercase tracking-widest text-gold-400">Promo & Campaign</h3>
-                    </div>
+                    <h3 class="text-[10px] font-bold uppercase tracking-widest text-gold-400 px-1">Promo & Campaign</h3>
                     <div id="promo-banners-grid" class="space-y-2"></div>
                 </div>
 
-                <div class="space-y-1.5">
-                    <div class="flex justify-between items-center px-1">
-                        <h3 class="text-[10px] font-bold uppercase tracking-widest text-gold-400">Katalog Layanan</h3>
-                        <div class="flex gap-1 bg-brown-900/60 p-0.5 rounded-xl border border-gold-500/20">
+                <!-- Katalog Layanan -->
+                <div class="space-y-2">
+                    <div class="flex justify-between items-center px-1 gap-2">
+                        <h3 class="text-[10px] font-bold uppercase tracking-widest text-gold-400 shrink-0">Katalog</h3>
+                        <div class="flex gap-1 bg-brown-900/60 p-0.5 rounded-xl border border-gold-500/20 overflow-x-auto no-scrollbar">
                             <button onclick="filterCatalogCat('desain', this)" class="cat-pill px-2.5 py-1 rounded-lg text-[9px] font-bold bg-gold-500 text-brown-950 transition shadow shrink-0">Desain</button>
                             <button onclick="filterCatalogCat('editing', this)" class="cat-pill px-2.5 py-1 rounded-lg text-[9px] font-bold text-cream-200 transition shrink-0">Editing</button>
                             <button onclick="filterCatalogCat('konveksi', this)" class="cat-pill px-2.5 py-1 rounded-lg text-[9px] font-bold text-cream-200 transition shrink-0">Konveksi</button>
                         </div>
                     </div>
-                    <div id="mobile-catalog-grid" class="flex gap-4 overflow-x-auto pb-2 pt-1 no-scrollbar"></div>
+                    <div id="mobile-catalog-grid" class="flex gap-3 overflow-x-auto pb-2 pt-1 no-scrollbar"></div>
                 </div>
 
-                <div class="w-full h-[1px] bg-gradient-to-r from-transparent via-gold-500/40 to-transparent my-3"></div>
+                <div class="w-full h-[1px] bg-gradient-to-r from-transparent via-gold-500/40 to-transparent"></div>
 
-                <div class="space-y-1.5">
+                <!-- Portfolio -->
+                <div class="space-y-2">
                     <div class="flex justify-between items-center px-1">
                         <h3 class="text-[10px] font-bold uppercase tracking-widest text-gold-400">Portfolio Showcase</h3>
                         <span class="text-[9px] text-cream-200/60 font-light">Geser ➔</span>
                     </div>
-                    <div id="mobile-portfolio-grid" class="flex gap-4 overflow-x-auto pb-2 pt-1 no-scrollbar"></div>
+                    <div id="mobile-portfolio-grid" class="flex gap-3 overflow-x-auto pb-2 pt-1 no-scrollbar"></div>
                 </div>
             </section>
 
             <!-- 2. HALAMAN ORDER -->
-            <section id="view-order" class="view-section hidden space-y-5">
+            <section id="view-order" class="view-section hidden space-y-4 pb-6 animate-fade-in">
                 <div class="px-1 space-y-1">
-                    <h2 class="text-xl font-extrabold text-cream-50">Formulir Pesanan</h2>
-                    <p class="text-xs text-cream-200/70 font-light">Pilih beberapa layanan/produk sekaligus & terbitkan Kartu Deal.</p>
+                    <h2 class="text-lg font-extrabold text-cream-50">Formulir Pesanan</h2>
+                    <p class="text-xs text-cream-200/70 font-light">Pilih layanan & terbitkan Kartu Deal untuk transaksi.</p>
                 </div>
 
-                <div class="glass-card p-5 space-y-4">
-                    <form id="order-form" onsubmit="submitOrderForm(event)" class="space-y-4">
+                <div class="glass-card p-4 space-y-4">
+                    <form id="order-form" onsubmit="submitOrderForm(event)" class="space-y-3.5">
                         <div>
-                            <label class="block text-[11px] font-bold uppercase tracking-wider text-gold-400 mb-1.5">Nama Lengkap *</label>
-                            <input type="text" id="ord-name" required placeholder="Nama Anda..." class="w-full px-4 py-3 rounded-2xl bg-brown-950/70 border border-gold-500/30 text-xs text-cream-50 placeholder-cream-200/30 focus:outline-none focus:border-gold-400">
+                            <label class="block text-[10px] font-bold uppercase tracking-wider text-gold-400 mb-1">Nama Lengkap / Instansi *</label>
+                            <input type="text" id="ord-name" required placeholder="Contoh: Budi Santoso" class="w-full px-3.5 py-2.5 rounded-xl bg-brown-950/70 border border-gold-500/30 text-xs text-cream-50 placeholder-cream-200/30 focus:outline-none focus:border-gold-400">
                         </div>
                         <div>
-                            <label class="block text-[11px] font-bold uppercase tracking-wider text-gold-400 mb-1.5">Nomor WhatsApp *</label>
-                            <input type="tel" id="ord-phone" required placeholder="08xxxxxxxxxx" class="w-full px-4 py-3 rounded-2xl bg-brown-950/70 border border-gold-500/30 text-xs text-cream-50 placeholder-cream-200/30 focus:outline-none focus:border-gold-400">
+                            <label class="block text-[10px] font-bold uppercase tracking-wider text-gold-400 mb-1">Nomor WhatsApp *</label>
+                            <input type="tel" id="ord-phone" required placeholder="08xxxxxxxxxx" class="w-full px-3.5 py-2.5 rounded-xl bg-brown-950/70 border border-gold-500/30 text-xs text-cream-50 placeholder-cream-200/30 focus:outline-none focus:border-gold-400">
                         </div>
 
-                        <div class="space-y-2.5">
-                            <label class="block text-[11px] font-bold uppercase tracking-wider text-gold-400">Pilih Kategori Katalog *</label>
-                            <div class="grid grid-cols-3 gap-2">
-                                <button type="button" onclick="selectOrderCategory('desain', this)" class="ord-cat-pill py-2.5 rounded-xl text-[10px] font-bold bg-gold-500 text-brown-950 transition shadow">Desain</button>
-                                <button type="button" onclick="selectOrderCategory('editing', this)" class="ord-cat-pill py-2.5 rounded-xl text-[10px] font-bold bg-brown-900/80 text-cream-200 border border-gold-500/20 transition">Editing</button>
-                                <button type="button" onclick="selectOrderCategory('konveksi', this)" class="ord-cat-pill py-2.5 rounded-xl text-[10px] font-bold bg-brown-900/80 text-cream-200 border border-gold-500/20 transition">Konveksi</button>
+                        <div class="space-y-2">
+                            <label class="block text-[10px] font-bold uppercase tracking-wider text-gold-400">Pilih Layanan Katalog *</label>
+                            <div class="grid grid-cols-3 gap-1.5">
+                                <button type="button" onclick="selectOrderCategory('desain', this)" class="ord-cat-pill py-2 rounded-xl text-[10px] font-bold bg-gold-500 text-brown-950 transition shadow">Desain</button>
+                                <button type="button" onclick="selectOrderCategory('editing', this)" class="ord-cat-pill py-2 rounded-xl text-[10px] font-bold bg-brown-900/80 text-cream-200 border border-gold-500/20 transition">Editing</button>
+                                <button type="button" onclick="selectOrderCategory('konveksi', this)" class="ord-cat-pill py-2 rounded-xl text-[10px] font-bold bg-brown-900/80 text-cream-200 border border-gold-500/20 transition">Konveksi</button>
                             </div>
-                            <div id="order-service-picker-grid" class="grid grid-cols-1 gap-2 max-h-48 overflow-y-auto pr-1 pt-1"></div>
+                            <div id="order-service-picker-grid" class="grid grid-cols-1 gap-2 max-h-44 overflow-y-auto pr-1 pt-1"></div>
                         </div>
 
-                        <div class="p-4 rounded-2xl bg-brown-950/80 border border-gold-500/40 space-y-3">
-                            <div class="flex justify-between items-center text-xs border-b border-gold-500/20 pb-2">
-                                <span class="text-gold-300 font-bold uppercase tracking-wider text-[10px]">Keranjang Pesanan Anda</span>
+                        <!-- Keranjang -->
+                        <div class="p-3.5 rounded-2xl bg-brown-950/80 border border-gold-500/40 space-y-2.5">
+                            <div class="flex justify-between items-center text-xs border-b border-gold-500/20 pb-1.5">
+                                <span class="text-gold-300 font-bold uppercase tracking-wider text-[10px]">Keranjang Pesanan</span>
                                 <span id="cart-item-count" class="text-[10px] text-cream-200/70 font-semibold">0 Item</span>
                             </div>
-                            <div id="order-cart-list" class="space-y-2 max-h-40 overflow-y-auto pr-1">
-                                <p class="text-[11px] text-cream-200/50 italic text-center py-3">Belum ada item dipilih.</p>
+                            <div id="order-cart-list" class="space-y-2 max-h-36 overflow-y-auto pr-1">
+                                <p class="text-[11px] text-cream-200/50 italic text-center py-2">Belum ada item dipilih.</p>
                             </div>
-                            <div class="border-t border-gold-500/20 pt-3 space-y-1.5">
-                                <div class="flex items-center justify-between pt-1 border-t border-gold-500/20">
-                                    <span class="font-bold text-xs uppercase tracking-wider text-cream-50">Total Pembayaran:</span>
-                                    <span id="ord-total-display" class="text-base font-extrabold text-gold-400">Rp 0</span>
-                                </div>
+                            <div class="border-t border-gold-500/20 pt-2 flex items-center justify-between">
+                                <span class="font-bold text-xs uppercase tracking-wider text-cream-50">Total Estimasi:</span>
+                                <span id="ord-total-display" class="text-sm font-extrabold text-gold-400">Rp 0</span>
                             </div>
                         </div>
 
                         <div>
-                            <label class="block text-[11px] font-bold uppercase tracking-wider text-gold-400 mb-1.5">Catatan Tambahan</label>
-                            <textarea id="ord-notes" rows="2" placeholder="Warna, ukuran, atau detail pesanan..." class="w-full px-4 py-3 rounded-2xl bg-brown-950/70 border border-gold-500/30 text-xs text-cream-50 focus:outline-none focus:border-gold-400"></textarea>
+                            <label class="block text-[10px] font-bold uppercase tracking-wider text-gold-400 mb-1">Catatan Tambahan</label>
+                            <textarea id="ord-notes" rows="2" placeholder="Ukuran kaos, konsep desain, atau durasi video..." class="w-full px-3.5 py-2.5 rounded-xl bg-brown-950/70 border border-gold-500/30 text-xs text-cream-50 focus:outline-none focus:border-gold-400"></textarea>
                         </div>
                         
-                        <button type="submit" class="w-full py-4 rounded-2xl bg-gradient-to-r from-gold-400 via-gold-500 to-gold-600 text-brown-950 font-bold text-xs uppercase tracking-widest shadow-gold-glow flex items-center justify-center gap-2">
-                            <i data-lucide="ticket" class="w-4 h-4"></i> Terbitkan Struk Order
+                        <button type="submit" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-gold-400 via-gold-500 to-gold-600 text-brown-950 font-bold text-xs uppercase tracking-widest shadow-gold-glow flex items-center justify-center gap-2">
+                            <i data-lucide="ticket" class="w-4 h-4"></i> Terbitkan Kartu Deal
                         </button>
                     </form>
                 </div>
 
-                <div id="order-card-empty" class="glass-card p-8 border-2 border-dashed border-gold-500/30 text-center space-y-3">
-                    <i data-lucide="qr-code" class="w-10 h-10 mx-auto text-gold-400"></i>
+                <!-- Kartu Deal Placeholder / Result -->
+                <div id="order-card-empty" class="glass-card p-6 border-2 border-dashed border-gold-500/30 text-center space-y-2">
+                    <i data-lucide="qr-code" class="w-8 h-8 mx-auto text-gold-400"></i>
                     <p class="text-xs font-bold text-cream-200">Belum Ada Kartu Deal Diterbitkan</p>
                 </div>
 
-                <div id="order-card-result" class="hidden space-y-4 animate-fade-in">
-                    <div id="printable-order-card" class="bg-gradient-to-r from-brown-950 via-brown-900 to-brown-950 text-cream-50 rounded-xl p-3 mx-auto max-w-[280px] shadow-2xl border-2 border-gold-500/50 space-y-2 relative overflow-hidden">
-                        <div class="absolute -right-8 -top-8 w-20 h-20 bg-gold-500/20 rounded-full blur-xl pointer-events-none"></div>
-                        
+                <div id="order-card-result" class="hidden space-y-3 animate-fade-in">
+                    <div id="printable-order-card" class="bg-gradient-to-r from-brown-950 via-brown-900 to-brown-950 text-cream-50 rounded-xl p-3.5 mx-auto w-full max-w-[300px] shadow-2xl border-2 border-gold-500/60 space-y-2.5 relative overflow-hidden">
                         <div class="flex justify-between items-center border-b border-gold-500/30 pb-2">
                             <div class="flex items-center gap-2">
-                                <div class="w-7 h-7 rounded-xl bg-gradient-to-br from-brown-800 via-brown-900 to-brown-950 text-gold-400 flex items-center justify-center shadow-gold-glow border border-gold-500/40 p-1">
-                                    <span class="text-[10px] font-extrabold tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-gold-300 via-gold-400 to-cream-100">WK</span>
-                                </div>
+                                <div class="w-7 h-7 rounded-lg bg-brown-800 text-gold-400 flex items-center justify-center border border-gold-500/40 font-extrabold text-[10px]">WK</div>
                                 <div>
                                     <h1 class="font-bold text-[10px] tracking-tight text-cream-50 leading-none">WISESA KARSA</h1>
-                                    <p class="text-[6px] text-gold-400 font-medium tracking-wide mt-0.5">Crafting Visions, Shaping Masterpieces</p>
+                                    <p class="text-[6px] text-gold-400 font-medium mt-0.5">Creative Studio & Konveksi</p>
                                 </div>
                             </div>
-                            <span class="text-[8px] font-extrabold uppercase tracking-widest text-brown-950 bg-gradient-to-r from-gold-300 via-gold-400 to-gold-500 px-2.5 py-0.5 rounded-full shadow">ORDER DEAL</span>
+                            <span class="text-[8px] font-extrabold uppercase tracking-widest text-brown-950 bg-gold-400 px-2.5 py-0.5 rounded-full">ORDER DEAL</span>
                         </div>
 
-                        <div class="grid grid-cols-2 gap-2 py-0.5">
-                            <div class="bg-brown-900/60 p-2 rounded-lg border border-gold-500/30">
-                                <span class="text-[7px] font-semibold uppercase tracking-wider text-gold-400/80 block">Kode Order</span>
+                        <div class="grid grid-cols-2 gap-2">
+                            <div class="bg-brown-900/70 p-2 rounded-lg border border-gold-500/30">
+                                <span class="text-[7px] uppercase tracking-wider text-gold-400/80 block">Kode Order</span>
                                 <span id="card-invoice-id" class="font-mono font-black text-[10px] text-cream-50 truncate block">#WK-0000</span>
                             </div>
-
-                            <div class="bg-brown-900/60 p-2 rounded-lg border border-gold-500/30">
-                                <span class="text-[7px] font-semibold uppercase tracking-wider text-gold-400/80 block">Nama Customer</span>
+                            <div class="bg-brown-900/70 p-2 rounded-lg border border-gold-500/30">
+                                <span class="text-[7px] uppercase tracking-wider text-gold-400/80 block">Customer</span>
                                 <span id="card-customer-name" class="font-extrabold text-[10px] text-cream-50 truncate block">-</span>
                             </div>
                         </div>
 
-                        <div class="bg-brown-900/60 p-2 rounded-lg border border-gold-500/30">
-                            <span class="text-[7px] font-semibold uppercase tracking-wider text-gold-400/80 block">Catatan Tambahan</span>
-                            <span id="card-customer-notes" class="text-[9px] text-cream-50 italic line-clamp-2 block">-</span>
+                        <div class="bg-brown-900/70 p-2 rounded-lg border border-gold-500/30 flex justify-between items-center">
+                            <div>
+                                <span class="text-[7px] uppercase tracking-wider text-gold-400/80 block">Item & Catatan</span>
+                                <span id="card-customer-notes" class="text-[9px] text-cream-50 line-clamp-1 block">-</span>
+                            </div>
+                            <span id="card-total-price" class="text-[10px] font-extrabold text-gold-400 shrink-0 ml-2">Rp 0</span>
                         </div>
 
-                        <div class="p-1.5 rounded-lg bg-white/95 text-center space-y-0.5 shadow-inner border border-gold-400/30">
-                            <svg id="order-barcode-svg" class="mx-auto w-full h-6"></svg>
+                        <div class="p-1.5 rounded-lg bg-white text-center space-y-0.5">
+                            <svg id="order-barcode-svg" class="mx-auto w-full h-7"></svg>
                             <p class="text-[6px] text-brown-950 uppercase tracking-[0.15em] font-extrabold">Scan Pass Deal</p>
                         </div>
                     </div>
 
-                    <button type="button" onclick="downloadReceiptImage()" class="w-full py-2 rounded-xl bg-brown-900 text-gold-400 border border-gold-500/50 font-bold text-[10px] uppercase tracking-wider shadow flex items-center justify-center gap-1.5 hover:bg-brown-800 transition">
-                        <i data-lucide="download" class="w-3.5 h-3.5 text-gold-400"></i> Unduh Kartu Deal
+                    <button type="button" onclick="downloadReceiptImage()" class="w-full max-w-[300px] mx-auto py-2.5 rounded-xl bg-brown-900 text-gold-400 border border-gold-500/50 font-bold text-[10px] uppercase tracking-wider shadow flex items-center justify-center gap-1.5 hover:bg-brown-800 transition">
+                        <i data-lucide="download" class="w-3.5 h-3.5 text-gold-400"></i> Unduh Kartu Deal (PNG)
                     </button>
                 </div>
             </section>
 
             <!-- 3. HALAMAN TESTIMONI -->
-            <section id="view-testimonials" class="view-section hidden space-y-4 max-h-[calc(100vh-140px)] overflow-y-auto pr-1">
+            <section id="view-testimonials" class="view-section hidden space-y-4 pb-6 animate-fade-in">
                 <div class="px-1 space-y-1">
-                    <h2 class="text-xl font-extrabold text-cream-50">Ulasan Klien</h2>
-                    <p class="text-xs text-cream-200/70 font-light">Bagikan pengalaman Anda setelah pesanan diselesaikan oleh owner.</p>
+                    <h2 class="text-lg font-extrabold text-cream-50">Ulasan Klien</h2>
+                    <p class="text-xs text-cream-200/70 font-light">Masukkan kode tiket pesanan yang berstatus <b>Beres</b> untuk mengirim ulasan.</p>
                 </div>
 
-                <div class="glass-card p-5 space-y-3.5">
-                    <div id="testi-form-gate" class="space-y-3.5">
-                        <div class="p-3.5 rounded-2xl bg-amber-500/10 border border-amber-500/30 text-[11px] text-amber-300 font-light flex items-start gap-2">
+                <div class="glass-card p-4 space-y-3">
+                    <div id="testi-form-gate" class="space-y-3">
+                        <div class="p-3 rounded-xl bg-amber-500/10 border border-amber-500/30 text-[11px] text-amber-300 flex items-start gap-2">
                             <i data-lucide="info" class="w-4 h-4 shrink-0 mt-0.5"></i>
-                            <span>Masukkan ID Kartu Order Anda (Cth: #WK-XXXX) yang telah berstatus <b>Beres</b> untuk menulis ulasan.</span>
+                            <span>Masukkan ID Kartu Order Anda (Contoh: <b>#WK-1024</b>) yang telah diselesaikan owner.</span>
                         </div>
                         <div>
-                            <label class="block text-[11px] font-bold uppercase text-gold-400 mb-1.5">ID Tiket Pesanan *</label>
-                            <input type="text" id="testi-ticket-id" placeholder="#WK-XXXX" class="w-full px-4 py-3 rounded-2xl bg-brown-950/70 border border-gold-500/30 font-mono text-xs text-cream-50 focus:outline-none focus:border-gold-400">
+                            <label class="block text-[10px] font-bold uppercase text-gold-400 mb-1">ID Tiket Pesanan *</label>
+                            <input type="text" id="testi-ticket-id" placeholder="#WK-XXXX" class="w-full px-3.5 py-2.5 rounded-xl bg-brown-950/70 border border-gold-500/30 font-mono text-xs text-cream-50 focus:outline-none focus:border-gold-400">
                         </div>
-                        <button type="button" onclick="verifyOrderForTestimonial()" class="w-full py-3.5 rounded-2xl bg-gradient-to-r from-gold-400 to-gold-600 text-brown-950 font-bold text-xs uppercase shadow tracking-wider">Verifikasi Tiket Pesanan</button>
+                        <button type="button" onclick="verifyOrderForTestimonial()" class="w-full py-3 rounded-xl bg-gradient-to-r from-gold-400 to-gold-600 text-brown-950 font-bold text-xs uppercase shadow tracking-wider">Verifikasi Tiket</button>
                     </div>
 
-                    <form id="testi-active-form" onsubmit="submitTestimonial(event)" class="hidden space-y-3.5 animate-fade-in">
-                        <div class="p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-[11px] text-emerald-300 font-medium flex justify-between items-center">
-                            <span>Tiket Terverifikasi: <b id="verified-ticket-label">#WK-0000</b></span>
+                    <form id="testi-active-form" onsubmit="submitTestimonial(event)" class="hidden space-y-3 animate-fade-in">
+                        <div class="p-2.5 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-[11px] text-emerald-300 flex justify-between items-center">
+                            <span>Tiket Valid: <b id="verified-ticket-label">#WK-0000</b></span>
                             <button type="button" onclick="resetTestimonialGate()" class="text-[10px] underline text-cream-200">Ganti</button>
                         </div>
-                        <div>
-                            <label class="block text-[11px] font-bold uppercase text-gold-400 mb-1.5">Nama / Instansi</label>
-                            <input type="text" id="testi-name" required class="w-full px-4 py-3 rounded-2xl bg-brown-950/70 border border-gold-500/30 text-xs text-cream-50 focus:outline-none focus:border-gold-400">
-                        </div>
-                        <div>
-                            <label class="block text-[11px] font-bold uppercase text-gold-400 mb-1.5">Layanan</label>
-                            <input type="text" id="testi-service" required class="w-full px-4 py-3 rounded-2xl bg-brown-950/70 border border-gold-500/30 text-xs text-cream-50 focus:outline-none focus:border-gold-400">
-                        </div>
-                        <div>
-                            <label class="block text-[11px] font-bold uppercase text-gold-400 mb-1.5">Rating</label>
-                            <select id="testi-rating" class="w-full px-4 py-3 rounded-2xl bg-brown-950/70 border border-gold-500/30 text-xs text-cream-50 focus:outline-none focus:border-gold-400">
-                                <option value="5" class="bg-brown-950">⭐⭐⭐⭐⭐ (Sangat Puas)</option>
-                                <option value="4" class="bg-brown-950">⭐⭐⭐⭐ (Puas)</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label class="block text-[11px] font-bold uppercase text-gold-400 mb-1.5">Ulasan</label>
-                            <textarea id="testi-comment" rows="2" required class="w-full px-4 py-3 rounded-2xl bg-brown-950/70 border border-gold-500/30 text-xs text-cream-50 focus:outline-none focus:border-gold-400"></textarea>
-                        </div>
-                        <button type="submit" class="w-full py-3.5 rounded-2xl bg-gradient-to-r from-gold-400 to-gold-600 text-brown-950 font-bold text-xs uppercase shadow tracking-wider">Kirim Ulasan</button>
+                        <input type="text" id="testi-name" required placeholder="Nama Anda" class="w-full px-3.5 py-2.5 rounded-xl bg-brown-950/70 border border-gold-500/30 text-xs text-cream-50">
+                        <input type="text" id="testi-service" required placeholder="Layanan yang dipesan" class="w-full px-3.5 py-2.5 rounded-xl bg-brown-950/70 border border-gold-500/30 text-xs text-cream-50">
+                        <select id="testi-rating" class="w-full px-3.5 py-2.5 rounded-xl bg-brown-950/70 border border-gold-500/30 text-xs text-cream-50">
+                            <option value="5" class="bg-brown-950">⭐⭐⭐⭐⭐ (Sangat Puas)</option>
+                            <option value="4" class="bg-brown-950">⭐⭐⭐⭐ (Puas)</option>
+                        </select>
+                        <textarea id="testi-comment" rows="2" required placeholder="Tulis ulasan Anda..." class="w-full px-3.5 py-2.5 rounded-xl bg-brown-950/70 border border-gold-500/30 text-xs text-cream-50"></textarea>
+                        <button type="submit" class="w-full py-3 rounded-xl bg-gradient-to-r from-gold-400 to-gold-600 text-brown-950 font-bold text-xs uppercase shadow">Kirim Ulasan</button>
                     </form>
                 </div>
 
-                <div id="all-testimonials-grid" class="space-y-3"></div>
+                <div id="all-testimonials-grid" class="space-y-2.5"></div>
             </section>
 
             <!-- 4. HALAMAN OWNER PORTAL -->
-            <section id="view-owner" class="view-section hidden space-y-4">
-                <div id="owner-login-box" class="glass-card p-6 shadow-2xl space-y-5">
-                    <div class="text-center space-y-3">
-                        <img id="login-owner-avatar" src="https://placehold.co/100x100/3B2310/DFBA52?text=WK" class="w-16 h-16 rounded-full mx-auto object-cover border-2 border-gold-400 shadow-gold-glow">
-                        <div>
-                            <h2 class="text-lg font-extrabold text-cream-50 font-serif">Portal Owner</h2>
-                            <p class="text-[11px] text-cream-200/70 font-light mt-0.5">Masukkan password untuk akses manajemen</p>
-                        </div>
+            <section id="view-owner" class="view-section hidden space-y-4 pb-6 animate-fade-in">
+                <div id="owner-login-box" class="glass-card p-6 shadow-2xl space-y-4">
+                    <div class="text-center space-y-2">
+                        <div class="w-16 h-16 rounded-full mx-auto bg-brown-800 border-2 border-gold-400 flex items-center justify-center text-gold-400 font-black text-xl shadow-gold-glow">WK</div>
+                        <h2 class="text-lg font-extrabold text-cream-50">Portal Owner</h2>
+                        <p class="text-[11px] text-cream-200/70">Masukkan password untuk akses manajemen</p>
                     </div>
-                    <form onsubmit="handleOwnerLogin(event)" class="space-y-3.5">
-                        <input type="password" id="login-password" required placeholder="Password owner..." class="w-full px-4 py-3.5 rounded-2xl bg-brown-950/80 border border-gold-500/40 text-xs text-cream-50 text-center tracking-widest font-mono focus:outline-none focus:border-gold-400">
-                        <button type="submit" class="w-full py-3.5 rounded-2xl bg-gradient-to-r from-gold-400 via-gold-500 to-gold-600 text-brown-950 font-bold text-xs uppercase tracking-wider shadow-gold-glow">Masuk Dashboard</button>
+                    <form onsubmit="handleOwnerLogin(event)" class="space-y-3">
+                        <input type="password" id="login-password" required placeholder="Password owner..." class="w-full px-4 py-3 rounded-xl bg-brown-950/80 border border-gold-500/40 text-xs text-cream-50 text-center tracking-widest font-mono focus:outline-none focus:border-gold-400">
+                        <button type="submit" class="w-full py-3 rounded-xl bg-gradient-to-r from-gold-400 via-gold-500 to-gold-600 text-brown-950 font-bold text-xs uppercase tracking-wider shadow-gold-glow">Masuk Dashboard</button>
                     </form>
-                    <p class="text-[10px] text-center text-cream-200/50 font-mono tracking-wider">Password: 25220291100806</p>
                 </div>
 
+                <!-- Dashboard Aktif -->
                 <div id="owner-dashboard-box" class="hidden space-y-4 animate-fade-in">
-                    <div class="glass-card p-4 flex justify-between items-center">
-                        <div class="flex items-center gap-3">
-                            <div class="w-10 h-10 rounded-full bg-gold-500/20 border border-gold-400 flex items-center justify-center text-gold-400 font-bold">R</div>
+                    <div class="glass-card p-3.5 flex justify-between items-center">
+                        <div class="flex items-center gap-2.5">
+                            <div class="w-9 h-9 rounded-full bg-gold-500/20 border border-gold-400 flex items-center justify-center text-gold-400 font-bold text-sm">R</div>
                             <div>
                                 <h3 class="text-xs font-bold text-cream-50">Rizal (Owner)</h3>
-                                <p class="text-[10px] text-emerald-400">Online & Aktif</p>
+                                <p class="text-[10px] text-emerald-400">● Online & Aktif</p>
                             </div>
                         </div>
                         <button onclick="ownerLogout()" class="px-3 py-1.5 rounded-xl bg-brown-900 text-gold-400 border border-gold-500/30 text-[10px] font-bold">Keluar</button>
                     </div>
 
-                    <div class="grid grid-cols-2 gap-3">
-                        <div class="glass-card p-4 space-y-1">
-                            <span class="text-[10px] text-gold-400 font-bold uppercase">Pemasukan</span>
-                            <h4 id="owner-stat-income" class="text-base font-extrabold text-cream-50">Rp 0</h4>
+                    <!-- Ringkasan Keuangan -->
+                    <div class="grid grid-cols-2 gap-2.5">
+                        <div class="glass-card p-3.5 space-y-1">
+                            <span class="text-[9px] text-emerald-400 font-bold uppercase">Pemasukan (Beres)</span>
+                            <h4 id="owner-stat-income" class="text-sm font-extrabold text-cream-50">Rp 0</h4>
                         </div>
-                        <div class="glass-card p-4 space-y-1">
-                            <span class="text-[10px] text-gold-400 font-bold uppercase">Total Order</span>
-                            <h4 id="owner-stat-orders" class="text-base font-extrabold text-cream-50">0 Pesanan</h4>
-                        </div>
-                    </div>
-
-                    <div class="flex gap-1.5 bg-brown-900/80 p-1 rounded-2xl border border-gold-500/30 overflow-x-auto">
-                        <button onclick="switchOwnerTab('orders', this)" class="owner-tab-btn flex-1 py-2 px-3 rounded-xl text-[10px] font-bold bg-gold-500 text-brown-950 transition whitespace-nowrap">Manajemen Order</button>
-                        <button onclick="switchOwnerTab('finance', this)" class="owner-tab-btn flex-1 py-2 px-3 rounded-xl text-[10px] font-bold text-cream-200 transition whitespace-nowrap">Keuangan</button>
-                        <button onclick="switchOwnerTab('catalog', this)" class="owner-tab-btn flex-1 py-2 px-3 rounded-xl text-[10px] font-bold text-cream-200 transition whitespace-nowrap">Katalog</button>
-                        <button onclick="switchOwnerTab('promo', this)" class="owner-tab-btn flex-1 py-2 px-3 rounded-xl text-[10px] font-bold text-cream-200 transition whitespace-nowrap">Promo</button>
-                    </div>
-
-                    <div id="owner-panel-orders" class="owner-panel space-y-3">
-                        <div class="flex justify-between items-center">
-                            <h4 class="text-xs font-bold text-gold-400 uppercase">Daftar Pesanan Masuk</h4>
-                            <span id="owner-order-count" class="text-[10px] text-cream-200/70">0 Pesanan</span>
-                        </div>
-                        <div id="owner-orders-list" class="space-y-2.5 max-h-96 overflow-y-auto pr-1"></div>
-                    </div>
-
-                    <div id="owner-panel-finance" class="owner-panel hidden space-y-3">
-                        <div class="glass-card p-4 space-y-3">
-                            <h4 class="text-xs font-bold text-gold-400 uppercase">Catat Pemasukan / Pengeluaran Baru</h4>
-                            <form onsubmit="submitFinanceTx(event)" class="space-y-2.5">
-                                <div class="grid grid-cols-2 gap-2">
-                                    <select id="fin-type" class="px-3 py-2.5 rounded-xl bg-brown-950 border border-gold-500/30 text-xs text-cream-50">
-                                        <option value="in">Pemasukan (+)</option>
-                                        <option value="out">Pengeluaran (-)</option>
-                                    </select>
-                                    <input type="number" id="fin-amount" required placeholder="Jumlah (Rp)..." class="px-3 py-2.5 rounded-xl bg-brown-950 border border-gold-500/30 text-xs text-cream-50">
-                                </div>
-                                <input type="text" id="fin-desc" required placeholder="Keterangan transaksi..." class="w-full px-3 py-2.5 rounded-xl bg-brown-950 border border-gold-500/30 text-xs text-cream-50">
-                                <button type="submit" class="w-full py-2.5 rounded-xl bg-gold-500 text-brown-950 font-bold text-xs uppercase shadow">Tambah Transaksi</button>
-                            </form>
-                        </div>
-                        <div class="space-y-2">
-                            <h4 class="text-xs font-bold text-gold-400 uppercase">Riwayat Keuangan</h4>
-                            <div id="owner-finance-list" class="space-y-2 max-h-60 overflow-y-auto pr-1"></div>
+                        <div class="glass-card p-3.5 space-y-1">
+                            <span class="text-[9px] text-rose-400 font-bold uppercase">Pengeluaran</span>
+                            <h4 id="owner-stat-expense" class="text-sm font-extrabold text-cream-50">Rp 0</h4>
                         </div>
                     </div>
 
-                    <div id="owner-panel-catalog" class="owner-panel hidden space-y-3">
-                        <div class="glass-card p-4 space-y-3">
-                            <h4 class="text-xs font-bold text-gold-400 uppercase">Tambah / Edit Item Katalog</h4>
-                            <form onsubmit="submitCatalogItem(event)" class="space-y-2.5">
-                                <input type="hidden" id="cat-edit-index" value="-1">
-                                <select id="cat-input-category" class="w-full px-3 py-2.5 rounded-xl bg-brown-950 border border-gold-500/30 text-xs text-cream-50">
-                                    <option value="desain">Desain</option>
-                                    <option value="editing">Editing</option>
-                                    <option value="konveksi">Konveksi</option>
-                                </select>
-                                <input type="text" id="cat-input-title" required placeholder="Judul Layanan..." class="w-full px-3 py-2.5 rounded-xl bg-brown-950 border border-gold-500/30 text-xs text-cream-50">
-                                <input type="text" id="cat-input-price" required placeholder="Harga (Cth: Rp 150.000)..." class="w-full px-3 py-2.5 rounded-xl bg-brown-950 border border-gold-500/30 text-xs text-cream-50">
-                                <input type="text" id="cat-input-image" required placeholder="URL Gambar..." class="w-full px-3 py-2.5 rounded-xl bg-brown-950 border border-gold-500/30 text-xs text-cream-50">
-                                <div>
-                                    <label class="block text-[10px] font-bold text-gold-400 mb-1">Atau Upload File Gambar Langsung:</label>
-                                    <input type="file" id="cat-file-upload" accept="image/*" onchange="handleCatalogImageUpload(event)" class="w-full text-xs text-cream-200 file:mr-3 file:py-2 file:px-3 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-gold-500 file:text-brown-950 cursor-pointer">
-                                </div>
-                                <textarea id="cat-input-desc" rows="2" placeholder="Deskripsi singkat layanan..." class="w-full px-3 py-2.5 rounded-xl bg-brown-950 border border-gold-500/30 text-xs text-cream-50"></textarea>
-                                <button type="submit" class="w-full py-2.5 rounded-xl bg-gold-500 text-brown-950 font-bold text-xs uppercase shadow">Simpan Item Katalog</button>
-                            </form>
-                        </div>
-                        <div class="space-y-2">
-                            <h4 class="text-xs font-bold text-gold-400 uppercase">Daftar Katalog Aktif</h4>
-                            <div id="owner-catalog-list" class="space-y-2 max-h-60 overflow-y-auto pr-1"></div>
+                    <!-- Catat Pengeluaran -->
+                    <div class="glass-card p-3.5 space-y-2.5">
+                        <h4 class="text-[10px] font-bold uppercase text-gold-400">Catat Pengeluaran Operasional</h4>
+                        <div class="flex gap-2">
+                            <input type="text" id="exp-desc" placeholder="Keterangan..." class="flex-1 px-3 py-2 rounded-xl bg-brown-950/80 border border-gold-500/30 text-xs text-cream-50">
+                            <input type="number" id="exp-amount" placeholder="Rp" class="w-24 px-3 py-2 rounded-xl bg-brown-950/80 border border-gold-500/30 text-xs text-cream-50">
+                            <button onclick="addExpense()" class="px-3 py-2 rounded-xl bg-gold-500 text-brown-950 font-bold text-xs">+</button>
                         </div>
                     </div>
 
-                    <div id="owner-panel-promo" class="owner-panel hidden space-y-3">
-                        <div class="glass-card p-4 space-y-3">
-                            <h4 class="text-xs font-bold text-gold-400 uppercase">Tambah Promo Banner Beranda</h4>
-                            <form onsubmit="submitPromoBanner(event)" class="space-y-2.5">
-                                <input type="text" id="promo-input-title" required placeholder="Judul Promo..." class="w-full px-3 py-2.5 rounded-xl bg-brown-950 border border-gold-500/30 text-xs text-cream-50">
-                                <input type="text" id="promo-input-subtitle" required placeholder="Subjudul Promo..." class="w-full px-3 py-2.5 rounded-xl bg-brown-950 border border-gold-500/30 text-xs text-cream-50">
-                                <input type="text" id="promo-input-badge" required placeholder="Badge (Cth: PROMO 50%)..." class="w-full px-3 py-2.5 rounded-xl bg-brown-950 border border-gold-500/30 text-xs text-cream-50">
-                                <button type="submit" class="w-full py-2.5 rounded-xl bg-gold-500 text-brown-950 font-bold text-xs uppercase shadow">Tambah Promo Banner</button>
-                            </form>
-                        </div>
-                        <div class="space-y-2">
-                            <h4 class="text-xs font-bold text-gold-400 uppercase">Daftar Promo Aktif</h4>
-                            <div id="owner-promo-list" class="space-y-2 max-h-60 overflow-y-auto pr-1"></div>
-                        </div>
+                    <!-- Daftar Pesanan Masuk -->
+                    <div class="space-y-2">
+                        <h4 class="text-[10px] font-bold uppercase tracking-wider text-gold-400 px-1">Daftar Pesanan Masuk</h4>
+                        <div id="owner-orders-list" class="space-y-2"></div>
                     </div>
                 </div>
             </section>
-
         </main>
 
-        <!-- ================= MOBILE APP BOTTOM NAVIGATION BAR ================= -->
-        <nav class="fixed bottom-0 left-0 right-0 z-40 max-w-[420px] mx-auto bg-brown-950/95 backdrop-blur-2xl border-t border-gold-500/30 px-3 py-2">
-            <div class="flex justify-around items-center">
-                <button onclick="navigateTo('home')" class="nav-btn flex flex-col items-center gap-1 p-2 text-gold-400 transition group" data-target="home">
-                    <i data-lucide="home" class="w-5 h-5 group-hover:scale-110 transition"></i>
-                    <span class="text-[9px] font-bold uppercase tracking-wider">Beranda</span>
-                </button>
-                <button onclick="navigateTo('order')" class="nav-btn flex flex-col items-center gap-1 p-2 text-cream-200/60 hover:text-gold-400 transition group" data-target="order">
-                    <i data-lucide="ticket" class="w-5 h-5 group-hover:scale-110 transition"></i>
-                    <span class="text-[9px] font-semibold uppercase tracking-wider">Order</span>
-                </button>
-                <button onclick="navigateTo('testimonials')" class="nav-btn flex flex-col items-center gap-1 p-2 text-cream-200/60 hover:text-gold-400 transition group" data-target="testimonials">
-                    <i data-lucide="star" class="w-5 h-5 group-hover:scale-110 transition"></i>
-                    <span class="text-[9px] font-semibold uppercase tracking-wider">Ulasan</span>
-                </button>
-                <button onclick="navigateTo('owner')" class="nav-btn flex flex-col items-center gap-1 p-2 text-cream-200/60 hover:text-gold-400 transition group" data-target="owner">
-                    <i data-lucide="crown" class="w-5 h-5 group-hover:scale-110 transition"></i>
-                    <span class="text-[9px] font-semibold uppercase tracking-wider">Owner</span>
-                </button>
-            </div>
+        <!-- MOBILE BOTTOM NAVIGATION BAR -->
+        <nav class="absolute bottom-0 left-0 right-0 z-40 bg-brown-950/95 backdrop-blur-2xl border-t border-gold-500/30 px-2 py-2 flex justify-around items-center shadow-2xl">
+            <button onclick="navigateTo('home')" class="nav-btn flex flex-col items-center gap-1 text-gold-400 py-1 px-3 rounded-xl transition" data-target="home">
+                <i data-lucide="home" class="w-5 h-5"></i>
+                <span class="text-[9px] font-bold tracking-wider">Beranda</span>
+            </button>
+            <button onclick="navigateTo('order')" class="nav-btn flex flex-col items-center gap-1 text-cream-200/70 py-1 px-3 rounded-xl transition" data-target="order">
+                <i data-lucide="file-text" class="w-5 h-5"></i>
+                <span class="text-[9px] font-medium tracking-wider">Order</span>
+            </button>
+            <button onclick="navigateTo('testimonials')" class="nav-btn flex flex-col items-center gap-1 text-cream-200/70 py-1 px-3 rounded-xl transition" data-target="testimonials">
+                <i data-lucide="star" class="w-5 h-5"></i>
+                <span class="text-[9px] font-medium tracking-wider">Ulasan</span>
+            </button>
+            <button onclick="navigateTo('owner')" class="nav-btn flex flex-col items-center gap-1 text-cream-200/70 py-1 px-3 rounded-xl transition" data-target="owner">
+                <i data-lucide="shield-check" class="w-5 h-5"></i>
+                <span class="text-[9px] font-medium tracking-wider">Owner</span>
+            </button>
         </nav>
-
     </div>
 
-    <!-- ================= APPLICATION LOGIC SCRIPT ================= -->
     <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            lucide.createIcons();
-            loadAppData();
-            renderAll();
-        });
+        const OWNER_PASS = '25220291100806';
 
-        let appState = {
-            activeRole: 'landing',
-            currentTab: 'home',
-            cart: [],
-            orderCategoryFilter: 'desain',
-            orders: [
-                { id: '#WK-1001', name: 'Ahmad Fauzi', phone: '081234567890', items: [{title: 'Desain Feed Instagram Bisnis', price: 'Rp 150.000'}], total: 'Rp 150.000', notes: 'Tema warna cokelat emas', status: 'Beres', date: '2026-11-18' },
-                { id: '#WK-1002', name: 'Siti Rahma', phone: '089876543210', items: [{title: 'Jasa Edit Video Reels / TikTok', price: 'Rp 200.000'}], total: 'Rp 200.000', notes: 'Gunakan backsound akustik', status: 'Diproses', date: '2026-11-18' }
-            ],
-            catalog: [
-                { id: 1, category: 'desain', title: 'Desain Feed Instagram Bisnis', price: 'Rp 150.000', image: 'https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=400&auto=format&fit=crop', desc: '10 Desain feed high-end & estetik untuk branding usaha Anda.' },
-                { id: 2, category: 'desain', title: 'Desain Logo & Brand Identity', price: 'Rp 350.000', image: 'https://images.unsplash.com/photo-1626785774573-4b799315345d?q=80&w=400&auto=format&fit=crop', desc: 'Logo profesional lengkap dengan panduan warna & mockup.' },
-                { id: 3, category: 'editing', title: 'Jasa Edit Video Reels / TikTok', price: 'Rp 200.000', image: 'https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?q=80&w=400&auto=format&fit=crop', desc: 'Editing video sinematik dengan color grading & sound design profesional.' },
-                { id: 4, category: 'editing', title: 'Video Company Profile / Teaser', price: 'Rp 750.000', image: 'https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?q=80&w=400&auto=format&fit=crop', desc: 'Durasi 1-2 menit untuk promosi perusahaan atau organisasi.' },
-                { id: 5, category: 'konveksi', title: 'Pembuatan Kaos / T-Shirt Custom', price: 'Rp 95.000', image: 'https://images.unsplash.com/photo-1521572267360-ee0c2909d518?q=80&w=400&auto=format&fit=crop', desc: 'Bahan Cotton Combed 30s premium dengan sablon DTF awet.' },
-                { id: 6, category: 'konveksi', title: 'Jaket / Hoodie / Jersey Custom', price: 'Rp 180.000', image: 'https://images.unsplash.com/photo-1556905055-8f358a7a47b2?q=80&w=400&auto=format&fit=crop', desc: 'Kualitas distro, jahitan rapi, dan bordir komputer presisi.' }
-            ],
-            portfolio: [
-                { id: 1, title: 'Branding UKM Sanggar Harsa', category: 'Desain & Reels', image: 'https://images.unsplash.com/photo-1542744094-3a31243364d0?q=80&w=400&auto=format&fit=crop' },
-                { id: 2, title: 'Aesthetic Video Promo Wisesa', category: 'Video Editing', image: 'https://images.unsplash.com/photo-1536240478700-b869070f9279?q=80&w=400&auto=format&fit=crop' },
-                { id: 3, title: 'Uniform Konveksi Batch #1', category: 'Konveksi', image: 'https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?q=80&w=400&auto=format&fit=crop' }
-            ],
-            testimonials: [
-                { name: 'Ahmad Fauzi', service: 'Desain Feed Instagram Bisnis', rating: 5, comment: 'Sangat puas! Hasil desain elegan dan pengerjaannya sangat cepat.', date: '2026-11-18' }
-            ],
-            promos: [
-                { title: 'PROMO AKHIR TAHUN', subtitle: 'Diskon 20% untuk semua paket Konveksi & Desain.', badge: 'HEMAT 20%' }
-            ],
-            finance: [
-                { type: 'in', amount: 150000, desc: 'Pembayaran Order #WK-1001 (Ahmad Fauzi)', date: '2026-11-18' },
-                { type: 'in', amount: 200000, desc: 'Pembayaran Order #WK-1002 (Siti Rahma)', date: '2026-11-18' }
-            ]
-        };
+        const catalogData = [
+            { id: 'd1', cat: 'desain', title: 'Logo & Brand Identity', price: 150000, desc: 'File master AI/PNG + Filosofi logo' },
+            { id: 'd2', cat: 'desain', title: 'Poster / Feed Instagram', price: 50000, desc: 'Desain promosi modern siap upload' },
+            { id: 'd3', cat: 'desain', title: 'Banner / Spanduk Event', price: 75000, desc: 'Resolusi tinggi siap cetak' },
+            { id: 'e1', cat: 'editing', title: 'Video Reels / TikTok', price: 85000, desc: 'Color grading, transisi & subtitle dinamis' },
+            { id: 'e2', cat: 'editing', title: 'Video Profil / Aftermovie', price: 250000, desc: 'Durasi 1-3 menit cinematic' },
+            { id: 'k1', cat: 'konveksi', title: 'Kaos Combed 24s + Sablon', price: 85000, desc: 'Minimal order 12 pcs, bahan adem' },
+            { id: 'k2', cat: 'konveksi', title: 'Kemeja PDH / PDL Organisasi', price: 135000, desc: 'Bahan American Drill + Bordir komputer' }
+        ];
 
-        function saveAppData() {
-            localStorage.setItem('wisesa_karsa_app_state', JSON.stringify(appState));
-        }
+        const portfolioData = [
+            { title: 'Rebranding Sanggar Seni', tag: 'Desain Grafis', desc: 'Identitas visual & materi kampanye media sosial.' },
+            { title: 'Aftermovie Festival Kampus', tag: 'Video Editing', desc: 'Cinematic recap dengan sound design dinamis.' },
+            { title: 'Seragam PDH Departemen', tag: 'Konveksi', desc: 'Produksi 45 pcs kemeja drill bordir presisi.' }
+        ];
 
-        function loadAppData() {
-            const saved = localStorage.getItem('wisesa_karsa_app_state');
-            if (saved) {
-                try {
-                    appState = JSON.parse(saved);
-                } catch(e) { console.error(e); }
-            }
-        }
+        let cart = [];
+        let orders = JSON.parse(localStorage.getItem('wk_orders') || '[]');
+        let expenses = JSON.parse(localStorage.getItem('wk_expenses') || '[]');
+        let testimonials = JSON.parse(localStorage.getItem('wk_testimonials') || JSON.stringify([
+            { name: 'UKM Sanggar Harsa', service: 'Desain & Reels Promosi', rating: 5, comment: 'Hasil desain sangat rapi, elegan, dan pengerjaan tepat waktu!' }
+        ]));
 
-        function showToast(msg, type = 'success') {
+        const formatRp = (num) => 'Rp ' + Number(num).toLocaleString('id-ID');
+
+        function showToast(msg, type = 'gold') {
             const container = document.getElementById('toast-container');
-            const toast = document.createElement('div');
-            toast.className = `p-3.5 rounded-2xl text-xs font-semibold shadow-2xl border flex items-center gap-2 animate-fade-in pointer-events-auto ${type === 'success' ? 'bg-brown-900 text-gold-300 border-gold-500/50' : 'bg-red-950 text-red-200 border-red-500/50'}`;
-            toast.innerHTML = `<i data-lucide="${type === 'success' ? 'check-circle-2' : 'alert-circle'}" class="w-4 h-4 shrink-0"></i><span>${msg}</span>`;
-            container.appendChild(toast);
-            lucide.createIcons();
-            setTimeout(() => {
-                toast.style.opacity = '0';
-                setTimeout(() => toast.remove(), 300);
-            }, 3000);
+            const el = document.createElement('div');
+            el.className = `px-4 py-2.5 rounded-xl text-xs font-bold shadow-xl border backdrop-blur-md animate-fade-in text-center ${
+                type === 'error' ? 'bg-rose-950/90 border-rose-500 text-rose-200' : 'bg-brown-900/95 border-gold-400 text-gold-300'
+            }`;
+            el.innerText = msg;
+            container.appendChild(el);
+            setTimeout(() => el.remove(), 3000);
         }
 
-        function navigateTo(tabId) {
-            appState.currentTab = tabId;
+        function navigateTo(targetId) {
             document.querySelectorAll('.view-section').forEach(sec => sec.classList.add('hidden'));
-            const targetSec = document.getElementById(`view-${tabId}`);
-            if (targetSec) targetSec.classList.remove('hidden');
+            const target = document.getElementById('view-' + targetId);
+            if (target) target.classList.remove('hidden');
 
             document.querySelectorAll('.nav-btn').forEach(btn => {
-                if (btn.dataset.target === tabId) {
-                    btn.classList.remove('text-cream-200/60');
-                    btn.classList.add('text-gold-400');
+                if (btn.dataset.target === targetId) {
+                    btn.classList.remove('text-cream-200/70', 'font-medium');
+                    btn.classList.add('text-gold-400', 'font-bold');
                 } else {
-                    btn.classList.remove('text-gold-400');
-                    btn.classList.add('text-cream-200/60');
+                    btn.classList.add('text-cream-200/70', 'font-medium');
+                    btn.classList.remove('text-gold-400', 'font-bold');
                 }
             });
-
-            document.querySelector('main').scrollTo({ top: 0, behavior: 'smooth' });
-            renderAll();
+            if (targetId === 'owner') renderOwnerDashboard();
         }
 
         function enterMainPlatform() {
-            appState.activeRole = 'customer';
-            document.getElementById('view-landing').classList.add('hidden');
-            navigateTo('home');
-            showToast('Selamat datang di Wisesa Karsa Mobile Studio!');
+            const landing = document.getElementById('view-landing');
+            landing.classList.add('opacity-0', 'pointer-events-none');
+            setTimeout(() => landing.style.display = 'none', 500);
         }
 
         function openOwnerLandingLogin() {
-            const box = document.getElementById('landing-owner-login-box');
-            box.classList.toggle('hidden');
+            document.getElementById('landing-owner-login-box').classList.toggle('hidden');
         }
 
         function submitLandingOwnerLogin() {
             const pass = document.getElementById('landing-owner-pass').value;
-            if (pass === '25220291100806') {
-                appState.activeRole = 'owner';
-                document.getElementById('view-landing').classList.add('hidden');
+            if (pass === OWNER_PASS) {
+                localStorage.setItem('wk_owner_logged', 'true');
+                enterMainPlatform();
                 navigateTo('owner');
-                showToast('Login Owner Berhasil!');
+                showToast('Selamat datang kembali, Rizal!');
             } else {
-                showToast('Password Owner Salah!', 'error');
+                showToast('Password Owner salah!', 'error');
             }
         }
 
         function exitToWelcomeGate() {
-            appState.activeRole = 'landing';
-            document.getElementById('view-landing').classList.remove('hidden');
+            const landing = document.getElementById('view-landing');
+            landing.style.display = 'flex';
+            setTimeout(() => landing.classList.remove('opacity-0', 'pointer-events-none'), 50);
         }
 
-        function handleOwnerLogin(e) {
-            e.preventDefault();
-            const pass = document.getElementById('login-password').value;
-            if (pass === '25220291100806') {
-                appState.activeRole = 'owner';
-                showToast('Login Owner Berhasil!');
-                renderOwnerDashboard();
-            } else {
-                showToast('Password Salah!', 'error');
+        function renderHome() {
+            document.getElementById('promo-banners-grid').innerHTML = `
+                <div class="p-3.5 rounded-2xl bg-gradient-to-r from-gold-500/20 via-brown-900 to-brown-950 border border-gold-400/40 flex justify-between items-center">
+                    <div>
+                        <span class="text-[9px] font-extrabold uppercase bg-gold-400 text-brown-950 px-2 py-0.5 rounded-full">Diskon 15%</span>
+                        <h4 class="text-xs font-bold text-cream-50 mt-1">Paket Branding & Konten</h4>
+                        <p class="text-[10px] text-cream-200/70">Khusus pemesanan minimal 3 desain / video.</p>
+                    </div>
+                    <button onclick="navigateTo('order')" class="px-3 py-1.5 rounded-xl bg-gold-500 text-brown-950 font-bold text-[10px] shrink-0">Klaim</button>
+                </div>
+            `;
+
+            filterCatalogCat('desain', document.querySelector('.cat-pill'));
+
+            document.getElementById('mobile-portfolio-grid').innerHTML = portfolioData.map(p => `
+                <div class="min-w-[210px] max-w-[210px] glass-card p-3.5 space-y-1.5 shrink-0">
+                    <span class="text-[9px] font-bold uppercase text-gold-400">${p.tag}</span>
+                    <h4 class="text-xs font-extrabold text-cream-50">${p.title}</h4>
+                    <p class="text-[10px] text-cream-200/70 leading-relaxed">${p.desc}</p>
+                </div>
+            `).join('');
+        }
+
+        function filterCatalogCat(cat, btnEl) {
+            document.querySelectorAll('.cat-pill').forEach(b => {
+                b.classList.remove('bg-gold-500', 'text-brown-950', 'shadow');
+                b.classList.add('text-cream-200');
+            });
+            if (btnEl) {
+                btnEl.classList.add('bg-gold-500', 'text-brown-950', 'shadow');
+                btnEl.classList.remove('text-cream-200');
             }
-        }
 
-        function ownerLogout() {
-            appState.activeRole = 'customer';
-            document.getElementById('login-password').value = '';
-            renderOwnerDashboard();
-            showToast('Anda keluar dari Portal Owner.');
-        }
-
-        function renderAll() {
-            renderPromos();
-            renderCatalog();
-            renderPortfolio();
-            renderOrderServicePicker();
-            renderCart();
-            renderTestimonials();
-            renderOwnerDashboard();
-            lucide.createIcons();
-        }
-
-        function renderPromos() {
-            const container = document.getElementById('promo-banners-grid');
-            if (!container) return;
-            container.innerHTML = appState.promos.map(p => `
-                <div class="bg-gradient-to-r from-gold-500/20 via-brown-900 to-brown-950 p-3.5 rounded-2xl border border-gold-500/40 flex justify-between items-center shadow-lg">
-                    <div class="space-y-0.5">
-                        <span class="text-[9px] font-extrabold uppercase tracking-widest text-gold-400 bg-gold-500/10 px-2 py-0.5 rounded-full">${p.badge}</span>
-                        <h4 class="text-xs font-bold text-cream-50">${p.title}</h4>
-                        <p class="text-[10px] text-cream-200/80">${p.subtitle}</p>
+            const items = catalogData.filter(i => i.cat === cat);
+            document.getElementById('mobile-catalog-grid').innerHTML = items.map(item => `
+                <div class="min-w-[200px] max-w-[200px] glass-card p-3.5 flex flex-col justify-between space-y-2.5 shrink-0">
+                    <div class="space-y-1">
+                        <h4 class="text-xs font-bold text-cream-50 leading-snug">${item.title}</h4>
+                        <p class="text-[10px] text-cream-200/70">${item.desc}</p>
                     </div>
-                    <button onclick="navigateTo('order')" class="px-3 py-2 rounded-xl bg-gold-500 text-brown-950 text-[10px] font-extrabold uppercase shadow shrink-0">Ambil</button>
-                </div>
-            `).join('');
-        }
-
-        function filterCatalogCat(cat, btn) {
-            appState.orderCategoryFilter = cat;
-            document.querySelectorAll('.cat-pill').forEach(p => {
-                p.classList.remove('bg-gold-500', 'text-brown-950', 'shadow');
-                p.classList.add('text-cream-200');
-            });
-            btn.classList.add('bg-gold-500', 'text-brown-950', 'shadow');
-            btn.classList.remove('text-cream-200');
-            renderCatalog();
-        }
-
-        function renderCatalog() {
-            const container = document.getElementById('mobile-catalog-grid');
-            if (!container) return;
-            const filtered = appState.catalog.filter(item => item.category === appState.orderCategoryFilter);
-            container.innerHTML = filtered.map(item => `
-                <div class="glass-card p-3 rounded-2xl w-48 shrink-0 space-y-2 border border-gold-500/20 flex flex-col justify-between">
-                    <div class="space-y-2">
-                        <img src="${item.image}" class="w-full h-28 object-cover rounded-xl border border-gold-500/30" alt="${item.title}">
-                        <div>
-                            <span class="text-[8px] font-bold uppercase tracking-widest text-gold-400">${item.category}</span>
-                            <h4 class="text-xs font-bold text-cream-50 line-clamp-1">${item.title}</h4>
-                            <p class="text-[10px] text-cream-200/70 line-clamp-2 mt-0.5 font-light">${item.desc}</p>
-                        </div>
-                    </div>
-                    <div class="pt-2 border-t border-gold-500/20 flex items-center justify-between">
-                        <span class="text-xs font-extrabold text-gold-400">${item.price}</span>
-                        <button onclick="addCatalogItemToCart(${item.id})" class="p-2 rounded-xl bg-gold-500 text-brown-950 shadow hover:scale-105 transition" title="Tambah ke Keranjang">
-                            <i data-lucide="plus" class="w-3.5 h-3.5"></i>
-                        </button>
-                    </div>
-                </div>
-            `).join('');
-            lucide.createIcons();
-        }
-
-        function renderPortfolio() {
-            const container = document.getElementById('mobile-portfolio-grid');
-            if (!container) return;
-            container.innerHTML = appState.portfolio.map(p => `
-                <div class="glass-card p-3 rounded-2xl w-44 shrink-0 space-y-2 border border-gold-500/20">
-                    <img src="${p.image}" class="w-full h-28 object-cover rounded-xl border border-gold-500/30" alt="${p.title}">
-                    <div>
-                        <span class="text-[8px] font-bold uppercase tracking-widest text-gold-400">${p.category}</span>
-                        <h4 class="text-xs font-bold text-cream-50 line-clamp-1">${p.title}</h4>
+                    <div class="pt-2 border-t border-gold-500/20 flex justify-between items-center">
+                        <span class="text-xs font-extrabold text-gold-400">${formatRp(item.price)}</span>
+                        <button onclick="quickOrder('${item.id}')" class="px-2.5 py-1 rounded-lg bg-gold-500 text-brown-950 text-[10px] font-bold">+ Order</button>
                     </div>
                 </div>
             `).join('');
         }
 
-        let orderCatPicker = 'desain';
-        function selectOrderCategory(cat, btn) {
-            orderCatPicker = cat;
-            document.querySelectorAll('.ord-cat-pill').forEach(p => {
-                p.classList.remove('bg-gold-500', 'text-brown-950', 'shadow');
-                p.classList.add('bg-brown-900/80', 'text-cream-200', 'border', 'border-gold-500/20');
-            });
-            btn.classList.add('bg-gold-500', 'text-brown-950', 'shadow');
-            btn.classList.remove('bg-brown-900/80', 'text-cream-200', 'border', 'border-gold-500/20');
-            renderOrderServicePicker();
-        }
-
-        function renderOrderServicePicker() {
-            const container = document.getElementById('order-service-picker-grid');
-            if (!container) return;
-            const items = appState.catalog.filter(i => i.category === orderCatPicker);
-            container.innerHTML = items.map(item => `
-                <div class="p-2.5 rounded-xl bg-brown-950/80 border border-gold-500/20 flex justify-between items-center">
-                    <div>
-                        <h5 class="text-xs font-bold text-cream-50">${item.title}</h5>
-                        <span class="text-[10px] text-gold-400 font-semibold">${item.price}</span>
-                    </div>
-                    <button type="button" onclick="addCartItem(${item.id})" class="px-3 py-1.5 rounded-xl bg-gold-500 text-brown-950 font-bold text-[10px] uppercase shadow">Pilih</button>
-                </div>
-            `).join('');
-        }
-
-        function addCatalogItemToCart(id) {
-            const item = appState.catalog.find(i => i.id === id);
-            if (!item) return;
-            appState.cart.push({ title: item.title, price: item.price });
-            renderCart();
-            showToast(`"${item.title}" ditambahkan ke keranjang.`);
-        }
-
-        function addCartItem(id) {
-            addCatalogItemToCart(id);
+        function quickOrder(id) {
+            addToCart(id);
             navigateTo('order');
         }
 
-        function removeCartItem(index) {
-            appState.cart.splice(index, 1);
+        function selectOrderCategory(cat, btnEl) {
+            document.querySelectorAll('.ord-cat-pill').forEach(b => {
+                b.classList.remove('bg-gold-500', 'text-brown-950', 'shadow');
+                b.classList.add('bg-brown-900/80', 'text-cream-200', 'border', 'border-gold-500/20');
+            });
+            if (btnEl) {
+                btnEl.classList.add('bg-gold-500', 'text-brown-950', 'shadow');
+                btnEl.classList.remove('bg-brown-900/80', 'text-cream-200', 'border', 'border-gold-500/20');
+            }
+
+            const items = catalogData.filter(i => i.cat === cat);
+            document.getElementById('order-service-picker-grid').innerHTML = items.map(item => `
+                <div class="p-2.5 rounded-xl bg-brown-950/70 border border-gold-500/25 flex justify-between items-center gap-2">
+                    <div class="min-w-0">
+                        <h5 class="text-xs font-bold text-cream-50 truncate">${item.title}</h5>
+                        <span class="text-[10px] text-gold-400 font-semibold">${formatRp(item.price)}</span>
+                    </div>
+                    <button type="button" onclick="addToCart('${item.id}')" class="px-3 py-1.5 rounded-lg bg-gold-500 text-brown-950 font-bold text-[10px] shrink-0">+ Tambah</button>
+                </div>
+            `).join('');
+        }
+
+        function addToCart(id) {
+            const product = catalogData.find(p => p.id === id);
+            if (!product) return;
+            const existing = cart.find(c => c.id === id);
+            if (existing) {
+                existing.qty += 1;
+            } else {
+                cart.push({ ...product, qty: 1 });
+            }
+            renderCart();
+            showToast(`${product.title} ditambahkan`);
+        }
+
+        function updateCartQty(id, delta) {
+            const idx = cart.findIndex(c => c.id === id);
+            if (idx === -1) return;
+            cart[idx].qty += delta;
+            if (cart[idx].qty <= 0) cart.splice(idx, 1);
             renderCart();
         }
 
         function renderCart() {
-            const container = document.getElementById('order-cart-list');
-            const countLabel = document.getElementById('cart-item-count');
-            const totalDisplay = document.getElementById('ord-total-display');
-            if (!container) return;
+            const listEl = document.getElementById('order-cart-list');
+            const countEl = document.getElementById('cart-item-count');
+            const totalEl = document.getElementById('ord-total-display');
 
-            countLabel.textContent = `${appState.cart.length} Item`;
+            const totalQty = cart.reduce((sum, i) => sum + i.qty, 0);
+            const totalPrice = cart.reduce((sum, i) => sum + (i.price * i.qty), 0);
 
-            if (appState.cart.length === 0) {
-                container.innerHTML = `<p class="text-[11px] text-cream-200/50 italic text-center py-3">Belum ada item dipilih.</p>`;
-                totalDisplay.textContent = 'Rp 0';
+            countEl.innerText = `${totalQty} Item`;
+            totalEl.innerText = formatRp(totalPrice);
+
+            if (cart.length === 0) {
+                listEl.innerHTML = `<p class="text-[11px] text-cream-200/50 italic text-center py-2">Belum ada item dipilih.</p>`;
                 return;
             }
 
-            let totalNum = 0;
-            container.innerHTML = appState.cart.map((c, idx) => {
-                const num = parseInt(c.price.replace(/[^0-9]/g, '')) || 0;
-                totalNum += num;
-                return `
-                    <div class="flex justify-between items-center bg-brown-900/60 p-2 rounded-xl border border-gold-500/20 text-xs">
-                        <div>
-                            <span class="font-bold text-cream-50 block">${c.title}</span>
-                            <span class="text-[10px] text-gold-400">${c.price}</span>
-                        </div>
-                        <button type="button" onclick="removeCartItem(${idx})" class="text-red-400 hover:text-red-300 p-1"><i data-lucide="trash-2" class="w-3.5 h-3.5"></i></button>
+            listEl.innerHTML = cart.map(item => `
+                <div class="flex justify-between items-center bg-brown-900/60 p-2 rounded-xl border border-gold-500/20">
+                    <div class="min-w-0 pr-2">
+                        <p class="text-[11px] font-bold text-cream-50 truncate">${item.title}</p>
+                        <p class="text-[10px] text-gold-400">${formatRp(item.price * item.qty)}</p>
                     </div>
-                `;
-            }).join('');
-
-            totalDisplay.textContent = `Rp ${totalNum.toLocaleString('id-ID')}`;
-            lucide.createIcons();
-        }
-
-        function submitOrderForm(e) {
-            e.preventDefault();
-            if (appState.cart.length === 0) {
-                showToast('Pilih minimal 1 layanan di keranjang pesanan!', 'error');
-                return;
-            }
-
-            const name = document.getElementById('ord-name').value;
-            const phone = document.getElementById('ord-phone').value;
-            const notes = document.getElementById('ord-notes').value || '-';
-            const invoiceId = `#WK-${Math.floor(1000 + Math.random() * 9000)}`;
-
-            let totalNum = 0;
-            appState.cart.forEach(c => {
-                totalNum += parseInt(c.price.replace(/[^0-9]/g, '')) || 0;
-            });
-            const totalStr = `Rp ${totalNum.toLocaleString('id-ID')}`;
-
-            const newOrder = {
-                id: invoiceId,
-                name: name,
-                phone: phone,
-                items: [...appState.cart],
-                total: totalStr,
-                notes: notes,
-                status: 'Diproses',
-                date: new Date().toISOString().split('T')[0]
-            };
-
-            appState.orders.unshift(newOrder);
-            appState.finance.unshift({ type: 'in', amount: totalNum, desc: `Pembayaran Order ${invoiceId} (${name})`, date: newOrder.date });
-            saveAppData();
-
-            document.getElementById('order-card-empty').classList.add('hidden');
-            const resultBox = document.getElementById('order-card-result');
-            resultBox.classList.remove('hidden');
-
-            document.getElementById('card-invoice-id').textContent = invoiceId;
-            document.getElementById('card-customer-name').textContent = name;
-            document.getElementById('card-customer-notes').textContent = notes;
-
-            try {
-                JsBarcode("#order-barcode-svg", invoiceId, {
-                    format: "CODE128",
-                    lineColor: "#211107",
-                    width: 1.5,
-                    height: 35,
-                    displayValue: true,
-                    fontSize: 10
-                });
-            } catch(err) { console.error(err); }
-
-            showToast(`Pesanan ${invoiceId} berhasil diterbitkan!`);
-            appState.cart = [];
-            renderCart();
-            renderOwnerDashboard();
-        }
-
-        function downloadReceiptImage() {
-            const cardElement = document.getElementById('printable-order-card');
-            if (!cardElement) return;
-            html2canvas(cardElement, { scale: 3, backgroundColor: '#140a04' }).then(canvas => {
-                const link = document.createElement('a');
-                link.download = `Kartu-Deal-WisesaKarsa.png`;
-                link.href = canvas.toDataURL('image/png');
-                link.click();
-                showToast('Kartu Deal berhasil diunduh!');
-            }).catch(err => {
-                showToast('Gagal mengunduh gambar kartu.', 'error');
-            });
-        }
-
-        function verifyOrderForTestimonial() {
-            const ticketId = document.getElementById('testi-ticket-id').value.trim();
-            const order = appState.orders.find(o => o.id.toLowerCase() === ticketId.toLowerCase() && o.status === 'Beres');
-            if (order) {
-                document.getElementById('testi-form-gate').classList.add('hidden');
-                document.getElementById('testi-active-form').classList.remove('hidden');
-                document.getElementById('verified-ticket-label').textContent = order.id;
-                document.getElementById('testi-name').value = order.name;
-                document.getElementById('testi-service').value = order.items.map(i => i.title).join(', ');
-                showToast('Tiket valid dan berstatus Beres!');
-            } else {
-                showToast('Tiket tidak ditemukan atau pesanan belum berstatus Beres!', 'error');
-            }
-        }
-
-        function resetTestimonialGate() {
-            document.getElementById('testi-active-form').classList.add('hidden');
-            document.getElementById('testi-form-gate').classList.remove('hidden');
-            document.getElementById('testi-ticket-id').value = '';
-        }
-
-        function submitTestimonial(e) {
-            e.preventDefault();
-            const name = document.getElementById('testi-name').value;
-            const service = document.getElementById('testi-service').value;
-            const rating = parseInt(document.getElementById('testi-rating').value);
-            const comment = document.getElementById('testi-comment').value;
-
-            appState.testimonials.unshift({ name, service, rating, comment, date: new Date().toISOString().split('T')[0] });
-            saveAppData();
-            renderTestimonials();
-            resetTestimonialGate();
-            showToast('Ulasan berhasil dikirimkan!');
-        }
-
-        function renderTestimonials() {
-            const container = document.getElementById('all-testimonials-grid');
-            if (!container) return;
-            container.innerHTML = appState.testimonials.map(t => `
-                <div class="glass-card p-4 space-y-2">
-                    <div class="flex justify-between items-center">
-                        <h4 class="text-xs font-bold text-cream-50">${t.name}</h4>
-                        <div class="flex text-amber-400 text-xs">${'⭐'.repeat(t.rating)}</div>
+                    <div class="flex items-center gap-1.5 shrink-0">
+                        <button type="button" onclick="updateCartQty('${item.id}', -1)" class="w-6 h-6 rounded-lg bg-brown-950 text-gold-400 font-bold text-xs">-</button>
+                        <span class="text-xs font-bold w-4 text-center">${item.qty}</span>
+                        <button type="button" onclick="updateCartQty('${item.id}', 1)" class="w-6 h-6 rounded-lg bg-gold-500 text-brown-950 font-bold text-xs">+</button>
                     </div>
-                    <span class="text-[9px] text-gold-400 font-semibold block">${t.service}</span>
-                    <p class="text-xs text-cream-200/90 font-light italic">"${t.comment}"</p>
                 </div>
             `).join('');
         }
 
-        function renderOwnerDashboard() {
-            const loginBox = document.getElementById('owner-login-box');
-            const dashBox = document.getElementById('owner-dashboard-box');
-            if (!loginBox || !dashBox) return;
-
-            if (appState.activeRole === 'owner') {
-                loginBox.classList.add('hidden');
-                dashBox.classList.remove('hidden');
-
-                let totalInc = 0;
-                appState.finance.forEach(f => {
-                    if (f.type === 'in') totalInc += f.amount;
-                    else totalInc -= f.amount;
-                });
-                document.getElementById('owner-stat-income').textContent = `Rp ${totalInc.toLocaleString('id-ID')}`;
-                document.getElementById('owner-stat-orders').textContent = `${appState.orders.length} Pesanan`;
-                document.getElementById('owner-order-count').textContent = `${appState.orders.length} Pesanan`;
-
-                const ordersList = document.getElementById('owner-orders-list');
-                ordersList.innerHTML = appState.orders.map((o, idx) => `
-                    <div class="glass-card p-3 space-y-2 text-xs">
-                        <div class="flex justify-between items-center border-b border-gold-500/20 pb-1.5">
-                            <span class="font-mono font-bold text-gold-400">${o.id}</span>
-                            <span class="px-2 py-0.5 rounded-full text-[9px] font-bold ${o.status === 'Beres' ? 'bg-emerald-500/20 text-emerald-300' : 'bg-amber-500/20 text-amber-300'}">${o.status}</span>
-                        </div>
-                        <div>
-                            <p class="font-bold text-cream-50">${o.name} <span class="text-[10px] font-normal text-cream-200/70">(${o.phone})</span></p>
-                            <p class="text-[10px] text-cream-200/90 mt-0.5">Item: ${o.items.map(i => i.title).join(', ')}</p>
-                            <p class="text-[10px] text-gold-400 font-semibold mt-0.5">Total: ${o.total}</p>
-                            <p class="text-[10px] text-cream-200/60 italic mt-0.5">Catatan: ${o.notes}</p>
-                        </div>
-                        <div class="flex justify-end gap-1.5 pt-1">
-                            <button onclick="updateOrderStatus(${idx}, 'Diproses')" class="px-2.5 py-1 rounded-lg bg-brown-900 text-cream-200 text-[9px] font-bold">Proses</button>
-                            <button onclick="updateOrderStatus(${idx}, 'Beres')" class="px-2.5 py-1 rounded-lg bg-gold-500 text-brown-950 text-[9px] font-bold">Selesai (Beres)</button>
-                            <button onclick="deleteOrder(${idx})" class="px-2 py-1 rounded-lg bg-red-950 text-red-300 text-[9px]"><i data-lucide="trash-2" class="w-3 h-3"></i></button>
-                        </div>
-                    </div>
-                `).join('');
-
-                const finList = document.getElementById('owner-finance-list');
-                finList.innerHTML = appState.finance.map((f, idx) => `
-                    <div class="flex justify-between items-center bg-brown-900/60 p-2.5 rounded-xl border border-gold-500/20 text-xs">
-                        <div>
-                            <span class="font-bold text-cream-50 block">${f.desc}</span>
-                            <span class="text-[9px] text-cream-200/60">${f.date}</span>
-                        </div>
-                        <span class="font-bold ${f.type === 'in' ? 'text-emerald-400' : 'text-red-400'}">${f.type === 'in' ? '+' : '-'} Rp ${f.amount.toLocaleString('id-ID')}</span>
-                    </div>
-                `).join('');
-
-                const catList = document.getElementById('owner-catalog-list');
-                catList.innerHTML = appState.catalog.map((c, idx) => `
-                    <div class="flex justify-between items-center bg-brown-900/60 p-2.5 rounded-xl border border-gold-500/20 text-xs">
-                        <div class="flex items-center gap-2">
-                            <img src="${c.image}" class="w-10 h-10 rounded-lg object-cover">
-                            <div>
-                                <span class="font-bold text-cream-50 block line-clamp-1">${c.title}</span>
-                                <span class="text-[10px] text-gold-400">${c.price}</span>
-                            </div>
-                        </div>
-                        <button onclick="deleteCatalogItem(${c.id})" class="text-red-400 p-1"><i data-lucide="trash-2" class="w-4 h-4"></i></button>
-                    </div>
-                `).join('');
-
-                const promoList = document.getElementById('owner-promo-list');
-                promoList.innerHTML = appState.promos.map((p, idx) => `
-                    <div class="flex justify-between items-center bg-brown-900/60 p-2.5 rounded-xl border border-gold-500/20 text-xs">
-                        <div>
-                            <span class="font-bold text-cream-50 block">${p.title}</span>
-                            <span class="text-[10px] text-gold-400">${p.subtitle}</span>
-                        </div>
-                        <button onclick="deletePromo(${idx})" class="text-red-400 p-1"><i data-lucide="trash-2" class="w-4 h-4"></i></button>
-                    </div>
-                `).join('');
-
-            } else {
-                loginBox.classList.remove('hidden');
-                dashBox.classList.add('hidden');
-            }
-            lucide.createIcons();
-        }
-
-        function switchOwnerTab(tabName, btn) {
-            document.querySelectorAll('.owner-panel').forEach(p => p.classList.add('hidden'));
-            document.getElementById(`owner-panel-${tabName}`).classList.remove('hidden');
-
-            document.querySelectorAll('.owner-tab-btn').forEach(b => {
-                b.classList.remove('bg-gold-500', 'text-brown-950');
-                b.classList.add('text-cream-200');
-            });
-            btn.classList.add('bg-gold-500', 'text-brown-950');
-            btn.classList.remove('text-cream-200');
-            lucide.createIcons();
-        }
-
-        function updateOrderStatus(index, newStatus) {
-            appState.orders[index].status = newStatus;
-            saveAppData();
-            renderOwnerDashboard();
-            showToast(`Status pesanan diubah ke ${newStatus}`);
-        }
-
-        function deleteOrder(index) {
-            if (confirm('Hapus pesanan ini?')) {
-                appState.orders.splice(index, 1);
-                saveAppData();
-                renderOwnerDashboard();
-                showToast('Pesanan dihapus.');
-            }
-        }
-
-        function submitFinanceTx(e) {
+        function submitOrderForm(e) {
             e.preventDefault();
-            const type = document.getElementById('fin-type').value;
-            const amount = parseInt(document.getElementById('fin-amount').value) || 0;
-            const desc = document.getElementById('fin-desc').value;
-
-            appState.finance.unshift({ type, amount, desc, date: new Date().toISOString().split('T')[0] });
-            saveAppData();
-            renderOwnerDashboard();
-            document.getElementById('fin-amount').value = '';
-            document.getElementById('fin-desc').value = '';
-            showToast('Transaksi berhasil dicatat!');
-        }
-
-        function handleCatalogImageUpload(e) {
-            const file = e.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(event) {
-                    document.getElementById('cat-input-image').value = event.target.result;
-                };
-                reader.readAsDataURL(file);
+            if (cart.length === 0) {
+                showToast('Pilih minimal 1 layanan di katalog!', 'error');
+                return;
             }
-        }
 
-        function submitCatalogItem(e) {
-            e.preventDefault();
-            const category = document.getElementById('cat-input-category').value;
-            const title = document.getElementById('cat-input-title').value;
-            const price = document.getElementById('cat-input-price').value;
-            const image = document.getElementById('cat-input-image').value;
-            const desc = document.getElementById('cat-input-desc').value;
+            const name = document.getElementById('ord-name').value.trim();
+            const phone = document.getElementById('ord-phone').value.trim();
+            const notes = document.getElementById('ord-notes').value.trim() || 'Sesuai pesanan';
+            const total = cart.reduce((sum, i) => sum + (i.price * i.qty), 0);
+            const invoiceId = '#WK-' + Math.floor(1000 + Math.random() * 9000);
+            const summaryItems = cart.map(c => `${c.title} (${c.qty}x)`).join(', ');
 
-            const newItem = {
-                id: Date.now(),
-                category,
-                title,
-                price,
-                image,
-                desc: desc || 'Layanan profesional Wisesa Karsa.'
+            const newOrder = {
+                id: invoiceId,
+                name,
+                phone,
+                items: summaryItems,
+                notes,
+                total,
+                status: 'Proses',
+                date: new Date().toLocaleDateString('id-ID')
             };
 
-            appState.catalog.unshift(newItem);
-            saveAppData();
-            renderAll();
-            e.target.reset();
-            showToast('Item katalog berhasil disimpan!');
+            orders.unshift(newOrder);
+            localStorage.setItem('wk_orders', JSON.stringify(orders));
+
+            document.getElementById('order-card-empty').classList.add('hidden');
+            document.getElementById('order-card-result').classList.remove('hidden');
+            document.getElementById('card-invoice-id').innerText = invoiceId;
+            document.getElementById('card-customer-name').innerText = name;
+            document.getElementById('card-customer-notes').innerText = `${summaryItems} • ${notes}`;
+            document.getElementById('card-total-price').innerText = formatRp(total);
+
+            if (window.JsBarcode) {
+                JsBarcode("#order-barcode-svg", invoiceId.replace('#', ''), {
+                    format: "CODE128",
+                    lineColor: "#140A04",
+                    width: 2,
+                    height: 32,
+                    displayValue: false
+                });
+            }
+
+            cart = [];
+            renderCart();
+            document.getElementById('order-form').reset();
+            showToast('Kartu ORDER DEAL berhasil diterbitkan!');
+            document.getElementById('order-card-result').scrollIntoView({ behavior: 'smooth' });
         }
 
-        function deleteCatalogItem(id) {
-            appState.catalog = appState.catalog.filter(c => c.id !== id);
-            saveAppData();
-            renderAll();
-            showToast('Item katalog dihapus.');
+        function downloadReceiptImage() {
+            const card = document.getElementById('printable-order-card');
+            if (!window.html2canvas) return;
+            html2canvas(card, { scale: 3, backgroundColor: null }).then(canvas => {
+                const link = document.createElement('a');
+                link.download = `ORDER-DEAL-${document.getElementById('card-invoice-id').innerText}.png`;
+                link.href = canvas.toDataURL('image/png');
+                link.click();
+                showToast('Kartu Deal berhasil diunduh!');
+            });
         }
 
-        function submitPromoBanner(e) {
+        function verifyOrderForTestimonial() {
+            const inputId = document.getElementById('testi-ticket-id').value.trim().toUpperCase();
+            const found = orders.find(o => o.id === inputId && o.status === 'Beres');
+            if (!found) {
+                showToast('Tiket tidak ditemukan atau belum berstatus Beres!', 'error');
+                return;
+            }
+            document.getElementById('testi-form-gate').classList.add('hidden');
+            document.getElementById('testi-active-form').classList.remove('hidden');
+            document.getElementById('verified-ticket-label').innerText = found.id;
+            document.getElementById('testi-name').value = found.name;
+            document.getElementById('testi-service').value = found.items;
+        }
+
+        function resetTestimonialGate() {
+            document.getElementById('testi-form-gate').classList.remove('hidden');
+            document.getElementById('testi-active-form').classList.add('hidden');
+        }
+
+        function submitTestimonial(e) {
             e.preventDefault();
-            const title = document.getElementById('promo-input-title').value;
-            const subtitle = document.getElementById('promo-input-subtitle').value;
-            const badge = document.getElementById('promo-input-badge').value;
-
-            appState.promos.unshift({ title, subtitle, badge });
-            saveAppData();
-            renderAll();
-            e.target.reset();
-            showToast('Promo banner ditambahkan!');
+            testimonials.unshift({
+                name: document.getElementById('testi-name').value,
+                service: document.getElementById('testi-service').value,
+                rating: Number(document.getElementById('testi-rating').value),
+                comment: document.getElementById('testi-comment').value
+            });
+            localStorage.setItem('wk_testimonials', JSON.stringify(testimonials));
+            renderTestimonials();
+            resetTestimonialGate();
+            document.getElementById('testi-active-form').reset();
+            showToast('Terima kasih atas ulasan Anda!');
         }
 
-        function deletePromo(index) {
-            appState.promos.splice(index, 1);
-            saveAppData();
-            renderAll();
-            showToast('Promo banner dihapus.');
+        function renderTestimonials() {
+            document.getElementById('all-testimonials-grid').innerHTML = testimonials.map(t => `
+                <div class="glass-card p-3.5 space-y-1">
+                    <div class="flex justify-between items-center">
+                        <h4 class="text-xs font-bold text-cream-50">${t.name}</h4>
+                        <span class="text-[10px] text-gold-400">${'⭐'.repeat(t.rating)}</span>
+                    </div>
+                    <p class="text-[10px] text-gold-400/80 font-medium">${t.service}</p>
+                    <p class="text-xs text-cream-200/80 italic pt-1">"${t.comment}"</p>
+                </div>
+            `).join('');
         }
+
+        function handleOwnerLogin(e) {
+            e.preventDefault();
+            if (document.getElementById('login-password').value === OWNER_PASS) {
+                localStorage.setItem('wk_owner_logged', 'true');
+                renderOwnerDashboard();
+                showToast('Login Owner Berhasil');
+            } else {
+                showToast('Password salah!', 'error');
+            }
+        }
+
+        function ownerLogout() {
+            localStorage.removeItem('wk_owner_logged');
+            renderOwnerDashboard();
+            showToast('Berhasil keluar dari Portal Owner');
+        }
+
+        function addExpense() {
+            const desc = document.getElementById('exp-desc').value.trim();
+            const amount = Number(document.getElementById('exp-amount').value);
+            if (!desc || amount <= 0) return;
+            expenses.push({ desc, amount, date: new Date().toLocaleDateString('id-ID') });
+            localStorage.setItem('wk_expenses', JSON.stringify(expenses));
+            document.getElementById('exp-desc').value = '';
+            document.getElementById('exp-amount').value = '';
+            renderOwnerDashboard();
+            showToast('Pengeluaran dicatat');
+        }
+
+        function markOrderDone(id) {
+            const idx = orders.findIndex(o => o.id === id);
+            if (idx !== -1) {
+                orders[idx].status = 'Beres';
+                localStorage.setItem('wk_orders', JSON.stringify(orders));
+                renderOwnerDashboard();
+                showToast(`Order ${id} ditandai Beres!`);
+            }
+        }
+
+        function renderOwnerDashboard() {
+            const isLogged = localStorage.getItem('wk_owner_logged') === 'true';
+            document.getElementById('owner-login-box').classList.toggle('hidden', isLogged);
+            document.getElementById('owner-dashboard-box').classList.toggle('hidden', !isLogged);
+            if (!isLogged) return;
+
+            const income = orders.filter(o => o.status === 'Beres').reduce((s, o) => s + o.total, 0);
+            const expense = expenses.reduce((s, e) => s + e.amount, 0);
+
+            document.getElementById('owner-stat-income').innerText = formatRp(income);
+            document.getElementById('owner-stat-expense').innerText = formatRp(expense);
+
+            const listEl = document.getElementById('owner-orders-list');
+            if (orders.length === 0) {
+                listEl.innerHTML = `<p class="text-xs text-cream-200/50 text-center py-4">Belum ada pesanan masuk.</p>`;
+                return;
+            }
+
+            listEl.innerHTML = orders.map(o => `
+                <div class="glass-card p-3.5 space-y-2">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <span class="font-mono text-[10px] font-bold text-gold-400">${o.id} • ${o.date}</span>
+                            <h5 class="text-xs font-extrabold text-cream-50">${o.name} (${o.phone})</h5>
+                        </div>
+                        <span class="px-2 py-0.5 rounded-full text-[9px] font-bold ${
+                            o.status === 'Beres' ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/40' : 'bg-amber-500/20 text-amber-300 border border-amber-500/40'
+                        }">${o.status}</span>
+                    </div>
+                    <p class="text-[11px] text-cream-200/80">${o.items}</p>
+                    <div class="flex justify-between items-center pt-2 border-t border-gold-500/20">
+                        <span class="text-xs font-extrabold text-gold-400">${formatRp(o.total)}</span>
+                        ${o.status !== 'Beres' ? `<button onclick="markOrderDone('${o.id}')" class="px-3 py-1 rounded-lg bg-emerald-500 text-brown-950 font-bold text-[10px]">Tandai Beres</button>` : ''}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            if (window.lucide) lucide.createIcons();
+            renderHome();
+            selectOrderCategory('desain', document.querySelector('.ord-cat-pill'));
+            renderTestimonials();
+        });
     </script>
 </body>
 </html>
