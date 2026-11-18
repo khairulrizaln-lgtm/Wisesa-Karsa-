@@ -178,20 +178,17 @@
                 </div>
 
                 <div class="space-y-2.5 pt-1">
-                    <!-- Customer Login Tanpa Password -->
                     <button onclick="enterMainPlatform()" class="w-full py-3.5 rounded-2xl bg-gradient-to-r from-gold-400 via-gold-500 to-gold-600 text-brown-950 font-extrabold text-xs uppercase hover:brightness-110 transition duration-300 shadow-gold-glow flex items-center justify-center gap-2 font-sans tracking-normal">
                         <span>Lanjutkan (Customer)</span>
                         <i data-lucide="arrow-right" class="w-4 h-4 text-brown-950"></i>
                     </button>
 
-                    <!-- Owner Login Trigger -->
                     <button onclick="openOwnerLandingLogin()" class="w-full py-3 rounded-2xl bg-brown-900/90 text-gold-400 border border-gold-500/40 font-bold text-xs tracking-wider uppercase hover:bg-brown-800 transition flex items-center justify-center gap-2 shadow">
                         <i data-lucide="crown" class="w-4 h-4 text-gold-400"></i>
                         <span>Login Portal Owner</span>
                     </button>
                 </div>
 
-                <!-- Hidden Owner Password Prompt on Landing -->
                 <div id="landing-owner-login-box" class="hidden pt-2 border-t border-gold-500/25 space-y-2 text-left animate-fade-in">
                     <label class="block text-[10px] font-bold uppercase text-gold-400">Password Owner:</label>
                     <div class="flex gap-2">
@@ -204,20 +201,20 @@
 
         <!-- ================= MOBILE APP HEADER ================= -->
         <header class="sticky top-0 z-40 bg-brown-950/95 backdrop-blur-2xl border-b border-gold-500/30 shadow-xl">
-            <div class="px-6 py-5 flex justify-between items-center">
-                <div onclick="navigateTo('home')" class="flex items-center gap-3.5 cursor-pointer group">
-                    <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-brown-800 via-brown-900 to-brown-950 text-gold-400 flex items-center justify-center shadow-gold-glow border border-gold-500/50 p-2 group-hover:scale-105 transition">
-                        <span class="text-lg font-extrabold tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-gold-300 via-gold-400 to-cream-100">WK</span>
+            <div class="px-5 py-4 flex justify-between items-center">
+                <div onclick="navigateTo('home')" class="flex items-center gap-3 cursor-pointer group min-w-0 pr-2">
+                    <div class="w-11 h-11 rounded-2xl bg-gradient-to-br from-brown-800 via-brown-900 to-brown-950 text-gold-400 flex items-center justify-center shadow-gold-glow border border-gold-500/50 p-2 group-hover:scale-105 transition shrink-0">
+                        <span class="text-base font-extrabold tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-gold-300 via-gold-400 to-cream-100">WK</span>
                     </div>
-                    <div>
-                        <h1 class="font-extrabold text-base tracking-tight text-cream-50 leading-none">WISESA KARSA</h1>
-                        <p class="text-[10px] text-gold-400 font-medium tracking-wide mt-1">Crafting Visions, Shaping Masterpieces</p>
+                    <div class="min-w-0 flex-1">
+                        <h1 class="font-extrabold text-sm tracking-tight text-cream-50 leading-tight truncate">WISESA KARSA</h1>
+                        <p class="text-[9px] text-gold-400 font-medium tracking-wide mt-0.5 truncate">Crafting Visions, Shaping Masterpieces</p>
                     </div>
                 </div>
 
-                <div class="flex items-center gap-2.5">
-                    <button onclick="exitToWelcomeGate()" class="p-3 rounded-2xl bg-brown-900/90 text-gold-400 border border-gold-500/35 hover:bg-brown-800 transition flex items-center justify-center shadow-md" title="Keluar / Ganti Akun">
-                        <i data-lucide="log-out" class="w-5 h-5 text-gold-400"></i>
+                <div class="flex items-center gap-2 shrink-0">
+                    <button onclick="exitToWelcomeGate()" class="p-2.5 rounded-2xl bg-brown-900/90 text-gold-400 border border-gold-500/35 hover:bg-brown-800 transition flex items-center justify-center shadow-md" title="Keluar / Ganti Akun">
+                        <i data-lucide="log-out" class="w-4 h-4 text-gold-400"></i>
                     </button>
                 </div>
             </div>
@@ -228,7 +225,6 @@
 
             <!-- 1. HALAMAN BERANDA -->
             <section id="view-home" class="view-section space-y-3 pb-6">
-                <!-- Hero Banner Modern (Compact) -->
                 <div class="bg-gradient-to-br from-brown-900 via-brown-800 to-brown-950 text-cream-50 rounded-2xl p-5 shadow-xl border border-gold-500/30 relative overflow-hidden space-y-3">
                     <div class="absolute -right-16 -top-16 w-36 h-36 bg-gold-500/20 rounded-full blur-3xl pointer-events-none"></div>
                     <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gold-500/15 border border-gold-400/40 text-gold-400 text-[11px] font-bold uppercase tracking-wider">
@@ -241,17 +237,13 @@
                     </button>
                 </div>
 
-                <!-- Banner Promo -->
                 <div class="space-y-1.5">
                     <div class="flex justify-between items-center px-1">
                         <h3 class="text-[10px] font-bold uppercase tracking-widest text-gold-400">Promo & Campaign</h3>
                     </div>
-                    <div id="promo-banners-grid" class="space-y-2">
-                        <!-- Diisi JS -->
-                    </div>
+                    <div id="promo-banners-grid" class="space-y-2"></div>
                 </div>
 
-                <!-- Katalog Layanan (Horizontal Slide, Smaller Boxes) -->
                 <div class="space-y-1.5">
                     <div class="flex justify-between items-center px-1">
                         <h3 class="text-[10px] font-bold uppercase tracking-widest text-gold-400">Katalog Layanan</h3>
@@ -261,27 +253,21 @@
                             <button onclick="filterCatalogCat('konveksi', this)" class="cat-pill px-2.5 py-1 rounded-lg text-[9px] font-bold text-cream-200 transition shrink-0">Konveksi</button>
                         </div>
                     </div>
-                    <div id="mobile-catalog-grid" class="flex gap-4 overflow-x-auto pb-2 pt-1 no-scrollbar">
-                        <!-- Diisi JS -->
-                    </div>
+                    <div id="mobile-catalog-grid" class="flex gap-4 overflow-x-auto pb-2 pt-1 no-scrollbar"></div>
                 </div>
 
-                <!-- Divider / Garis Pembatas -->
                 <div class="w-full h-[1px] bg-gradient-to-r from-transparent via-gold-500/40 to-transparent my-3"></div>
 
-                <!-- Portfolio Showcase (Horizontal Slide, Smaller Boxes) -->
                 <div class="space-y-1.5">
                     <div class="flex justify-between items-center px-1">
                         <h3 class="text-[10px] font-bold uppercase tracking-widest text-gold-400">Portfolio Showcase</h3>
                         <span class="text-[9px] text-cream-200/60 font-light">Geser ➔</span>
                     </div>
-                    <div id="mobile-portfolio-grid" class="flex gap-4 overflow-x-auto pb-2 pt-1 no-scrollbar">
-                        <!-- Diisi JS -->
-                    </div>
+                    <div id="mobile-portfolio-grid" class="flex gap-4 overflow-x-auto pb-2 pt-1 no-scrollbar"></div>
                 </div>
             </section>
 
-            <!-- 2. HALAMAN ORDER & KARTU BARCODE -->
+            <!-- 2. HALAMAN ORDER -->
             <section id="view-order" class="view-section hidden space-y-5">
                 <div class="px-1 space-y-1">
                     <h2 class="text-xl font-extrabold text-cream-50">Formulir Pesanan</h2>
@@ -299,7 +285,6 @@
                             <input type="tel" id="ord-phone" required placeholder="08xxxxxxxxxx" class="w-full px-4 py-3 rounded-2xl bg-brown-950/70 border border-gold-500/30 text-xs text-cream-50 placeholder-cream-200/30 focus:outline-none focus:border-gold-400">
                         </div>
 
-                        <!-- Interaktif Pilih Layanan Multi-Item -->
                         <div class="space-y-2.5">
                             <label class="block text-[11px] font-bold uppercase tracking-wider text-gold-400">Pilih Kategori Katalog *</label>
                             <div class="grid grid-cols-3 gap-2">
@@ -307,12 +292,9 @@
                                 <button type="button" onclick="selectOrderCategory('editing', this)" class="ord-cat-pill py-2.5 rounded-xl text-[10px] font-bold bg-brown-900/80 text-cream-200 border border-gold-500/20 transition">Editing</button>
                                 <button type="button" onclick="selectOrderCategory('konveksi', this)" class="ord-cat-pill py-2.5 rounded-xl text-[10px] font-bold bg-brown-900/80 text-cream-200 border border-gold-500/20 transition">Konveksi</button>
                             </div>
-                            <div id="order-service-picker-grid" class="grid grid-cols-1 gap-2 max-h-48 overflow-y-auto pr-1 pt-1">
-                                <!-- Diisi JS interaktif -->
-                            </div>
+                            <div id="order-service-picker-grid" class="grid grid-cols-1 gap-2 max-h-48 overflow-y-auto pr-1 pt-1"></div>
                         </div>
 
-                        <!-- Keranjang Pesanan Multi-Item -->
                         <div class="p-4 rounded-2xl bg-brown-950/80 border border-gold-500/40 space-y-3">
                             <div class="flex justify-between items-center text-xs border-b border-gold-500/20 pb-2">
                                 <span class="text-gold-300 font-bold uppercase tracking-wider text-[10px]">Keranjang Pesanan Anda</span>
@@ -340,18 +322,15 @@
                     </form>
                 </div>
 
-                <!-- Preview Kartu Deal Modern (Horisontal Persegi Panjang) -->
                 <div id="order-card-empty" class="glass-card p-8 border-2 border-dashed border-gold-500/30 text-center space-y-3">
                     <i data-lucide="qr-code" class="w-10 h-10 mx-auto text-gold-400"></i>
                     <p class="text-xs font-bold text-cream-200">Belum Ada Kartu Deal Diterbitkan</p>
                 </div>
 
                 <div id="order-card-result" class="hidden space-y-4 animate-fade-in">
-                    <!-- Modern Horizontal Ticket Card (Lebih Kecil & Persegi Panjang) -->
                     <div id="printable-order-card" class="bg-gradient-to-r from-brown-950 via-brown-900 to-brown-950 text-cream-50 rounded-xl p-3 mx-auto max-w-[280px] shadow-2xl border-2 border-gold-500/50 space-y-2 relative overflow-hidden">
                         <div class="absolute -right-8 -top-8 w-20 h-20 bg-gold-500/20 rounded-full blur-xl pointer-events-none"></div>
                         
-                        <!-- Header Tiket -->
                         <div class="flex justify-between items-center border-b border-gold-500/30 pb-2">
                             <div class="flex items-center gap-2">
                                 <div class="w-7 h-7 rounded-xl bg-gradient-to-br from-brown-800 via-brown-900 to-brown-950 text-gold-400 flex items-center justify-center shadow-gold-glow border border-gold-500/40 p-1">
@@ -365,7 +344,6 @@
                             <span class="text-[8px] font-extrabold uppercase tracking-widest text-brown-950 bg-gradient-to-r from-gold-300 via-gold-400 to-gold-500 px-2.5 py-0.5 rounded-full shadow">ORDER DEAL</span>
                         </div>
 
-                        <!-- Isi Tiket Horisontal -->
                         <div class="grid grid-cols-2 gap-2 py-0.5">
                             <div class="bg-brown-900/60 p-2 rounded-lg border border-gold-500/30">
                                 <span class="text-[7px] font-semibold uppercase tracking-wider text-gold-400/80 block">Kode Order</span>
@@ -378,20 +356,17 @@
                             </div>
                         </div>
 
-                        <!-- Catatan Tambahan -->
                         <div class="bg-brown-900/60 p-2 rounded-lg border border-gold-500/30">
                             <span class="text-[7px] font-semibold uppercase tracking-wider text-gold-400/80 block">Catatan Tambahan</span>
                             <span id="card-customer-notes" class="text-[9px] text-cream-50 italic line-clamp-2 block">-</span>
                         </div>
 
-                        <!-- Barcode Section -->
                         <div class="p-1.5 rounded-lg bg-white/95 text-center space-y-0.5 shadow-inner border border-gold-400/30">
                             <svg id="order-barcode-svg" class="mx-auto w-full h-6"></svg>
                             <p class="text-[6px] text-brown-950 uppercase tracking-[0.15em] font-extrabold">Scan Pass Deal</p>
                         </div>
                     </div>
 
-                    <!-- Tombol Unduh Gambar Kartu Deal -->
                     <button type="button" onclick="downloadReceiptImage()" class="w-full py-2 rounded-xl bg-brown-900 text-gold-400 border border-gold-500/50 font-bold text-[10px] uppercase tracking-wider shadow flex items-center justify-center gap-1.5 hover:bg-brown-800 transition">
                         <i data-lucide="download" class="w-3.5 h-3.5 text-gold-400"></i> Unduh Kartu Deal
                     </button>
@@ -446,14 +421,11 @@
                     </form>
                 </div>
 
-                <div id="all-testimonials-grid" class="space-y-3">
-                    <!-- Diisi JS -->
-                </div>
+                <div id="all-testimonials-grid" class="space-y-3"></div>
             </section>
 
             <!-- 4. HALAMAN OWNER PORTAL -->
             <section id="view-owner" class="view-section hidden space-y-4">
-                <!-- Login Gate -->
                 <div id="owner-login-box" class="glass-card p-6 shadow-2xl space-y-5">
                     <div class="text-center space-y-3">
                         <img id="login-owner-avatar" src="https://placehold.co/100x100/3B2310/DFBA52?text=WK" class="w-16 h-16 rounded-full mx-auto object-cover border-2 border-gold-400 shadow-gold-glow">
@@ -469,7 +441,6 @@
                     <p class="text-[10px] text-center text-cream-200/50 font-mono tracking-wider">Password: 25220291100806</p>
                 </div>
 
-                <!-- Dashboard Utama Owner -->
                 <div id="owner-dashboard-box" class="hidden space-y-4 animate-fade-in">
                     <div class="glass-card p-4 flex justify-between items-center">
                         <div class="flex items-center gap-3">
@@ -482,7 +453,6 @@
                         <button onclick="ownerLogout()" class="px-3 py-1.5 rounded-xl bg-brown-900 text-gold-400 border border-gold-500/30 text-[10px] font-bold">Keluar</button>
                     </div>
 
-                    <!-- Statistik Cepat Keuangan -->
                     <div class="grid grid-cols-2 gap-3">
                         <div class="glass-card p-4 space-y-1">
                             <span class="text-[10px] text-gold-400 font-bold uppercase">Pemasukan</span>
@@ -494,7 +464,6 @@
                         </div>
                     </div>
 
-                    <!-- Menu Navigasi Tab Owner -->
                     <div class="flex gap-1.5 bg-brown-900/80 p-1 rounded-2xl border border-gold-500/30 overflow-x-auto">
                         <button onclick="switchOwnerTab('orders', this)" class="owner-tab-btn flex-1 py-2 px-3 rounded-xl text-[10px] font-bold bg-gold-500 text-brown-950 transition whitespace-nowrap">Manajemen Order</button>
                         <button onclick="switchOwnerTab('finance', this)" class="owner-tab-btn flex-1 py-2 px-3 rounded-xl text-[10px] font-bold text-cream-200 transition whitespace-nowrap">Keuangan</button>
@@ -502,18 +471,14 @@
                         <button onclick="switchOwnerTab('promo', this)" class="owner-tab-btn flex-1 py-2 px-3 rounded-xl text-[10px] font-bold text-cream-200 transition whitespace-nowrap">Promo</button>
                     </div>
 
-                    <!-- Panel 1: Manajemen Order -->
                     <div id="owner-panel-orders" class="owner-panel space-y-3">
                         <div class="flex justify-between items-center">
                             <h4 class="text-xs font-bold text-gold-400 uppercase">Daftar Pesanan Masuk</h4>
                             <span id="owner-order-count" class="text-[10px] text-cream-200/70">0 Pesanan</span>
                         </div>
-                        <div id="owner-orders-list" class="space-y-2.5 max-h-96 overflow-y-auto pr-1">
-                            <!-- Diisi JS -->
-                        </div>
+                        <div id="owner-orders-list" class="space-y-2.5 max-h-96 overflow-y-auto pr-1"></div>
                     </div>
 
-                    <!-- Panel 2: Keuangan -->
                     <div id="owner-panel-finance" class="owner-panel hidden space-y-3">
                         <div class="glass-card p-4 space-y-3">
                             <h4 class="text-xs font-bold text-gold-400 uppercase">Catat Pemasukan / Pengeluaran Baru</h4>
@@ -529,16 +494,12 @@
                                 <button type="submit" class="w-full py-2.5 rounded-xl bg-gold-500 text-brown-950 font-bold text-xs uppercase shadow">Tambah Transaksi</button>
                             </form>
                         </div>
-
                         <div class="space-y-2">
                             <h4 class="text-xs font-bold text-gold-400 uppercase">Riwayat Keuangan</h4>
-                            <div id="owner-finance-list" class="space-y-2 max-h-60 overflow-y-auto pr-1">
-                                <!-- Diisi JS -->
-                            </div>
+                            <div id="owner-finance-list" class="space-y-2 max-h-60 overflow-y-auto pr-1"></div>
                         </div>
                     </div>
 
-                    <!-- Panel 3: Manajemen Katalog -->
                     <div id="owner-panel-catalog" class="owner-panel hidden space-y-3">
                         <div class="glass-card p-4 space-y-3">
                             <h4 class="text-xs font-bold text-gold-400 uppercase">Tambah / Edit Item Katalog</h4>
@@ -560,16 +521,12 @@
                                 <button type="submit" class="w-full py-2.5 rounded-xl bg-gold-500 text-brown-950 font-bold text-xs uppercase shadow">Simpan Item Katalog</button>
                             </form>
                         </div>
-
                         <div class="space-y-2">
                             <h4 class="text-xs font-bold text-gold-400 uppercase">Daftar Katalog Aktif</h4>
-                            <div id="owner-catalog-list" class="space-y-2 max-h-60 overflow-y-auto pr-1">
-                                <!-- Diisi JS -->
-                            </div>
+                            <div id="owner-catalog-list" class="space-y-2 max-h-60 overflow-y-auto pr-1"></div>
                         </div>
                     </div>
 
-                    <!-- Panel 4: Promo Banner -->
                     <div id="owner-panel-promo" class="owner-panel hidden space-y-3">
                         <div class="glass-card p-4 space-y-3">
                             <h4 class="text-xs font-bold text-gold-400 uppercase">Tambah Promo Banner Beranda</h4>
@@ -580,15 +537,11 @@
                                 <button type="submit" class="w-full py-2.5 rounded-xl bg-gold-500 text-brown-950 font-bold text-xs uppercase shadow">Tambah Promo Banner</button>
                             </form>
                         </div>
-
                         <div class="space-y-2">
                             <h4 class="text-xs font-bold text-gold-400 uppercase">Daftar Promo Aktif</h4>
-                            <div id="owner-promo-list" class="space-y-2 max-h-60 overflow-y-auto pr-1">
-                                <!-- Diisi JS -->
-                            </div>
+                            <div id="owner-promo-list" class="space-y-2 max-h-60 overflow-y-auto pr-1"></div>
                         </div>
                     </div>
-
                 </div>
             </section>
 
@@ -1048,7 +1001,6 @@
                 document.getElementById('owner-stat-orders').textContent = `${appState.orders.length} Pesanan`;
                 document.getElementById('owner-order-count').textContent = `${appState.orders.length} Pesanan`;
 
-                // Render Orders List
                 const ordersList = document.getElementById('owner-orders-list');
                 ordersList.innerHTML = appState.orders.map((o, idx) => `
                     <div class="glass-card p-3 space-y-2 text-xs">
@@ -1070,7 +1022,6 @@
                     </div>
                 `).join('');
 
-                // Render Finance List
                 const finList = document.getElementById('owner-finance-list');
                 finList.innerHTML = appState.finance.map((f, idx) => `
                     <div class="flex justify-between items-center bg-brown-900/60 p-2.5 rounded-xl border border-gold-500/20 text-xs">
@@ -1082,7 +1033,6 @@
                     </div>
                 `).join('');
 
-                // Render Catalog List
                 const catList = document.getElementById('owner-catalog-list');
                 catList.innerHTML = appState.catalog.map((c, idx) => `
                     <div class="flex justify-between items-center bg-brown-900/60 p-2.5 rounded-xl border border-gold-500/20 text-xs">
@@ -1097,7 +1047,6 @@
                     </div>
                 `).join('');
 
-                // Render Promo List
                 const promoList = document.getElementById('owner-promo-list');
                 promoList.innerHTML = appState.promos.map((p, idx) => `
                     <div class="flex justify-between items-center bg-brown-900/60 p-2.5 rounded-xl border border-gold-500/20 text-xs">
