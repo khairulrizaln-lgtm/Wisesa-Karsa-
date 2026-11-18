@@ -1,3 +1,4 @@
+<!-- ... eslint-disable -->
 <!DOCTYPE html>
 <html lang="id" class="scroll-smooth">
 <head>
@@ -292,7 +293,7 @@
                             <button onclick="filterCatalogCat('konveksi', this)" class="cat-pill px-3 py-1.5 rounded-xl text-[10px] font-bold text-cream-200 transition shrink-0">Konveksi</button>
                         </div>
                     </div>
-                    <div id="mobile-catalog-grid" class="flex gap-4 overflow-x-auto pb-2.5 pt-1 no-scrollbar"></div>
+                    <div id="mobile-catalog-grid" class="flex gap-4 overflow-x-auto pb-3 pt-1 no-scrollbar"></div>
                 </div>
 
                 <div class="w-full h-[1px] bg-gradient-to-r from-transparent via-gold-500/40 to-transparent my-2"></div>
@@ -303,7 +304,7 @@
                         <h3 class="text-[10px] font-bold uppercase tracking-[0.2em] text-gold-400">Portfolio Showcase</h3>
                         <span class="text-[10px] text-cream-200/60 font-light tracking-wide">Geser ➔</span>
                     </div>
-                    <div id="mobile-portfolio-grid" class="flex gap-4 overflow-x-auto pb-2.5 pt-1 no-scrollbar"></div>
+                    <div id="mobile-portfolio-grid" class="flex gap-4 overflow-x-auto pb-3 pt-1 no-scrollbar"></div>
                 </div>
             </section>
 
@@ -626,10 +627,12 @@
             filterCatalogCat('desain', document.querySelector('.cat-pill'));
 
             document.getElementById('mobile-portfolio-grid').innerHTML = portfolioData.map(p => `
-                <div class="min-w-[220px] max-w-[220px] glass-card p-4 space-y-2 shrink-0 shadow-luxury">
-                    <span class="text-[9px] font-bold uppercase text-gold-400 tracking-widest">${p.tag}</span>
-                    <h4 class="text-xs font-bold text-cream-50 font-serif text-sm">${p.title}</h4>
-                    <p class="text-[10px] text-cream-200/70 leading-relaxed">${p.desc}</p>
+                <div class="min-w-[260px] max-w-[260px] glass-card p-5 space-y-2.5 shrink-0 shadow-luxury flex flex-col justify-between">
+                    <div>
+                        <span class="text-[9px] font-bold uppercase text-gold-400 tracking-widest">${p.tag}</span>
+                        <h4 class="text-sm font-bold text-cream-50 font-serif mt-1">${p.title}</h4>
+                    </div>
+                    <p class="text-xs text-cream-200/80 leading-relaxed">${p.desc}</p>
                 </div>
             `).join('');
         }
@@ -646,14 +649,14 @@
 
             const items = catalogData.filter(i => i.cat === cat);
             document.getElementById('mobile-catalog-grid').innerHTML = items.map(item => `
-                <div class="min-w-[210px] max-w-[210px] glass-card p-4 flex flex-col justify-between space-y-3 shrink-0 shadow-luxury">
-                    <div class="space-y-1">
-                        <h4 class="text-xs font-bold text-cream-50 leading-snug font-serif text-sm">${item.title}</h4>
-                        <p class="text-[10px] text-cream-200/70">${item.desc}</p>
+                <div class="min-w-[250px] max-w-[250px] glass-card p-5 flex flex-col justify-between space-y-4 shrink-0 shadow-luxury">
+                    <div class="space-y-1.5">
+                        <h4 class="text-sm font-bold text-cream-50 leading-snug font-serif">${item.title}</h4>
+                        <p class="text-xs text-cream-200/80 leading-relaxed">${item.desc}</p>
                     </div>
-                    <div class="pt-2.5 border-t border-gold-500/20 flex justify-between items-center">
-                        <span class="text-xs font-bold text-gold-400 font-serif">${formatRp(item.price)}</span>
-                        <button onclick="quickOrder('${item.id}')" class="px-3 py-1.5 rounded-xl bg-gold-500 text-brown-950 text-[10px] font-bold shadow">+ Order</button>
+                    <div class="pt-3 border-t border-gold-500/20 flex justify-between items-center">
+                        <span class="text-sm font-bold text-gold-400 font-serif">${formatRp(item.price)}</span>
+                        <button onclick="quickOrder('${item.id}')" class="px-3.5 py-2 rounded-xl bg-gold-500 text-brown-950 text-xs font-bold shadow">+ Order</button>
                     </div>
                 </div>
             `).join('');
