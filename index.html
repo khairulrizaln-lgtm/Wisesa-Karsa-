@@ -468,7 +468,7 @@
                 </div>
             </section>
                 <!-- 4. HALAMAN PORTAL OWNER -->
-                <section id="view-owner" class="view-section hidden space-y-4 pb-16 animate-fade-in">
+                <section id="view-owner" class="view-section hidden space-y-4 pb-20 animate-fade-in">
                     <!-- Executive Header Bar with Refined Luxury Aesthetics -->
                     <div class="flex justify-between items-center px-4 py-3.5 bg-gradient-to-r from-brown-900/95 via-brown-800/90 to-brown-950/95 rounded-2xl border border-gold-500/50 shadow-luxury">
                         <div class="flex items-center gap-3">
@@ -486,36 +486,36 @@
                         </button>
                     </div>
 
-                    <!-- Reimagined Engaging Navigation: Sticky Navigation Bar that does not disappear -->
-                    <div class="sticky top-0 z-30 glass-card p-2 bg-gradient-to-r from-brown-950/95 via-brown-900/95 to-brown-950/95 border border-gold-500/50 shadow-luxury backdrop-blur-2xl">
-                        <div class="overflow-x-auto no-scrollbar py-1 px-1 flex gap-2">
-                            <button onclick="switchOwnerTab('kasir', this)" id="btn-tab-kasir" class="owner-tab-btn shrink-0 px-4 py-3 rounded-2xl text-[10px] font-bold uppercase tracking-wider bg-gradient-to-r from-gold-400 via-gold-500 to-gold-600 text-brown-950 shadow-gold-glow flex items-center gap-2 transition transform active:scale-95">
-                                <i data-lucide="scan-barcode" class="w-4 h-4 text-brown-950"></i>
-                                <span>Kasir & Scan</span>
+                    <!-- Fixed Multi-Row Grid Navigation Bar for Owner Portal at the TOP -->
+                    <div class="sticky top-0 z-30 glass-card p-2 bg-gradient-to-r from-brown-950/98 via-brown-900/98 to-brown-950/98 border border-gold-500/50 shadow-luxury backdrop-blur-2xl rounded-2xl">
+                        <div class="grid grid-cols-4 gap-1.5">
+                            <button onclick="switchOwnerTab('kasir', this)" id="btn-tab-kasir" class="owner-tab-btn px-2 py-2.5 rounded-xl text-[9px] font-bold uppercase tracking-wider bg-gradient-to-r from-gold-400 via-gold-500 to-gold-600 text-brown-950 shadow-gold-glow flex flex-col items-center justify-center gap-1 transition transform active:scale-95">
+                                <i data-lucide="scan-barcode" class="w-3.5 h-3.5 text-brown-950"></i>
+                                <span class="truncate w-full text-center">Kasir</span>
                             </button>
-                            <button onclick="switchOwnerTab('orders', this)" class="owner-tab-btn shrink-0 px-4 py-3 rounded-2xl text-[10px] font-bold uppercase tracking-wider bg-brown-900/90 text-cream-200 border border-gold-500/30 hover:border-gold-400 flex items-center gap-2 transition transform active:scale-95">
-                                <i data-lucide="clipboard-list" class="w-4 h-4 text-gold-400"></i>
-                                <span>Pesanan</span>
+                            <button onclick="switchOwnerTab('orders', this)" class="owner-tab-btn px-2 py-2.5 rounded-xl text-[9px] font-bold uppercase tracking-wider bg-brown-900/90 text-cream-200 border border-gold-500/30 hover:border-gold-400 flex flex-col items-center justify-center gap-1 transition transform active:scale-95">
+                                <i data-lucide="clipboard-list" class="w-3.5 h-3.5 text-gold-400"></i>
+                                <span class="truncate w-full text-center">Pesanan</span>
                             </button>
-                            <button onclick="switchOwnerTab('finance', this)" class="owner-tab-btn shrink-0 px-4 py-3 rounded-2xl text-[10px] font-bold uppercase tracking-wider bg-brown-900/90 text-cream-200 border border-gold-500/30 hover:border-gold-400 flex items-center gap-2 transition transform active:scale-95">
-                                <i data-lucide="wallet" class="w-4 h-4 text-gold-400"></i>
-                                <span>Keuangan</span>
+                            <button onclick="switchOwnerTab('finance', this)" class="owner-tab-btn px-2 py-2.5 rounded-xl text-[9px] font-bold uppercase tracking-wider bg-brown-900/90 text-cream-200 border border-gold-500/30 hover:border-gold-400 flex flex-col items-center justify-center gap-1 transition transform active:scale-95">
+                                <i data-lucide="wallet" class="w-3.5 h-3.5 text-gold-400"></i>
+                                <span class="truncate w-full text-center">Keuangan</span>
                             </button>
-                            <button onclick="switchOwnerTab('catalog', this)" class="owner-tab-btn shrink-0 px-4 py-3 rounded-2xl text-[10px] font-bold uppercase tracking-wider bg-brown-900/90 text-cream-200 border border-gold-500/30 hover:border-gold-400 flex items-center gap-2 transition transform active:scale-95">
-                                <i data-lucide="layout-grid" class="w-4 h-4 text-gold-400"></i>
-                                <span>Katalog</span>
+                            <button onclick="switchOwnerTab('catalog', this)" class="owner-tab-btn px-2 py-2.5 rounded-xl text-[9px] font-bold uppercase tracking-wider bg-brown-900/90 text-cream-200 border border-gold-500/30 hover:border-gold-400 flex flex-col items-center justify-center gap-1 transition transform active:scale-95">
+                                <i data-lucide="layout-grid" class="w-3.5 h-3.5 text-gold-400"></i>
+                                <span class="truncate w-full text-center">Katalog</span>
                             </button>
-                            <button onclick="switchOwnerTab('promo', this)" class="owner-tab-btn shrink-0 px-4 py-3 rounded-2xl text-[10px] font-bold uppercase tracking-wider bg-brown-900/90 text-cream-200 border border-gold-500/30 hover:border-gold-400 flex items-center gap-2 transition transform active:scale-95">
-                                <i data-lucide="tag" class="w-4 h-4 text-gold-400"></i>
-                                <span>Promo</span>
+                            <button onclick="switchOwnerTab('promo', this)" class="owner-tab-btn px-2 py-2.5 rounded-xl text-[9px] font-bold uppercase tracking-wider bg-brown-900/90 text-cream-200 border border-gold-500/30 hover:border-gold-400 flex flex-col items-center justify-center gap-1 transition transform active:scale-95">
+                                <i data-lucide="tag" class="w-3.5 h-3.5 text-gold-400"></i>
+                                <span class="truncate w-full text-center">Promo</span>
                             </button>
-                            <button onclick="switchOwnerTab('portfolio', this)" class="owner-tab-btn shrink-0 px-4 py-3 rounded-2xl text-[10px] font-bold uppercase tracking-wider bg-brown-900/90 text-cream-200 border border-gold-500/30 hover:border-gold-400 flex items-center gap-2 transition transform active:scale-95">
-                                <i data-lucide="image" class="w-4 h-4 text-gold-400"></i>
-                                <span>Portfolio</span>
+                            <button onclick="switchOwnerTab('portfolio', this)" class="owner-tab-btn px-2 py-2.5 rounded-xl text-[9px] font-bold uppercase tracking-wider bg-brown-900/90 text-cream-200 border border-gold-500/30 hover:border-gold-400 flex flex-col items-center justify-center gap-1 transition transform active:scale-95">
+                                <i data-lucide="image" class="w-3.5 h-3.5 text-gold-400"></i>
+                                <span class="truncate w-full text-center">Portfolio</span>
                             </button>
-                            <button onclick="switchOwnerTab('profile', this)" class="owner-tab-btn shrink-0 px-4 py-3 rounded-2xl text-[10px] font-bold uppercase tracking-wider bg-brown-900/90 text-cream-200 border border-gold-500/30 hover:border-gold-400 flex items-center gap-2 transition transform active:scale-95">
-                                <i data-lucide="settings" class="w-4 h-4 text-gold-400"></i>
-                                <span>Profil</span>
+                            <button onclick="switchOwnerTab('profile', this)" class="owner-tab-btn col-span-2 px-2 py-2.5 rounded-xl text-[9px] font-bold uppercase tracking-wider bg-brown-900/90 text-cream-200 border border-gold-500/30 hover:border-gold-400 flex flex-col items-center justify-center gap-1 transition transform active:scale-95">
+                                <i data-lucide="settings" class="w-3.5 h-3.5 text-gold-400"></i>
+                                <span class="truncate w-full text-center">Pengaturan Profil & Toko</span>
                             </button>
                         </div>
                     </div>
@@ -1397,14 +1397,18 @@
                 stopBarcodeScanner();
             }
             document.querySelectorAll('.owner-tab-btn').forEach(b => {
-                b.className = 'owner-tab-btn shrink-0 px-4 py-3 rounded-2xl text-[10px] font-bold uppercase tracking-wider bg-brown-900/90 text-cream-200 border border-gold-500/30 hover:border-gold-400 flex items-center gap-2 transition transform active:scale-95';
+                b.className = b.classList.contains('col-span-2') 
+                    ? 'owner-tab-btn col-span-2 px-2 py-2.5 rounded-xl text-[9px] font-bold uppercase tracking-wider bg-brown-900/90 text-cream-200 border border-gold-500/30 hover:border-gold-400 flex flex-col items-center justify-center gap-1 transition transform active:scale-95'
+                    : 'owner-tab-btn px-2 py-2.5 rounded-xl text-[9px] font-bold uppercase tracking-wider bg-brown-900/90 text-cream-200 border border-gold-500/30 hover:border-gold-400 flex flex-col items-center justify-center gap-1 transition transform active:scale-95';
                 const icon = b.querySelector('i');
-                if (icon) icon.className = 'w-4 h-4 text-gold-400';
+                if (icon) icon.className = 'w-3.5 h-3.5 text-gold-400';
             });
             if (btn) {
-                btn.className = 'owner-tab-btn shrink-0 px-4 py-3 rounded-2xl text-[10px] font-bold uppercase tracking-wider bg-gradient-to-r from-gold-400 via-gold-500 to-gold-600 text-brown-950 shadow-gold-glow flex items-center gap-2 transition transform active:scale-95';
+                btn.className = btn.classList.contains('col-span-2')
+                    ? 'owner-tab-btn col-span-2 px-2 py-2.5 rounded-xl text-[9px] font-bold uppercase tracking-wider bg-gradient-to-r from-gold-400 via-gold-500 to-gold-600 text-brown-950 shadow-gold-glow flex flex-col items-center justify-center gap-1 transition transform active:scale-95'
+                    : 'owner-tab-btn px-2 py-2.5 rounded-xl text-[9px] font-bold uppercase tracking-wider bg-gradient-to-r from-gold-400 via-gold-500 to-gold-600 text-brown-950 shadow-gold-glow flex flex-col items-center justify-center gap-1 transition transform active:scale-95';
                 const activeIcon = btn.querySelector('i');
-                if (activeIcon) activeIcon.className = 'w-4 h-4 text-brown-950';
+                if (activeIcon) activeIcon.className = 'w-3.5 h-3.5 text-brown-950';
             }
 
             document.querySelectorAll('.owner-tab-panel').forEach(p => p.classList.add('hidden'));
@@ -1904,22 +1908,9 @@
             renderHomeCatalog();
             renderOwnerDashboard();
             showToast('Layanan dihapus dari katalog.');
-        }
-
-        function addNewPromo(e) {
-            e.preventDefault();
-            const newPrm = {
-                id: 'prm-' + Date.now(),
-                badge: document.getElementById('new-promo-badge').value.trim(),
-                title: document.getElementById('new-promo-title').value.trim(),
-                desc: document.getElementById('new-promo-desc').value.trim()
-            };
-            promos.unshift(newPrm);
-            saveData();
-            e.target.reset();
-            renderPromos();
-            renderOwnerDashboard();
-            showToast('Banner promo baru diterbitkan.');
+            // Pastikan tab katalog tetap terbuka
+            const catalogTabBtn = document.querySelector('button[onclick*="switchOwnerTab(\'catalog\'"]');
+            if (catalogTabBtn) switchOwnerTab('catalog', catalogTabBtn);
         }
 
         function deletePromo(prmId) {
@@ -1928,37 +1919,8 @@
             renderPromos();
             renderOwnerDashboard();
             showToast('Promo dihapus.');
-        }
-
-        function addNewPortfolio(e) {
-            e.preventDefault();
-            const fileInput = document.getElementById('new-port-img');
-            const file = fileInput.files[0];
-
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(evt) {
-                    saveNewPortfolioObj(evt.target.result);
-                };
-                reader.readAsDataURL(file);
-            } else {
-                saveNewPortfolioObj('');
-            }
-        }
-
-        function saveNewPortfolioObj(imageUrl) {
-            const newPort = {
-                title: document.getElementById('new-port-title').value.trim(),
-                category: document.getElementById('new-port-category').value.trim(),
-                tag: document.getElementById('new-port-tag').value,
-                image: imageUrl
-            };
-            portfolioList.unshift(newPort);
-            saveData();
-            document.querySelector('#owner-tab-portfolio form').reset();
-            renderPortfolio();
-            renderOwnerDashboard();
-            showToast('Portfolio baru berhasil ditambahkan.');
+            const promoTabBtn = document.querySelector('button[onclick*="switchOwnerTab(\'promo\'"]');
+            if (promoTabBtn) switchOwnerTab('promo', promoTabBtn);
         }
 
         function deletePortfolio(index) {
@@ -1967,6 +1929,8 @@
             renderPortfolio();
             renderOwnerDashboard();
             showToast('Portfolio dihapus.');
+            const portTabBtn = document.querySelector('button[onclick*="switchOwnerTab(\'portfolio\'"]');
+            if (portTabBtn) switchOwnerTab('portfolio', portTabBtn);
         }
 
         function saveOwnerProfile(e) {
