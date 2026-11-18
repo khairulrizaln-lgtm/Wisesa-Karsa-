@@ -16,15 +16,15 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap" rel="stylesheet">
-    <!-- Lucide Icons (loaded with defer/onload safety) -->
+    <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
-    <!-- Html2Canvas Library for downloading cards as images -->
+    <!-- Html2Canvas Library -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-    <!-- JsBarcode Library for generating barcodes -->
+    <!-- JsBarcode Library -->
     <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.6/dist/JsBarcode.all.min.js"></script>
-    <!-- QuaggaJS Library for scanning barcodes -->
+    <!-- QuaggaJS Library -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/quagga/0.12.1/quagga.min.js"></script>
-    <!-- JsPDF Library for direct PDF generation -->
+    <!-- JsPDF Library -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     
     <script>
@@ -66,6 +66,16 @@
         }
     </script>
     <style>
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+        input, textarea, select {
+            -webkit-user-select: text;
+            user-select: text;
+        }
         body {
             font-family: 'Poppins', sans-serif;
             background: #0d0703;
@@ -79,8 +89,9 @@
             align-items: center;
             min-height: 100vh;
             overflow-x: hidden;
+            overscroll-behavior-y: contain;
         }
-        /* Mobile Phone Screen Frame Mockup */
+        /* Mobile Phone Screen Frame Mockup / Full App Container */
         .mobile-app-container {
             width: 100%;
             max-width: 420px;
@@ -147,7 +158,7 @@
     <!-- ================= MOBILE APP FRAME WRAPPER ================= -->
     <div class="mobile-app-container">
 
-        <!-- ================= LANDING WELCOME GATE (FIXED FULLSCREEN MOBILE) ================= -->
+        <!-- ================= LANDING WELCOME GATE ================= -->
         <div id="view-landing" class="absolute inset-0 z-[150] bg-gradient-to-br from-brown-950 via-brown-900 to-brown-950 text-cream-50 flex flex-col items-center justify-center p-6 transition-all duration-700 overflow-hidden h-full w-full">
             <div class="absolute -top-24 -left-24 w-80 h-80 bg-gold-500/25 rounded-full blur-[120px] pointer-events-none animate-pulse"></div>
             <div class="absolute -bottom-24 -right-24 w-80 h-80 bg-gold-600/20 rounded-full blur-[120px] pointer-events-none"></div>
@@ -340,7 +351,7 @@
                     <div id="printable-order-card" class="bg-gradient-to-r from-brown-950 via-brown-900 to-brown-950 text-cream-50 rounded-xl p-3 mx-auto max-w-[280px] shadow-2xl border-2 border-gold-500/50 space-y-2 relative overflow-hidden">
                         <div class="absolute -right-8 -top-8 w-20 h-20 bg-gold-500/20 rounded-full blur-xl pointer-events-none"></div>
                         
-                        <!-- Header Tiket (Logo Brand Sesuai Beranda & ORDER DEAL) -->
+                        <!-- Header Tiket -->
                         <div class="flex justify-between items-center border-b border-gold-500/30 pb-2">
                             <div class="flex items-center gap-2">
                                 <div class="w-7 h-7 rounded-xl bg-gradient-to-br from-brown-800 via-brown-900 to-brown-950 text-gold-400 flex items-center justify-center shadow-gold-glow border border-gold-500/40 p-1">
@@ -354,7 +365,7 @@
                             <span class="text-[8px] font-extrabold uppercase tracking-widest text-brown-950 bg-gradient-to-r from-gold-300 via-gold-400 to-gold-500 px-2.5 py-0.5 rounded-full shadow">ORDER DEAL</span>
                         </div>
 
-                        <!-- Isi Tiket Horisontal: Kode Order & Nama Customer -->
+                        <!-- Isi Tiket Horisontal -->
                         <div class="grid grid-cols-2 gap-2 py-0.5">
                             <div class="bg-brown-900/60 p-2 rounded-lg border border-gold-500/30">
                                 <span class="text-[7px] font-semibold uppercase tracking-wider text-gold-400/80 block">Kode Order</span>
@@ -367,7 +378,7 @@
                             </div>
                         </div>
 
-                        <!-- Catatan Tambahan pada Kartu Deal -->
+                        <!-- Catatan Tambahan -->
                         <div class="bg-brown-900/60 p-2 rounded-lg border border-gold-500/30">
                             <span class="text-[7px] font-semibold uppercase tracking-wider text-gold-400/80 block">Catatan Tambahan</span>
                             <span id="card-customer-notes" class="text-[9px] text-cream-50 italic line-clamp-2 block">-</span>
@@ -380,7 +391,7 @@
                         </div>
                     </div>
 
-                    <!-- Tombol Unduh Gambar Kartu Deal (Diperkecil) -->
+                    <!-- Tombol Unduh Gambar Kartu Deal -->
                     <button type="button" onclick="downloadReceiptImage()" class="w-full py-2 rounded-xl bg-brown-900 text-gold-400 border border-gold-500/50 font-bold text-[10px] uppercase tracking-wider shadow flex items-center justify-center gap-1.5 hover:bg-brown-800 transition">
                         <i data-lucide="download" class="w-3.5 h-3.5 text-gold-400"></i> Unduh Kartu Deal
                     </button>
@@ -440,7 +451,7 @@
                 </div>
             </section>
 
-            <!-- 5. HALAMAN OWNER PORTAL -->
+            <!-- 4. HALAMAN OWNER PORTAL -->
             <section id="view-owner" class="view-section hidden space-y-4">
                 <!-- Login Gate -->
                 <div id="owner-login-box" class="glass-card p-6 shadow-2xl space-y-5">
@@ -460,1071 +471,754 @@
 
                 <!-- Dashboard Utama Owner -->
                 <div id="owner-dashboard-box" class="hidden space-y-4 animate-fade-in">
-                    <div class="glass-card p-4 flex items-center justify-between">
-                        <div class="flex items-center gap-3.5">
-                            <img id="dash-owner-avatar" src="https://placehold.co/100x100/3B2310/DFBA52?text=WK" class="w-12 h-12 rounded-2xl object-cover border border-gold-400">
+                    <div class="glass-card p-4 flex justify-between items-center">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-full bg-gold-500/20 border border-gold-400 flex items-center justify-center text-gold-400 font-bold">R</div>
                             <div>
-                                <h3 id="dash-owner-name" class="font-bold text-xs text-cream-50 font-serif">Owner Wisesa Karsa</h3>
-                                <p id="dash-owner-role" class="text-[10px] text-gold-400 font-medium">Founder & Creative</p>
+                                <h3 class="text-xs font-bold text-cream-50">Rizal (Owner)</h3>
+                                <p class="text-[10px] text-emerald-400">Online & Aktif</p>
                             </div>
                         </div>
-                        <button onclick="logoutOwner()" class="p-2.5 rounded-2xl bg-red-950/80 text-red-200 border border-red-500/30 text-xs shadow"><i data-lucide="log-out" class="w-4 h-4"></i></button>
+                        <button onclick="ownerLogout()" class="px-3 py-1.5 rounded-xl bg-brown-900 text-gold-400 border border-gold-500/30 text-[10px] font-bold">Keluar</button>
                     </div>
 
-                    <!-- Owner Tabs -->
-                    <div class="grid grid-cols-6 gap-1 glass-card p-1.5 rounded-2xl">
-                        <button onclick="switchOwnerTab('cashier')" id="otab-cashier" class="owner-tab-btn py-2.5 rounded-xl text-[9px] font-bold bg-gold-500 text-brown-950 flex flex-col items-center shadow"><i data-lucide="scan" class="w-3.5 h-3.5 mb-1"></i> Kasir</button>
-                        <button onclick="switchOwnerTab('orders')" id="otab-orders" class="owner-tab-btn py-2.5 rounded-xl text-[9px] font-bold text-cream-200 flex flex-col items-center"><i data-lucide="inbox" class="w-3.5 h-3.5 mb-1"></i> Order</button>
-                        <button onclick="switchOwnerTab('finance')" id="otab-finance" class="owner-tab-btn py-2.5 rounded-xl text-[9px] font-bold text-cream-200 flex flex-col items-center"><i data-lucide="wallet" class="w-3.5 h-3.5 mb-1"></i> Keuangan</button>
-                        <button onclick="switchOwnerTab('catalog')" id="otab-catalog" class="owner-tab-btn py-2.5 rounded-xl text-[9px] font-bold text-cream-200 flex flex-col items-center"><i data-lucide="package" class="w-3.5 h-3.5 mb-1"></i> Katalog</button>
-                        <button onclick="switchOwnerTab('portfolio')" id="otab-portfolio" class="owner-tab-btn py-2.5 rounded-xl text-[9px] font-bold text-cream-200 flex flex-col items-center"><i data-lucide="image" class="w-3.5 h-3.5 mb-1"></i> Portfolio</button>
-                        <button onclick="switchOwnerTab('profile')" id="otab-profile" class="owner-tab-btn py-2.5 rounded-xl text-[9px] font-bold text-cream-200 flex flex-col items-center"><i data-lucide="user-cog" class="w-3.5 h-3.5 mb-1"></i> Profil</button>
-                    </div>
-
-                    <!-- Panel Kasir -->
-                    <div id="owner-panel-cashier" class="owner-panel space-y-4">
-                        <div class="glass-card p-4 space-y-3.5">
-                            <div class="flex justify-between items-center">
-                                <h4 class="font-bold text-xs text-gold-400 uppercase tracking-wider font-serif">Scan Barcode / Kode Tiket</h4>
-                                <button onclick="toggleBarcodeScanner()" id="btn-toggle-camera" class="px-3.5 py-1.5 rounded-xl bg-gold-500 text-brown-950 text-[10px] font-bold shadow">Kamera</button>
-                            </div>
-                            <div id="scanner-camera-wrapper" class="hidden rounded-2xl overflow-hidden bg-black relative h-40 border border-gold-500/30">
-                                <div id="interactive" class="viewport w-full h-full"></div>
-                            </div>
-                            <div class="flex gap-2">
-                                <input type="text" id="cashier-barcode-input" placeholder="#WK-XXXX" class="flex-1 px-4 py-2.5 rounded-2xl bg-brown-950/80 border border-gold-500/30 text-xs font-mono font-bold text-cream-50 focus:outline-none focus:border-gold-400">
-                                <button onclick="processScannedBarcode()" class="px-4 py-2.5 rounded-2xl bg-gold-500 text-brown-950 text-xs font-bold shadow">Cek</button>
-                            </div>
-                            <div id="scanned-order-details" class="p-3 rounded-2xl bg-brown-950/60 border border-gold-500/20 text-xs text-cream-200 font-light">
-                                Belum ada tiket dipindai.
-                            </div>
-                            <div class="space-y-3 pt-2 border-t border-gold-500/20">
-                                <input type="text" id="cashier-manual-item" placeholder="Item Layanan / Produk..." class="w-full px-4 py-2.5 rounded-2xl bg-brown-950/80 border border-gold-500/30 text-xs text-cream-50 focus:outline-none focus:border-gold-400">
-                                <div class="grid grid-cols-2 gap-2">
-                                    <input type="text" id="cashier-manual-customer" placeholder="Nama Customer" class="w-full px-4 py-2.5 rounded-2xl bg-brown-950/80 border border-gold-500/30 text-xs text-cream-50 focus:outline-none focus:border-gold-400">
-                                    <input type="number" id="cashier-manual-amount" placeholder="Nominal (Rp)" class="w-full px-4 py-2.5 rounded-2xl bg-brown-950/80 border border-gold-500/30 text-xs font-bold text-cream-50 focus:outline-none focus:border-gold-400">
-                                </div>
-                                <button onclick="confirmCashierPayment()" class="w-full py-3.5 rounded-2xl bg-gradient-to-r from-gold-400 to-gold-600 text-brown-950 font-bold text-xs uppercase shadow-gold-glow tracking-wider">Konfirmasi Lunas</button>
-                            </div>
+                    <!-- Statistik Cepat Keuangan -->
+                    <div class="grid grid-cols-2 gap-3">
+                        <div class="glass-card p-4 space-y-1">
+                            <span class="text-[10px] text-gold-400 font-bold uppercase">Pemasukan</span>
+                            <h4 id="owner-stat-income" class="text-base font-extrabold text-cream-50">Rp 0</h4>
                         </div>
-
-                        <div class="glass-card p-4 space-y-3">
-                            <h4 class="font-bold text-xs text-gold-400 uppercase tracking-wider font-serif">Riwayat Pembayaran Kasir</h4>
-                            <div id="cashier-history-list" class="space-y-2 max-h-60 overflow-y-auto">
-                                <!-- Diisi JS -->
-                            </div>
+                        <div class="glass-card p-4 space-y-1">
+                            <span class="text-[10px] text-gold-400 font-bold uppercase">Total Order</span>
+                            <h4 id="owner-stat-orders" class="text-base font-extrabold text-cream-50">0 Pesanan</h4>
                         </div>
                     </div>
 
-                    <!-- Panel Order -->
-                    <div id="owner-panel-orders" class="owner-panel hidden space-y-3.5">
-                        <div class="flex gap-1.5 bg-brown-900/60 p-1.5 rounded-2xl border border-gold-500/20">
-                            <button onclick="filterOwnerOrders('all', this)" class="ord-status-btn px-4 py-2 rounded-xl text-[10px] font-bold bg-gold-500 text-brown-950 shadow">Semua</button>
-                            <button onclick="filterOwnerOrders('belum', this)" class="ord-status-btn px-4 py-2 rounded-xl text-[10px] font-bold text-cream-200">Belum</button>
-                            <button onclick="filterOwnerOrders('beres', this)" class="ord-status-btn px-4 py-2 rounded-xl text-[10px] font-bold text-cream-200">Beres</button>
+                    <!-- Menu Navigasi Tab Owner -->
+                    <div class="flex gap-1.5 bg-brown-900/80 p-1 rounded-2xl border border-gold-500/30 overflow-x-auto">
+                        <button onclick="switchOwnerTab('orders', this)" class="owner-tab-btn flex-1 py-2 px-3 rounded-xl text-[10px] font-bold bg-gold-500 text-brown-950 transition whitespace-nowrap">Manajemen Order</button>
+                        <button onclick="switchOwnerTab('finance', this)" class="owner-tab-btn flex-1 py-2 px-3 rounded-xl text-[10px] font-bold text-cream-200 transition whitespace-nowrap">Keuangan</button>
+                        <button onclick="switchOwnerTab('catalog', this)" class="owner-tab-btn flex-1 py-2 px-3 rounded-xl text-[10px] font-bold text-cream-200 transition whitespace-nowrap">Katalog</button>
+                        <button onclick="switchOwnerTab('promo', this)" class="owner-tab-btn flex-1 py-2 px-3 rounded-xl text-[10px] font-bold text-cream-200 transition whitespace-nowrap">Promo</button>
+                    </div>
+
+                    <!-- Panel 1: Manajemen Order -->
+                    <div id="owner-panel-orders" class="owner-panel space-y-3">
+                        <div class="flex justify-between items-center">
+                            <h4 class="text-xs font-bold text-gold-400 uppercase">Daftar Pesanan Masuk</h4>
+                            <span id="owner-order-count" class="text-[10px] text-cream-200/70">0 Pesanan</span>
                         </div>
-                        <div id="owner-orders-grid" class="space-y-3">
+                        <div id="owner-orders-list" class="space-y-2.5 max-h-96 overflow-y-auto pr-1">
                             <!-- Diisi JS -->
                         </div>
                     </div>
 
-                    <!-- Panel Keuangan -->
-                    <div id="owner-panel-finance" class="owner-panel hidden space-y-3.5">
-                        <div class="grid grid-cols-2 gap-3">
-                            <div class="glass-card p-4 border border-emerald-500/30 space-y-1">
-                                <p class="text-[9px] font-bold uppercase tracking-widest text-emerald-400">Pemasukan (Filter)</p>
-                                <h4 id="fin-total-income" class="text-sm font-extrabold text-emerald-300">Rp 0</h4>
-                            </div>
-                            <div class="glass-card p-4 border border-red-500/30 space-y-1">
-                                <p class="text-[9px] font-bold uppercase tracking-widest text-red-400">Pengeluaran (Filter)</p>
-                                <h4 id="fin-total-expense" class="text-sm font-extrabold text-red-300">Rp 0</h4>
-                            </div>
-                        </div>
-                        <div class="bg-gradient-to-r from-brown-900 via-brown-800 to-brown-900 text-cream-50 p-4 rounded-2xl border border-gold-500/40 space-y-1">
-                            <p class="text-[9px] font-bold uppercase tracking-widest text-gold-400">Saldo Bersih (Filter)</p>
-                            <h4 id="fin-net-balance" class="text-lg font-extrabold text-cream-50">Rp 0</h4>
-                        </div>
-
-                        <!-- Date Filter & Analysis Range -->
+                    <!-- Panel 2: Keuangan -->
+                    <div id="owner-panel-finance" class="owner-panel hidden space-y-3">
                         <div class="glass-card p-4 space-y-3">
-                            <h4 class="font-bold text-xs text-gold-400 uppercase tracking-wider flex items-center gap-1.5 font-serif"><i data-lucide="calendar" class="w-4 h-4"></i> Analisis Berdasarkan Tanggal</h4>
-                            <div class="grid grid-cols-2 gap-2 text-xs">
-                                <div>
-                                    <label class="block text-[9px] text-cream-200/70 font-bold mb-1">Mulai Tanggal</label>
-                                    <input type="date" id="fin-start-date" onchange="renderFinanceTable()" class="w-full px-3 py-2 rounded-xl bg-brown-950/80 border border-gold-500/30 text-xs text-cream-50 focus:outline-none focus:border-gold-400">
-                                </div>
-                                <div>
-                                    <label class="block text-[9px] text-cream-200/70 font-bold mb-1">Sampai Tanggal</label>
-                                    <input type="date" id="fin-end-date" onchange="renderFinanceTable()" class="w-full px-3 py-2 rounded-xl bg-brown-950/80 border border-gold-500/30 text-xs text-cream-50 focus:outline-none focus:border-gold-400">
-                                </div>
-                            </div>
-                            <div class="flex gap-2 pt-1">
-                                <button onclick="setFinanceQuickFilter('today')" class="flex-1 py-1.5 rounded-lg bg-brown-900 text-gold-400 text-[10px] font-bold border border-gold-500/20">Hari Ini</button>
-                                <button onclick="setFinanceQuickFilter('month')" class="flex-1 py-1.5 rounded-lg bg-brown-900 text-gold-400 text-[10px] font-bold border border-gold-500/20">Bulan Ini</button>
-                                <button onclick="setFinanceQuickFilter('all')" class="flex-1 py-1.5 rounded-lg bg-brown-900 text-gold-400 text-[10px] font-bold border border-gold-500/20">Semua</button>
-                            </div>
-                        </div>
-
-                        <!-- Catat Pengeluaran Manual -->
-                        <div class="glass-card p-4 space-y-3">
-                            <h4 class="font-bold text-xs text-gold-400 uppercase tracking-wider font-serif">Catat Pengeluaran Baru</h4>
-                            <form onsubmit="saveExpenseRecord(event)" class="space-y-2.5">
-                                <input type="text" id="exp-desc" required placeholder="Keterangan Pengeluaran..." class="w-full px-4 py-2.5 rounded-2xl bg-brown-950/80 border border-gold-500/30 text-xs text-cream-50 focus:outline-none focus:border-gold-400">
-                                <input type="number" id="exp-amount" required placeholder="Nominal (Rp)" class="w-full px-4 py-2.5 rounded-2xl bg-brown-950/80 border border-gold-500/30 text-xs font-bold text-cream-50 focus:outline-none focus:border-gold-400">
-                                <input type="date" id="exp-date" required class="w-full px-4 py-2.5 rounded-2xl bg-brown-950/80 border border-gold-500/30 text-xs text-cream-50 focus:outline-none focus:border-gold-400">
-                                <button type="submit" class="w-full py-3 rounded-2xl bg-red-950/90 text-red-200 font-bold text-xs uppercase border border-red-500/30 shadow tracking-wider">Simpan Pengeluaran</button>
-                            </form>
-                        </div>
-
-                        <div class="glass-card p-4 space-y-3">
-                            <h4 class="font-bold text-xs text-gold-400 uppercase tracking-wider font-serif">Riwayat Keuangan (Sesuai Filter)</h4>
-                            <div id="finance-history-list" class="space-y-2 max-h-60 overflow-y-auto pr-1">
-                                <!-- Diisi JS -->
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Panel Katalog & Tambah Produk/Layanan -->
-                    <div id="owner-panel-catalog" class="owner-panel hidden space-y-4">
-                        <div class="glass-card p-4 space-y-3">
-                            <h4 class="font-bold text-xs text-gold-400 uppercase tracking-wider font-serif">Tambah Produk atau Layanan Baru</h4>
-                            <form onsubmit="saveCatalogProduct(event)" class="space-y-3">
-                                <input type="text" id="prod-name" required placeholder="Nama Produk/Layanan..." class="w-full px-4 py-2.5 rounded-2xl bg-brown-950/80 border border-gold-500/30 text-xs text-cream-50 focus:outline-none focus:border-gold-400">
+                            <h4 class="text-xs font-bold text-gold-400 uppercase">Catat Pemasukan / Pengeluaran Baru</h4>
+                            <form onsubmit="submitFinanceTx(event)" class="space-y-2.5">
                                 <div class="grid grid-cols-2 gap-2">
-                                    <select id="prod-cat" class="w-full px-3 py-2.5 rounded-2xl bg-brown-950/80 border border-gold-500/30 text-xs text-cream-50 focus:outline-none focus:border-gold-400">
-                                        <option value="desain">Desain</option>
-                                        <option value="editing">Editing</option>
-                                        <option value="konveksi">Konveksi</option>
+                                    <select id="fin-type" class="px-3 py-2.5 rounded-xl bg-brown-950 border border-gold-500/30 text-xs text-cream-50">
+                                        <option value="in">Pemasukan (+)</option>
+                                        <option value="out">Pengeluaran (-)</option>
                                     </select>
-                                    <input type="number" id="prod-price" required placeholder="Harga (Rp)" class="w-full px-4 py-2.5 rounded-2xl bg-brown-950/80 border border-gold-500/30 text-xs font-bold text-cream-50 focus:outline-none focus:border-gold-400">
+                                    <input type="number" id="fin-amount" required placeholder="Jumlah (Rp)..." class="px-3 py-2.5 rounded-xl bg-brown-950 border border-gold-500/30 text-xs text-cream-50">
                                 </div>
-                                <div>
-                                    <label class="block text-[10px] font-bold text-cream-200 mb-1">Unggah Gambar Produk</label>
-                                    <input type="file" id="prod-image-file" accept="image/*" class="w-full text-xs text-cream-200 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-gold-500 file:text-brown-950 hover:file:brightness-110 cursor-pointer bg-brown-950/80 border border-gold-500/30 rounded-2xl p-1.5">
-                                </div>
-                                <textarea id="prod-desc" rows="2" placeholder="Deskripsi singkat..." class="w-full px-4 py-2.5 rounded-2xl bg-brown-950/80 border border-gold-500/30 text-xs text-cream-50 focus:outline-none focus:border-gold-400"></textarea>
-                                <button type="submit" class="w-full py-3 rounded-2xl bg-gradient-to-r from-gold-400 to-gold-600 text-brown-950 font-bold text-xs uppercase shadow tracking-wider">Simpan Produk</button>
+                                <input type="text" id="fin-desc" required placeholder="Keterangan transaksi..." class="w-full px-3 py-2.5 rounded-xl bg-brown-950 border border-gold-500/30 text-xs text-cream-50">
+                                <button type="submit" class="w-full py-2.5 rounded-xl bg-gold-500 text-brown-950 font-bold text-xs uppercase shadow">Tambah Transaksi</button>
                             </form>
-                        </div>
-                        <div class="glass-card p-4 space-y-3">
-                            <h4 class="font-bold text-xs text-gold-400 uppercase tracking-wider font-serif">Daftar Katalog Produk</h4>
-                            <div id="owner-catalog-list" class="space-y-2 max-h-60 overflow-y-auto">
-                                <!-- Diisi JS -->
-                            </div>
                         </div>
 
-                        <!-- Dashboard Kelola Promo & Campaign -->
-                        <div class="glass-card p-4 space-y-3">
-                            <h4 class="font-bold text-xs text-gold-400 uppercase tracking-wider flex items-center gap-1.5 font-serif"><i data-lucide="tag" class="w-4 h-4"></i> Kelola Promo & Campaign</h4>
-                            <form onsubmit="savePromoCampaign(event)" class="space-y-3">
-                                <input type="text" id="promo-title" required placeholder="Judul Promo / Campaign (Cth: Paket Bundling Start-Up)..." class="w-full px-4 py-2.5 rounded-2xl bg-brown-950/80 border border-gold-500/30 text-xs text-cream-50 focus:outline-none focus:border-gold-400">
-                                <input type="number" id="promo-price" required placeholder="Harga Promo (Rp)..." class="w-full px-4 py-2.5 rounded-2xl bg-brown-950/80 border border-gold-500/30 text-xs font-bold text-cream-50 focus:outline-none focus:border-gold-400">
-                                <button type="submit" class="w-full py-3 rounded-2xl bg-gradient-to-r from-gold-400 to-gold-600 text-brown-950 font-bold text-xs uppercase shadow tracking-wider">Tambah Promo Campaign</button>
-                            </form>
-                        </div>
-                        <div class="glass-card p-4 space-y-3">
-                            <h4 class="font-bold text-xs text-gold-400 uppercase tracking-wider font-serif">Daftar Promo & Campaign Aktif</h4>
-                            <div id="owner-promo-list" class="space-y-2 max-h-40 overflow-y-auto">
+                        <div class="space-y-2">
+                            <h4 class="text-xs font-bold text-gold-400 uppercase">Riwayat Keuangan</h4>
+                            <div id="owner-finance-list" class="space-y-2 max-h-60 overflow-y-auto pr-1">
                                 <!-- Diisi JS -->
                             </div>
                         </div>
                     </div>
 
-                    <!-- Panel Portfolio Terpisah -->
-                    <div id="owner-panel-portfolio" class="owner-panel hidden space-y-4">
+                    <!-- Panel 3: Manajemen Katalog -->
+                    <div id="owner-panel-catalog" class="owner-panel hidden space-y-3">
                         <div class="glass-card p-4 space-y-3">
-                            <h4 class="font-bold text-xs text-gold-400 uppercase tracking-wider flex items-center gap-1.5 font-serif"><i data-lucide="image" class="w-4 h-4"></i> Tambah Portfolio Item Baru</h4>
-                            <form onsubmit="savePortfolioItem(event)" class="space-y-3">
-                                <input type="text" id="port-title" required placeholder="Judul Portfolio (Cth: Branding Kafe Senja)..." class="w-full px-4 py-2.5 rounded-2xl bg-brown-950/80 border border-gold-500/30 text-xs text-cream-50 focus:outline-none focus:border-gold-400">
+                            <h4 class="text-xs font-bold text-gold-400 uppercase">Tambah / Edit Item Katalog</h4>
+                            <form onsubmit="submitCatalogItem(event)" class="space-y-2.5">
+                                <input type="hidden" id="cat-edit-index" value="-1">
+                                <select id="cat-input-category" class="w-full px-3 py-2.5 rounded-xl bg-brown-950 border border-gold-500/30 text-xs text-cream-50">
+                                    <option value="desain">Desain</option>
+                                    <option value="editing">Editing</option>
+                                    <option value="konveksi">Konveksi</option>
+                                </select>
+                                <input type="text" id="cat-input-title" required placeholder="Judul Layanan..." class="w-full px-3 py-2.5 rounded-xl bg-brown-950 border border-gold-500/30 text-xs text-cream-50">
+                                <input type="text" id="cat-input-price" required placeholder="Harga (Cth: Rp 150.000)..." class="w-full px-3 py-2.5 rounded-xl bg-brown-950 border border-gold-500/30 text-xs text-cream-50">
+                                <input type="text" id="cat-input-image" required placeholder="URL Gambar..." class="w-full px-3 py-2.5 rounded-xl bg-brown-950 border border-gold-500/30 text-xs text-cream-50">
                                 <div>
-                                    <label class="block text-[10px] font-bold text-cream-200 mb-1">Unggah Foto Portfolio</label>
-                                    <input type="file" id="port-image-file" accept="image/*" class="w-full text-xs text-cream-200 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-gold-500 file:text-brown-950 hover:file:brightness-110 cursor-pointer bg-brown-950/80 border border-gold-500/30 rounded-2xl p-1.5">
+                                    <label class="block text-[10px] font-bold text-gold-400 mb-1">Atau Upload File Gambar Langsung:</label>
+                                    <input type="file" id="cat-file-upload" accept="image/*" onchange="handleCatalogImageUpload(event)" class="w-full text-xs text-cream-200 file:mr-3 file:py-2 file:px-3 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-gold-500 file:text-brown-950 cursor-pointer">
                                 </div>
-                                <textarea id="port-desc" rows="2" required placeholder="Deskripsi project portfolio..." class="w-full px-4 py-2.5 rounded-2xl bg-brown-950/80 border border-gold-500/30 text-xs text-cream-50 focus:outline-none focus:border-gold-400"></textarea>
-                                <button type="submit" class="w-full py-3 rounded-2xl bg-gradient-to-r from-gold-400 to-gold-600 text-brown-950 font-bold text-xs uppercase shadow tracking-wider">Tambah Portfolio Item</button>
+                                <textarea id="cat-input-desc" rows="2" placeholder="Deskripsi singkat layanan..." class="w-full px-3 py-2.5 rounded-xl bg-brown-950 border border-gold-500/30 text-xs text-cream-50"></textarea>
+                                <button type="submit" class="w-full py-2.5 rounded-xl bg-gold-500 text-brown-950 font-bold text-xs uppercase shadow">Simpan Item Katalog</button>
                             </form>
                         </div>
-                        <div class="glass-card p-4 space-y-3">
-                            <h4 class="font-bold text-xs text-gold-400 uppercase tracking-wider font-serif">Daftar Portfolio Showcase Aktif</h4>
-                            <div id="owner-portfolio-list" class="space-y-2 max-h-60 overflow-y-auto">
+
+                        <div class="space-y-2">
+                            <h4 class="text-xs font-bold text-gold-400 uppercase">Daftar Katalog Aktif</h4>
+                            <div id="owner-catalog-list" class="space-y-2 max-h-60 overflow-y-auto pr-1">
                                 <!-- Diisi JS -->
                             </div>
                         </div>
                     </div>
 
-                    <!-- Panel Profil Owner -->
-                    <div id="owner-panel-profile" class="owner-panel hidden space-y-4">
+                    <!-- Panel 4: Promo Banner -->
+                    <div id="owner-panel-promo" class="owner-panel hidden space-y-3">
                         <div class="glass-card p-4 space-y-3">
-                            <h4 class="font-bold text-xs text-gold-400 uppercase tracking-wider font-serif">Edit Profil Owner</h4>
-                            <form onsubmit="saveOwnerProfile(event)" class="space-y-3">
-                                <div>
-                                    <label class="block text-[10px] font-bold text-cream-200 mb-1">Nama Owner</label>
-                                    <input type="text" id="prof-name" value="Owner Wisesa Karsa" required class="w-full px-4 py-2.5 rounded-2xl bg-brown-950/80 border border-gold-500/30 text-xs text-cream-50 focus:outline-none focus:border-gold-400">
-                                </div>
-                                <div>
-                                    <label class="block text-[10px] font-bold text-cream-200 mb-1">Peran / Jabatan</label>
-                                    <input type="text" id="prof-role" value="Founder & Creative" required class="w-full px-4 py-2.5 rounded-2xl bg-brown-950/80 border border-gold-500/30 text-xs text-cream-50 focus:outline-none focus:border-gold-400">
-                                </div>
-                                <div>
-                                    <label class="block text-[10px] font-bold text-cream-200 mb-1">WhatsApp Owner</label>
-                                    <input type="text" id="prof-whatsapp" value="081234567890" required class="w-full px-4 py-2.5 rounded-2xl bg-brown-950/80 border border-gold-500/30 text-xs text-cream-50 focus:outline-none focus:border-gold-400">
-                                </div>
-                                <div>
-                                    <label class="block text-[10px] font-bold text-cream-200 mb-1">Password Portal Baru</label>
-                                    <input type="text" id="prof-password" value="25220291100806" required class="w-full px-4 py-2.5 rounded-2xl bg-brown-950/80 border border-gold-500/30 text-xs text-cream-50 font-mono focus:outline-none focus:border-gold-400">
-                                </div>
-                                <div>
-                                    <label class="block text-[10px] font-bold text-cream-200 mb-1">Unggah Foto Profil</label>
-                                    <input type="file" id="prof-avatar-file" accept="image/*" class="w-full text-xs text-cream-200 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-gold-500 file:text-brown-950 hover:file:brightness-110 cursor-pointer bg-brown-950/80 border border-gold-500/30 rounded-2xl p-1.5">
-                                </div>
-                                <button type="submit" class="w-full py-3 rounded-2xl bg-gradient-to-r from-gold-400 to-gold-600 text-brown-950 font-bold text-xs uppercase shadow tracking-wider">Simpan Perubahan Profil</button>
+                            <h4 class="text-xs font-bold text-gold-400 uppercase">Tambah Promo Banner Beranda</h4>
+                            <form onsubmit="submitPromoBanner(event)" class="space-y-2.5">
+                                <input type="text" id="promo-input-title" required placeholder="Judul Promo..." class="w-full px-3 py-2.5 rounded-xl bg-brown-950 border border-gold-500/30 text-xs text-cream-50">
+                                <input type="text" id="promo-input-subtitle" required placeholder="Subjudul Promo..." class="w-full px-3 py-2.5 rounded-xl bg-brown-950 border border-gold-500/30 text-xs text-cream-50">
+                                <input type="text" id="promo-input-badge" required placeholder="Badge (Cth: PROMO 50%)..." class="w-full px-3 py-2.5 rounded-xl bg-brown-950 border border-gold-500/30 text-xs text-cream-50">
+                                <button type="submit" class="w-full py-2.5 rounded-xl bg-gold-500 text-brown-950 font-bold text-xs uppercase shadow">Tambah Promo Banner</button>
                             </form>
                         </div>
+
+                        <div class="space-y-2">
+                            <h4 class="text-xs font-bold text-gold-400 uppercase">Daftar Promo Aktif</h4>
+                            <div id="owner-promo-list" class="space-y-2 max-h-60 overflow-y-auto pr-1">
+                                <!-- Diisi JS -->
+                            </div>
+                        </div>
                     </div>
+
                 </div>
             </section>
 
         </main>
 
-        <!-- ================= MOBILE BOTTOM NAVIGATION BAR (DYNAMIC & STYLISH) ================= -->
-        <nav class="fixed bottom-4 left-1/2 -translate-x-1/2 w-[340px] z-50">
-            <div class="bg-gradient-to-r from-brown-950/95 via-brown-900/95 to-brown-950/95 backdrop-blur-xl px-4 py-2 flex items-center justify-around shadow-[0_15px_35px_rgba(0,0,0,0.8)] border border-gold-500/40 rounded-full">
-                <button onclick="navigateTo('home')" id="bnav-home" class="bnav-btn flex flex-col items-center justify-center py-1.5 px-4 rounded-full text-gold-400 bg-gradient-to-r from-gold-500/25 to-gold-600/20 border border-gold-400/60 transition-all duration-300 shadow-gold-glow scale-105">
-                    <i data-lucide="compass" class="w-4 h-4 mb-0.5"></i>
-                    <span class="text-[9px] font-extrabold tracking-tight font-serif">Beranda</span>
+        <!-- ================= MOBILE APP BOTTOM NAVIGATION BAR ================= -->
+        <nav class="fixed bottom-0 left-0 right-0 z-40 max-w-[420px] mx-auto bg-brown-950/95 backdrop-blur-2xl border-t border-gold-500/30 px-3 py-2">
+            <div class="flex justify-around items-center">
+                <button onclick="navigateTo('home')" class="nav-btn flex flex-col items-center gap-1 p-2 text-gold-400 transition group" data-target="home">
+                    <i data-lucide="home" class="w-5 h-5 group-hover:scale-110 transition"></i>
+                    <span class="text-[9px] font-bold uppercase tracking-wider">Beranda</span>
                 </button>
-                <button onclick="navigateTo('order')" id="bnav-order" class="bnav-btn flex flex-col items-center justify-center py-1.5 px-4 rounded-full text-cream-50/70 hover:text-cream-50 transition-all duration-300 border border-transparent">
-                    <i data-lucide="ticket" class="w-4 h-4 mb-0.5"></i>
-                    <span class="text-[9px] font-bold tracking-tight font-serif">Pesan</span>
+                <button onclick="navigateTo('order')" class="nav-btn flex flex-col items-center gap-1 p-2 text-cream-200/60 hover:text-gold-400 transition group" data-target="order">
+                    <i data-lucide="ticket" class="w-5 h-5 group-hover:scale-110 transition"></i>
+                    <span class="text-[9px] font-semibold uppercase tracking-wider">Order</span>
                 </button>
-                <button onclick="navigateTo('testimonials')" id="bnav-testimonials" class="bnav-btn flex flex-col items-center justify-center py-1.5 px-4 rounded-full text-cream-50/70 hover:text-cream-50 transition-all duration-300 border border-transparent">
-                    <i data-lucide="message-square-quote" class="w-4 h-4 mb-0.5"></i>
-                    <span class="text-[9px] font-bold tracking-tight font-serif">Ulasan</span>
+                <button onclick="navigateTo('testimonials')" class="nav-btn flex flex-col items-center gap-1 p-2 text-cream-200/60 hover:text-gold-400 transition group" data-target="testimonials">
+                    <i data-lucide="star" class="w-5 h-5 group-hover:scale-110 transition"></i>
+                    <span class="text-[9px] font-semibold uppercase tracking-wider">Ulasan</span>
+                </button>
+                <button onclick="navigateTo('owner')" class="nav-btn flex flex-col items-center gap-1 p-2 text-cream-200/60 hover:text-gold-400 transition group" data-target="owner">
+                    <i data-lucide="crown" class="w-5 h-5 group-hover:scale-110 transition"></i>
+                    <span class="text-[9px] font-semibold uppercase tracking-wider">Owner</span>
                 </button>
             </div>
         </nav>
 
     </div>
 
-    <!-- ================= JAVASCRIPT LOGIC ================= -->
+    <!-- ================= APPLICATION LOGIC SCRIPT ================= -->
     <script>
-        // Data Store & LocalStorage Sync
-        const OWNER_ACCESS_PASSWORD = '25220291100806';
-        let isOwnerLoggedIn = false;
-        let currentScannedOrderId = null;
-
-        // Toggle Fullscreen Mode
-        function toggleAppFullscreen() {
-            if (!document.fullscreenElement) {
-                document.documentElement.requestFullscreen().catch(err => {
-                    showToast("Mode layar penuh diaktifkan.", "error");
-                });
-            } else {
-                if (document.exitFullscreen) {
-                    document.exitFullscreen();
-                }
-            }
-        }
-
-        let ownerProfile = JSON.parse(localStorage.getItem('wk_owner_profile')) || {
-            name: 'Owner Wisesa Karsa',
-            role: 'Founder & Creative',
-            whatsapp: '081234567890',
-            password: '25220291100806',
-            avatar: 'https://placehold.co/100x100/3B2310/DFBA52?text=WK'
-        };
-
-        let catalogData = JSON.parse(localStorage.getItem('wk_catalog')) || [
-            { id: 'c1', category: 'desain', name: 'Desain Logo Brand Luxury', price: 250000, desc: 'Logo eksklusif elegan dengan hak cipta penuh.', img: 'https://placehold.co/300x300/3B2310/DFBA52?text=Logo' },
-            { id: 'c2', category: 'desain', name: 'Feed Instagram Bisnis (10 Slide)', price: 175000, desc: 'Desain feed estetik dan profesional.', img: 'https://placehold.co/300x300/3B2310/DFBA52?text=Feed' },
-            { id: 'c3', category: 'editing', name: 'Editing Video Reels / TikTok', price: 120000, desc: 'Cutting dinamis, color grading, dan sound design.', img: 'https://placehold.co/300x300/3B2310/DFBA52?text=Reels' },
-            { id: 'c4', category: 'editing', name: 'Video Cinematic Company Profile', price: 750000, desc: 'Produksi video profil perusahaan berkualitas tinggi.', img: 'https://placehold.co/300x300/3B2310/DFBA52?text=Cinematic' },
-            { id: 'c5', category: 'konveksi', name: 'Pembuatan Kaos / T-Shirt Custom', price: 95000, desc: 'Bahan katun combed premium sablon DTF tahan lama.', img: 'https://placehold.co/300x300/3B2310/DFBA52?text=Kaos' },
-            { id: 'c6', category: 'konveksi', name: 'Jaket / Hoodie Custom Eksklusif', price: 220000, desc: 'Bahan fleece tebal bordir komputer rapi.', img: 'https://placehold.co/300x300/3B2310/DFBA52?text=Hoodie' },
-            { id: 'p_1', category: 'portfolio', name: 'Branding Kafe Senja Nusantara', price: 0, desc: 'Project lengkap logo, kemasan, dan seragam pegawai.', img: 'https://placehold.co/300x300/3B2310/DFBA52?text=Portfolio+1' },
-            { id: 'p_2', category: 'portfolio', name: 'Cinematic Commercial Vaper Club', price: 0, desc: 'Produksi video commercial & social media campaign.', img: 'https://placehold.co/300x300/3B2310/DFBA52?text=Portfolio+2' }
-        ];
-
-        let promoBanners = JSON.parse(localStorage.getItem('wk_promos')) || [
-            { id: 'p1', title: 'Paket Bundling Start-Up (Logo + Feed + Kaos)', price: 499000 }
-        ];
-
-        let testimonials = JSON.parse(localStorage.getItem('wk_testimonials')) || [
-            { name: 'Rian Pratama', service: 'Desain Logo', rating: 5, comment: 'Pengerjaan sangat cepat dan hasilnya luar biasa mewah!', date: '2 hari lalu' },
-            { name: 'Siti Aminah', service: 'Konveksi Kaos', rating: 5, comment: 'Bahan kaosnya sangat adem dan sablonnya awet. Recommended!', date: '1 minggu lalu' }
-        ];
-
-        let ordersInbox = JSON.parse(localStorage.getItem('wk_orders_inbox')) || [];
-        let cashierTransactions = JSON.parse(localStorage.getItem('wk_cashier_tx')) || [];
-        let financeRecords = JSON.parse(localStorage.getItem('wk_finance')) || [];
-        let orderCart = [];
-        let verifiedTestiOrder = null;
-
-        function safeCreateIcons() {
-            try {
-                if (typeof lucide !== 'undefined' && lucide.createIcons) {
-                    lucide.createIcons();
-                }
-            } catch (e) {
-                console.warn('Lucide icons init deferred:', e);
-            }
-        }
-
-        window.addEventListener('DOMContentLoaded', () => {
-            safeCreateIcons();
-            applyOwnerProfileUI();
-            renderMobileCatalog('desain');
-            renderPortfolioShowcase();
-            renderOrderServicePicker('desain');
-            renderPromoBanners();
-            renderTestimonials();
-            updateOwnerBadgeCount();
-            
-            const todayStr = new Date().toISOString().split('T')[0];
-            const expDateEl = document.getElementById('exp-date');
-            if (expDateEl) expDateEl.value = todayStr;
-
-            // Ensure fixed landing welcome gate is properly visible on load
-            const landing = document.getElementById('view-landing');
-            if (landing) {
-                landing.style.display = 'flex';
-                landing.style.opacity = '1';
-            }
+        document.addEventListener("DOMContentLoaded", () => {
+            lucide.createIcons();
+            loadAppData();
+            renderAll();
         });
 
-        function enterMainPlatform() {
-            const landing = document.getElementById('view-landing');
-            landing.style.opacity = '0';
-            setTimeout(() => landing.style.display = 'none', 500);
+        let appState = {
+            activeRole: 'landing',
+            currentTab: 'home',
+            cart: [],
+            orderCategoryFilter: 'desain',
+            orders: [
+                { id: '#WK-1001', name: 'Ahmad Fauzi', phone: '081234567890', items: [{title: 'Desain Feed Instagram Bisnis', price: 'Rp 150.000'}], total: 'Rp 150.000', notes: 'Tema warna cokelat emas', status: 'Beres', date: '2026-11-18' },
+                { id: '#WK-1002', name: 'Siti Rahma', phone: '089876543210', items: [{title: 'Jasa Edit Video Reels / TikTok', price: 'Rp 200.000'}], total: 'Rp 200.000', notes: 'Gunakan backsound akustik', status: 'Diproses', date: '2026-11-18' }
+            ],
+            catalog: [
+                { id: 1, category: 'desain', title: 'Desain Feed Instagram Bisnis', price: 'Rp 150.000', image: 'https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=400&auto=format&fit=crop', desc: '10 Desain feed high-end & estetik untuk branding usaha Anda.' },
+                { id: 2, category: 'desain', title: 'Desain Logo & Brand Identity', price: 'Rp 350.000', image: 'https://images.unsplash.com/photo-1626785774573-4b799315345d?q=80&w=400&auto=format&fit=crop', desc: 'Logo profesional lengkap dengan panduan warna & mockup.' },
+                { id: 3, category: 'editing', title: 'Jasa Edit Video Reels / TikTok', price: 'Rp 200.000', image: 'https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?q=80&w=400&auto=format&fit=crop', desc: 'Editing video sinematik dengan color grading & sound design profesional.' },
+                { id: 4, category: 'editing', title: 'Video Company Profile / Teaser', price: 'Rp 750.000', image: 'https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?q=80&w=400&auto=format&fit=crop', desc: 'Durasi 1-2 menit untuk promosi perusahaan atau organisasi.' },
+                { id: 5, category: 'konveksi', title: 'Pembuatan Kaos / T-Shirt Custom', price: 'Rp 95.000', image: 'https://images.unsplash.com/photo-1521572267360-ee0c2909d518?q=80&w=400&auto=format&fit=crop', desc: 'Bahan Cotton Combed 30s premium dengan sablon DTF awet.' },
+                { id: 6, category: 'konveksi', title: 'Jaket / Hoodie / Jersey Custom', price: 'Rp 180.000', image: 'https://images.unsplash.com/photo-1556905055-8f358a7a47b2?q=80&w=400&auto=format&fit=crop', desc: 'Kualitas distro, jahitan rapi, dan bordir komputer presisi.' }
+            ],
+            portfolio: [
+                { id: 1, title: 'Branding UKM Sanggar Harsa', category: 'Desain & Reels', image: 'https://images.unsplash.com/photo-1542744094-3a31243364d0?q=80&w=400&auto=format&fit=crop' },
+                { id: 2, title: 'Aesthetic Video Promo Wisesa', category: 'Video Editing', image: 'https://images.unsplash.com/photo-1536240478700-b869070f9279?q=80&w=400&auto=format&fit=crop' },
+                { id: 3, title: 'Uniform Konveksi Batch #1', category: 'Konveksi', image: 'https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?q=80&w=400&auto=format&fit=crop' }
+            ],
+            testimonials: [
+                { name: 'Ahmad Fauzi', service: 'Desain Feed Instagram Bisnis', rating: 5, comment: 'Sangat puas! Hasil desain elegan dan pengerjaannya sangat cepat.', date: '2026-11-18' }
+            ],
+            promos: [
+                { title: 'PROMO AKHIR TAHUN', subtitle: 'Diskon 20% untuk semua paket Konveksi & Desain.', badge: 'HEMAT 20%' }
+            ],
+            finance: [
+                { type: 'in', amount: 150000, desc: 'Pembayaran Order #WK-1001 (Ahmad Fauzi)', date: '2026-11-18' },
+                { type: 'in', amount: 200000, desc: 'Pembayaran Order #WK-1002 (Siti Rahma)', date: '2026-11-18' }
+            ]
+        };
+
+        function saveAppData() {
+            localStorage.setItem('wisesa_karsa_app_state', JSON.stringify(appState));
         }
 
-        function exitToWelcomeGate() {
-            const landing = document.getElementById('view-landing');
-            landing.style.display = 'flex';
-            setTimeout(() => landing.style.opacity = '1', 10);
-            showToast("Kembali ke menu utama.");
+        function loadAppData() {
+            const saved = localStorage.getItem('wisesa_karsa_app_state');
+            if (saved) {
+                try {
+                    appState = JSON.parse(saved);
+                } catch(e) { console.error(e); }
+            }
+        }
+
+        function showToast(msg, type = 'success') {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            toast.className = `p-3.5 rounded-2xl text-xs font-semibold shadow-2xl border flex items-center gap-2 animate-fade-in pointer-events-auto ${type === 'success' ? 'bg-brown-900 text-gold-300 border-gold-500/50' : 'bg-red-950 text-red-200 border-red-500/50'}`;
+            toast.innerHTML = `<i data-lucide="${type === 'success' ? 'check-circle-2' : 'alert-circle'}" class="w-4 h-4 shrink-0"></i><span>${msg}</span>`;
+            container.appendChild(toast);
+            lucide.createIcons();
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
+        }
+
+        function navigateTo(tabId) {
+            appState.currentTab = tabId;
+            document.querySelectorAll('.view-section').forEach(sec => sec.classList.add('hidden'));
+            const targetSec = document.getElementById(`view-${tabId}`);
+            if (targetSec) targetSec.classList.remove('hidden');
+
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                if (btn.dataset.target === tabId) {
+                    btn.classList.remove('text-cream-200/60');
+                    btn.classList.add('text-gold-400');
+                } else {
+                    btn.classList.remove('text-gold-400');
+                    btn.classList.add('text-cream-200/60');
+                }
+            });
+
+            document.querySelector('main').scrollTo({ top: 0, behavior: 'smooth' });
+            renderAll();
+        }
+
+        function enterMainPlatform() {
+            appState.activeRole = 'customer';
+            document.getElementById('view-landing').classList.add('hidden');
+            navigateTo('home');
+            showToast('Selamat datang di Wisesa Karsa Mobile Studio!');
         }
 
         function openOwnerLandingLogin() {
-            document.getElementById('landing-owner-login-box').classList.toggle('hidden');
+            const box = document.getElementById('landing-owner-login-box');
+            box.classList.toggle('hidden');
         }
 
         function submitLandingOwnerLogin() {
-            const pass = document.getElementById('landing-owner-pass').value.trim();
-            if (pass === OWNER_ACCESS_PASSWORD || pass === ownerProfile.password) {
-                isOwnerLoggedIn = true;
-                enterMainPlatform();
+            const pass = document.getElementById('landing-owner-pass').value;
+            if (pass === '25220291100806') {
+                appState.activeRole = 'owner';
+                document.getElementById('view-landing').classList.add('hidden');
                 navigateTo('owner');
-                document.getElementById('owner-login-box').classList.add('hidden');
-                document.getElementById('owner-dashboard-box').classList.remove('hidden');
-                renderOwnerOrders();
-                renderCashierHistory();
-                renderFinanceTable();
-                renderOwnerCatalogList();
-                renderOwnerPortfolioList();
-                renderOwnerPromoList();
-                showToast("Berhasil Masuk Portal Owner!");
+                showToast('Login Owner Berhasil!');
             } else {
-                showToast("Password Owner Salah!", "error");
+                showToast('Password Owner Salah!', 'error');
             }
         }
 
-        // Navigation Switcher
-        function navigateTo(viewId) {
-            document.querySelectorAll('.view-section').forEach(sec => sec.classList.add('hidden'));
-            document.getElementById(`view-${viewId}`).classList.remove('hidden');
-
-            document.querySelectorAll('.bnav-btn').forEach(btn => {
-                btn.className = "bnav-btn flex flex-col items-center justify-center py-1.5 px-4 rounded-full text-cream-50/70 hover:text-cream-50 transition-all duration-300 border border-transparent scale-100";
-            });
-            const activeBnav = document.getElementById(`bnav-${viewId}`);
-            if (activeBnav) {
-                activeBnav.className = "bnav-btn flex flex-col items-center justify-center py-1.5 px-4 rounded-full text-gold-400 bg-gradient-to-r from-gold-500/25 to-gold-600/20 border border-gold-400/60 transition-all duration-300 shadow-gold-glow scale-105";
-            }
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-            safeCreateIcons();
+        function exitToWelcomeGate() {
+            appState.activeRole = 'landing';
+            document.getElementById('view-landing').classList.remove('hidden');
         }
 
-        function renderMobileCatalog(cat) {
-            const grid = document.getElementById('mobile-catalog-grid');
-            const items = catalogData.filter(i => i.category === cat);
-            
-            grid.innerHTML = items.map(i => `
-                <div class="glass-card overflow-hidden flex flex-col justify-between p-3.5 shrink-0 w-[180px]">
-                    <img src="${i.img}" alt="${i.name}" class="w-full h-24 rounded-xl object-cover border border-gold-500/30" onerror="this.src='https://placehold.co/300x300/3B2310/DFBA52?text=WK'">
-                    <div class="space-y-1 my-2">
-                        <h4 class="font-bold text-xs text-cream-50 line-clamp-1">${i.name}</h4>
-                        <p class="text-[9px] text-cream-200/70 line-clamp-1 font-light">${i.desc}</p>
-                        <p class="text-xs font-extrabold text-gold-400">Rp ${i.price.toLocaleString('id-ID')}</p>
+        function handleOwnerLogin(e) {
+            e.preventDefault();
+            const pass = document.getElementById('login-password').value;
+            if (pass === '25220291100806') {
+                appState.activeRole = 'owner';
+                showToast('Login Owner Berhasil!');
+                renderOwnerDashboard();
+            } else {
+                showToast('Password Salah!', 'error');
+            }
+        }
+
+        function ownerLogout() {
+            appState.activeRole = 'customer';
+            document.getElementById('login-password').value = '';
+            renderOwnerDashboard();
+            showToast('Anda keluar dari Portal Owner.');
+        }
+
+        function renderAll() {
+            renderPromos();
+            renderCatalog();
+            renderPortfolio();
+            renderOrderServicePicker();
+            renderCart();
+            renderTestimonials();
+            renderOwnerDashboard();
+            lucide.createIcons();
+        }
+
+        function renderPromos() {
+            const container = document.getElementById('promo-banners-grid');
+            if (!container) return;
+            container.innerHTML = appState.promos.map(p => `
+                <div class="bg-gradient-to-r from-gold-500/20 via-brown-900 to-brown-950 p-3.5 rounded-2xl border border-gold-500/40 flex justify-between items-center shadow-lg">
+                    <div class="space-y-0.5">
+                        <span class="text-[9px] font-extrabold uppercase tracking-widest text-gold-400 bg-gold-500/10 px-2 py-0.5 rounded-full">${p.badge}</span>
+                        <h4 class="text-xs font-bold text-cream-50">${p.title}</h4>
+                        <p class="text-[10px] text-cream-200/80">${p.subtitle}</p>
                     </div>
-                    <button onclick="quickOrder('${i.name}', ${i.price})" class="w-full py-1.5 rounded-lg bg-gold-500 text-brown-950 font-bold text-[10px] shadow hover:brightness-110">Pesan</button>
+                    <button onclick="navigateTo('order')" class="px-3 py-2 rounded-xl bg-gold-500 text-brown-950 text-[10px] font-extrabold uppercase shadow shrink-0">Ambil</button>
                 </div>
             `).join('');
-
-            if (items.length === 0) {
-                grid.innerHTML = `<p class="text-[10px] text-cream-200/50 text-center py-2 w-full">Belum ada layanan.</p>`;
-            }
-        }
-
-        function renderPortfolioShowcase() {
-            const grid = document.getElementById('mobile-portfolio-grid');
-            const items = catalogData.filter(i => i.category === 'portfolio');
-            
-            grid.innerHTML = items.map(i => `
-                <div class="glass-card overflow-hidden flex flex-col justify-between p-3.5 shrink-0 w-[180px]">
-                    <img src="${i.img}" alt="${i.name}" class="w-full h-24 rounded-xl object-cover border border-gold-500/30" onerror="this.src='https://placehold.co/300x300/3B2310/DFBA52?text=Portfolio'">
-                    <div class="space-y-1 my-2">
-                        <span class="text-[7px] font-bold uppercase tracking-widest text-gold-400">Project</span>
-                        <h4 class="font-bold text-xs text-cream-50 line-clamp-1">${i.name}</h4>
-                        <p class="text-[9px] text-cream-200/80 font-light line-clamp-1">${i.desc}</p>
-                    </div>
-                    <div class="w-full py-1.5 rounded-lg bg-brown-900/80 text-gold-400 text-center font-bold text-[10px] border border-gold-500/30">Portfolio</div>
-                </div>
-            `).join('');
-
-            if (items.length === 0) {
-                grid.innerHTML = `<p class="text-[10px] text-cream-200/50 text-center py-2 w-full">Belum ada portfolio.</p>`;
-            }
         }
 
         function filterCatalogCat(cat, btn) {
-            document.querySelectorAll('.cat-pill').forEach(b => b.className = "cat-pill px-2.5 py-1 rounded-lg text-[9px] font-bold text-cream-200 transition shrink-0");
-            btn.className = "cat-pill px-2.5 py-1 rounded-lg text-[9px] font-bold bg-gold-500 text-brown-950 transition shadow shrink-0";
-            renderMobileCatalog(cat);
+            appState.orderCategoryFilter = cat;
+            document.querySelectorAll('.cat-pill').forEach(p => {
+                p.classList.remove('bg-gold-500', 'text-brown-950', 'shadow');
+                p.classList.add('text-cream-200');
+            });
+            btn.classList.add('bg-gold-500', 'text-brown-950', 'shadow');
+            btn.classList.remove('text-cream-200');
+            renderCatalog();
         }
 
-        function renderPromoBanners() {
-            const grid = document.getElementById('promo-banners-grid');
-            grid.innerHTML = promoBanners.map(p => `
-                <div class="glass-card overflow-hidden relative p-3 flex items-center justify-between">
-                    <div class="space-y-0.5">
-                        <span class="text-[8px] font-bold uppercase tracking-widest text-gold-400">Promo Spesial</span>
-                        <h4 class="text-xs font-extrabold text-cream-50">${p.title}</h4>
-                        <p class="text-[10px] font-bold text-gold-300">Rp ${p.price.toLocaleString('id-ID')}</p>
+        function renderCatalog() {
+            const container = document.getElementById('mobile-catalog-grid');
+            if (!container) return;
+            const filtered = appState.catalog.filter(item => item.category === appState.orderCategoryFilter);
+            container.innerHTML = filtered.map(item => `
+                <div class="glass-card p-3 rounded-2xl w-48 shrink-0 space-y-2 border border-gold-500/20 flex flex-col justify-between">
+                    <div class="space-y-2">
+                        <img src="${item.image}" class="w-full h-28 object-cover rounded-xl border border-gold-500/30" alt="${item.title}">
+                        <div>
+                            <span class="text-[8px] font-bold uppercase tracking-widest text-gold-400">${item.category}</span>
+                            <h4 class="text-xs font-bold text-cream-50 line-clamp-1">${item.title}</h4>
+                            <p class="text-[10px] text-cream-200/70 line-clamp-2 mt-0.5 font-light">${item.desc}</p>
+                        </div>
                     </div>
-                    <button onclick="quickOrder('${p.title}', ${p.price})" class="px-3 py-1.5 rounded-lg bg-gold-500 text-brown-950 font-bold text-[9px] shadow hover:brightness-110">Klaim</button>
+                    <div class="pt-2 border-t border-gold-500/20 flex items-center justify-between">
+                        <span class="text-xs font-extrabold text-gold-400">${item.price}</span>
+                        <button onclick="addCatalogItemToCart(${item.id})" class="p-2 rounded-xl bg-gold-500 text-brown-950 shadow hover:scale-105 transition" title="Tambah ke Keranjang">
+                            <i data-lucide="plus" class="w-3.5 h-3.5"></i>
+                        </button>
+                    </div>
                 </div>
             `).join('');
+            lucide.createIcons();
         }
 
-        function showToast(message, type = 'success') {
-            const container = document.getElementById('toast-container');
-            const toast = document.createElement('div');
-            toast.className = `p-3.5 rounded-2xl shadow-xl text-xs font-bold pointer-events-auto border animate-fade-in flex items-center gap-2 ${type === 'error' ? 'bg-red-950 text-red-200 border-red-500/50' : 'bg-brown-950 text-gold-300 border-gold-500/50'}`;
-            toast.innerHTML = `<i data-lucide="${type === 'error' ? 'alert-circle' : 'check-circle-2'}" class="w-4 h-4 shrink-0"></i><span>${message}</span>`;
-            container.appendChild(toast);
-            safeCreateIcons();
-            setTimeout(() => { toast.style.opacity = '0'; setTimeout(() => toast.remove(), 400); }, 3000);
-        }
-
-        function selectOrderCategory(cat, btn) {
-            document.querySelectorAll('.ord-cat-pill').forEach(b => b.className = "ord-cat-pill py-2.5 rounded-xl text-[10px] font-bold bg-brown-900/80 text-cream-200 border border-gold-500/20 transition");
-            btn.className = "ord-cat-pill py-2.5 rounded-xl text-[10px] font-bold bg-gold-500 text-brown-950 transition shadow";
-            renderOrderServicePicker(cat);
-        }
-
-        function renderOrderServicePicker(cat) {
-            const picker = document.getElementById('order-service-picker-grid');
-            const items = catalogData.filter(i => i.category === cat);
-            picker.innerHTML = items.map(i => `
-                <div class="glass-card-light p-2.5 rounded-xl flex justify-between items-center">
+        function renderPortfolio() {
+            const container = document.getElementById('mobile-portfolio-grid');
+            if (!container) return;
+            container.innerHTML = appState.portfolio.map(p => `
+                <div class="glass-card p-3 rounded-2xl w-44 shrink-0 space-y-2 border border-gold-500/20">
+                    <img src="${p.image}" class="w-full h-28 object-cover rounded-xl border border-gold-500/30" alt="${p.title}">
                     <div>
-                        <h4 class="font-bold text-xs text-cream-50">${i.name}</h4>
-                        <p class="text-[10px] text-gold-400">Rp ${i.price.toLocaleString('id-ID')}</p>
+                        <span class="text-[8px] font-bold uppercase tracking-widest text-gold-400">${p.category}</span>
+                        <h4 class="text-xs font-bold text-cream-50 line-clamp-1">${p.title}</h4>
                     </div>
-                    <button type="button" onclick="addToOrderCart('${i.name}', ${i.price})" class="px-3 py-1 rounded-lg bg-gold-500 text-brown-950 text-[10px] font-bold shadow hover:brightness-110">Tambah +</button>
                 </div>
             `).join('');
         }
 
-        function addToOrderCart(name, price) {
-            const existing = orderCart.find(item => item.name === name);
-            if (existing) {
-                existing.qty += 1;
-            } else {
-                orderCart.push({ name, price, qty: 1 });
-            }
-            renderOrderCart();
-            showToast(`Ditambahkan: ${name}`);
+        let orderCatPicker = 'desain';
+        function selectOrderCategory(cat, btn) {
+            orderCatPicker = cat;
+            document.querySelectorAll('.ord-cat-pill').forEach(p => {
+                p.classList.remove('bg-gold-500', 'text-brown-950', 'shadow');
+                p.classList.add('bg-brown-900/80', 'text-cream-200', 'border', 'border-gold-500/20');
+            });
+            btn.classList.add('bg-gold-500', 'text-brown-950', 'shadow');
+            btn.classList.remove('bg-brown-900/80', 'text-cream-200', 'border', 'border-gold-500/20');
+            renderOrderServicePicker();
         }
 
-        function updateCartItemQty(index, delta) {
-            orderCart[index].qty += delta;
-            if (orderCart[index].qty <= 0) {
-                orderCart.splice(index, 1);
-            }
-            renderOrderCart();
+        function renderOrderServicePicker() {
+            const container = document.getElementById('order-service-picker-grid');
+            if (!container) return;
+            const items = appState.catalog.filter(i => i.category === orderCatPicker);
+            container.innerHTML = items.map(item => `
+                <div class="p-2.5 rounded-xl bg-brown-950/80 border border-gold-500/20 flex justify-between items-center">
+                    <div>
+                        <h5 class="text-xs font-bold text-cream-50">${item.title}</h5>
+                        <span class="text-[10px] text-gold-400 font-semibold">${item.price}</span>
+                    </div>
+                    <button type="button" onclick="addCartItem(${item.id})" class="px-3 py-1.5 rounded-xl bg-gold-500 text-brown-950 font-bold text-[10px] uppercase shadow">Pilih</button>
+                </div>
+            `).join('');
         }
 
-        function renderOrderCart() {
-            const listEl = document.getElementById('order-cart-list');
-            const countEl = document.getElementById('cart-item-count');
-            const totalEl = document.getElementById('ord-total-display');
+        function addCatalogItemToCart(id) {
+            const item = appState.catalog.find(i => i.id === id);
+            if (!item) return;
+            appState.cart.push({ title: item.title, price: item.price });
+            renderCart();
+            showToast(`"${item.title}" ditambahkan ke keranjang.`);
+        }
 
-            if (orderCart.length === 0) {
-                listEl.innerHTML = `<p class="text-[11px] text-cream-200/50 italic text-center py-2">Belum ada item dipilih.</p>`;
-                countEl.innerText = `0 Item`;
-                totalEl.innerText = `Rp 0`;
+        function addCartItem(id) {
+            addCatalogItemToCart(id);
+            navigateTo('order');
+        }
+
+        function removeCartItem(index) {
+            appState.cart.splice(index, 1);
+            renderCart();
+        }
+
+        function renderCart() {
+            const container = document.getElementById('order-cart-list');
+            const countLabel = document.getElementById('cart-item-count');
+            const totalDisplay = document.getElementById('ord-total-display');
+            if (!container) return;
+
+            countLabel.textContent = `${appState.cart.length} Item`;
+
+            if (appState.cart.length === 0) {
+                container.innerHTML = `<p class="text-[11px] text-cream-200/50 italic text-center py-3">Belum ada item dipilih.</p>`;
+                totalDisplay.textContent = 'Rp 0';
                 return;
             }
 
-            let totalSum = 0;
-            let totalCount = 0;
-
-            listEl.innerHTML = orderCart.map((item, idx) => {
-                const subtotal = item.price * item.qty;
-                totalSum += subtotal;
-                totalCount += item.qty;
+            let totalNum = 0;
+            container.innerHTML = appState.cart.map((c, idx) => {
+                const num = parseInt(c.price.replace(/[^0-9]/g, '')) || 0;
+                totalNum += num;
                 return `
-                    <div class="flex justify-between items-center text-xs bg-brown-950/60 p-2 rounded-xl border border-gold-500/20">
-                        <div class="pr-2">
-                            <b class="text-cream-50">${item.name}</b>
-                            <p class="text-[10px] text-gold-400">Rp ${item.price.toLocaleString('id-ID')} x ${item.qty}</p>
+                    <div class="flex justify-between items-center bg-brown-900/60 p-2 rounded-xl border border-gold-500/20 text-xs">
+                        <div>
+                            <span class="font-bold text-cream-50 block">${c.title}</span>
+                            <span class="text-[10px] text-gold-400">${c.price}</span>
                         </div>
-                        <div class="flex items-center gap-1.5 shrink-0">
-                            <button type="button" onclick="updateCartItemQty(${idx}, -1)" class="w-6 h-6 rounded-lg bg-brown-900 text-gold-400 flex items-center justify-center font-bold text-xs">-</button>
-                            <span class="text-xs font-bold text-cream-50 w-5 text-center">${item.qty}</span>
-                            <button type="button" onclick="updateCartItemQty(${idx}, 1)" class="w-6 h-6 rounded-lg bg-brown-900 text-gold-400 flex items-center justify-center font-bold text-xs">+</button>
-                        </div>
+                        <button type="button" onclick="removeCartItem(${idx})" class="text-red-400 hover:text-red-300 p-1"><i data-lucide="trash-2" class="w-3.5 h-3.5"></i></button>
                     </div>
                 `;
             }).join('');
 
-            countEl.innerText = `${totalCount} Item`;
-            totalEl.innerText = `Rp ${totalSum.toLocaleString('id-ID')}`;
+            totalDisplay.textContent = `Rp ${totalNum.toLocaleString('id-ID')}`;
+            lucide.createIcons();
         }
-
-        function quickOrder(name, price) {
-            navigateTo('order');
-            addToOrderCart(name, price);
-        }
-
-        let activeOrderTicket = null;
 
         function submitOrderForm(e) {
             e.preventDefault();
+            if (appState.cart.length === 0) {
+                showToast('Pilih minimal 1 layanan di keranjang pesanan!', 'error');
+                return;
+            }
+
             const name = document.getElementById('ord-name').value;
             const phone = document.getElementById('ord-phone').value;
             const notes = document.getElementById('ord-notes').value || '-';
-            if (orderCart.length === 0) return showToast("Pilih minimal 1 produk/layanan dalam keranjang!", "error");
-            
-            let totalSum = orderCart.reduce((sum, item) => sum + (item.price * item.qty), 0);
-            const ticketNo = '#WK-' + Math.floor(1000 + Math.random() * 9000);
+            const invoiceId = `#WK-${Math.floor(1000 + Math.random() * 9000)}`;
 
-            const summaryServices = orderCart.map(i => `${i.name} (${i.qty}x)`).join(', ');
+            let totalNum = 0;
+            appState.cart.forEach(c => {
+                totalNum += parseInt(c.price.replace(/[^0-9]/g, '')) || 0;
+            });
+            const totalStr = `Rp ${totalNum.toLocaleString('id-ID')}`;
 
-            activeOrderTicket = { id: ticketNo, name, phone, service: summaryServices, items: [...orderCart], total: totalSum, notes: notes, status: 'belum' };
+            const newOrder = {
+                id: invoiceId,
+                name: name,
+                phone: phone,
+                items: [...appState.cart],
+                total: totalStr,
+                notes: notes,
+                status: 'Diproses',
+                date: new Date().toISOString().split('T')[0]
+            };
 
-            document.getElementById('card-invoice-id').innerText = ticketNo;
-            document.getElementById('card-customer-name').innerText = name;
-            document.getElementById('card-customer-notes').innerText = notes;
-
-            try {
-                JsBarcode("#order-barcode-svg", ticketNo, { format: "CODE128", width: 1.5, height: 35, displayValue: true });
-            } catch(e){}
+            appState.orders.unshift(newOrder);
+            appState.finance.unshift({ type: 'in', amount: totalNum, desc: `Pembayaran Order ${invoiceId} (${name})`, date: newOrder.date });
+            saveAppData();
 
             document.getElementById('order-card-empty').classList.add('hidden');
-            document.getElementById('order-card-result').classList.remove('hidden');
+            const resultBox = document.getElementById('order-card-result');
+            resultBox.classList.remove('hidden');
 
-            ordersInbox.unshift(activeOrderTicket);
-            localStorage.setItem('wk_orders_inbox', JSON.stringify(ordersInbox));
-            updateOwnerBadgeCount();
-            if (isOwnerLoggedIn) {
-                renderOwnerOrders();
-            }
+            document.getElementById('card-invoice-id').textContent = invoiceId;
+            document.getElementById('card-customer-name').textContent = name;
+            document.getElementById('card-customer-notes').textContent = notes;
 
-            safeCreateIcons();
-            showToast(`Kartu Deal ${ticketNo} Berhasil Diterbitkan!`);
+            try {
+                JsBarcode("#order-barcode-svg", invoiceId, {
+                    format: "CODE128",
+                    lineColor: "#211107",
+                    width: 1.5,
+                    height: 35,
+                    displayValue: true,
+                    fontSize: 10
+                });
+            } catch(err) { console.error(err); }
+
+            showToast(`Pesanan ${invoiceId} berhasil diterbitkan!`);
+            appState.cart = [];
+            renderCart();
+            renderOwnerDashboard();
         }
 
         function downloadReceiptImage() {
             const cardElement = document.getElementById('printable-order-card');
             if (!cardElement) return;
-            
-            showToast("Menyiapkan gambar kartu deal...");
-            
-            const originalTransform = cardElement.style.transform;
-            cardElement.style.transform = 'none';
-
-            html2canvas(cardElement, { 
-                scale: 4, 
-                backgroundColor: '#140a04',
-                useCORS: true,
-                logging: false,
-                windowWidth: 360
-            }).then(canvas => {
-                cardElement.style.transform = originalTransform;
+            html2canvas(cardElement, { scale: 3, backgroundColor: '#140a04' }).then(canvas => {
                 const link = document.createElement('a');
-                link.download = `Kartu-Deal-${activeOrderTicket ? activeOrderTicket.id : 'WisesaKarsa'}.png`;
+                link.download = `Kartu-Deal-WisesaKarsa.png`;
                 link.href = canvas.toDataURL('image/png');
                 link.click();
-                showToast("Gambar kartu deal berhasil diunduh!");
+                showToast('Kartu Deal berhasil diunduh!');
             }).catch(err => {
-                cardElement.style.transform = originalTransform;
-                showToast("Gagal mengunduh gambar kartu deal.", "error");
+                showToast('Gagal mengunduh gambar kartu.', 'error');
             });
         }
 
-        function handleOwnerLogin(e) {
-            e.preventDefault();
-            const pass = document.getElementById('login-password').value.trim();
-            if (pass === OWNER_ACCESS_PASSWORD || pass === ownerProfile.password) {
-                isOwnerLoggedIn = true;
-                document.getElementById('owner-login-box').classList.add('hidden');
-                document.getElementById('owner-dashboard-box').classList.remove('hidden');
-                renderOwnerOrders();
-                renderCashierHistory();
-                renderFinanceTable();
-                renderOwnerCatalogList();
-                renderOwnerPortfolioList();
-                renderOwnerPromoList();
-                showToast("Berhasil Masuk Portal Owner!");
+        function verifyOrderForTestimonial() {
+            const ticketId = document.getElementById('testi-ticket-id').value.trim();
+            const order = appState.orders.find(o => o.id.toLowerCase() === ticketId.toLowerCase() && o.status === 'Beres');
+            if (order) {
+                document.getElementById('testi-form-gate').classList.add('hidden');
+                document.getElementById('testi-active-form').classList.remove('hidden');
+                document.getElementById('verified-ticket-label').textContent = order.id;
+                document.getElementById('testi-name').value = order.name;
+                document.getElementById('testi-service').value = order.items.map(i => i.title).join(', ');
+                showToast('Tiket valid dan berstatus Beres!');
             } else {
-                showToast("Password Owner Salah!", "error");
+                showToast('Tiket tidak ditemukan atau pesanan belum berstatus Beres!', 'error');
             }
         }
 
-        function logoutOwner() {
-            isOwnerLoggedIn = false;
-            document.getElementById('owner-dashboard-box').classList.add('hidden');
-            document.getElementById('owner-login-box').classList.remove('hidden');
-            showToast("Keluar dari Portal Owner.");
-        }
-
-        function switchOwnerTab(tabName) {
-            document.querySelectorAll('.owner-panel').forEach(p => p.classList.add('hidden'));
-            document.querySelectorAll('.owner-tab-btn').forEach(b => b.className = "owner-tab-btn py-2.5 rounded-xl text-[10px] font-bold text-cream-200 flex flex-col items-center");
-            document.getElementById(`owner-panel-${tabName}`).classList.remove('hidden');
-            document.getElementById(`otab-${tabName}`).className = "owner-tab-btn py-2.5 rounded-xl text-[10px] font-bold bg-gold-500 text-brown-950 flex flex-col items-center shadow";
-        }
-
-        function updateOwnerBadgeCount() {
-            const unread = ordersInbox.filter(o => o.status === 'belum').length;
-            const badge = document.getElementById('owner-inbox-badge');
-            if (badge) {
-                if (unread > 0) { badge.innerText = unread; badge.classList.remove('hidden'); }
-                else { badge.classList.add('hidden'); }
-            }
-        }
-
-        let isCameraActive = false;
-        function toggleBarcodeScanner() {
-            const wrapper = document.getElementById('scanner-camera-wrapper');
-            if (!isCameraActive) {
-                wrapper.classList.remove('hidden');
-                isCameraActive = true;
-                try {
-                    Quagga.init({ inputStream: { name: "Live", type: "LiveStream", target: document.querySelector('#interactive') }, decoder: { readers: ["code_128_reader"] } }, function(err) {
-                        if (!err) Quagga.start();
-                    });
-                    Quagga.onDetected(res => {
-                        document.getElementById('cashier-barcode-input').value = res.codeResult.code;
-                        toggleBarcodeScanner();
-                        processScannedBarcode();
-                    });
-                } catch(e){}
-            } else {
-                try { Quagga.stop(); } catch(e){}
-                wrapper.classList.add('hidden');
-                isCameraActive = false;
-            }
-        }
-
-        function processScannedBarcode() {
-            const code = document.getElementById('cashier-barcode-input').value.trim();
-            const found = ordersInbox.find(o => o.id.toLowerCase() === code.toLowerCase());
-            if (found) {
-                currentScannedOrderId = found.id;
-                document.getElementById('scanned-order-details').innerHTML = `Ditemukan: <b>${found.name}</b> - ${found.service} (Rp ${found.total.toLocaleString('id-ID')})`;
-                document.getElementById('cashier-manual-item').value = found.service;
-                document.getElementById('cashier-manual-customer').value = found.name;
-                document.getElementById('cashier-manual-amount').value = found.total;
-                showToast("Tiket Ditemukan!");
-            } else {
-                showToast("Tiket Tidak Ditemukan!", "error");
-            }
-        }
-
-        function confirmCashierPayment() {
-            const item = document.getElementById('cashier-manual-item').value;
-            const customer = document.getElementById('cashier-manual-customer').value;
-            const amount = parseFloat(document.getElementById('cashier-manual-amount').value) || 0;
-            if (!item || amount <= 0) return showToast("Lengkapi data pembayaran!", "error");
-
-            const todayIso = new Date().toISOString().split('T')[0];
-            const tx = { id: 'TX-' + Math.floor(100000 + Math.random() * 900000), item, customer, amount, date: todayIso };
-            cashierTransactions.unshift(tx);
-            localStorage.setItem('wk_cashier_tx', JSON.stringify(cashierTransactions));
-
-            financeRecords.unshift({ id: 'FIN-' + Math.floor(100000 + Math.random() * 900000), type: 'income', desc: `Kasir (${customer}): ${item}`, amount, date: todayIso });
-            localStorage.setItem('wk_finance', JSON.stringify(financeRecords));
-
-            if (currentScannedOrderId) {
-                const ord = ordersInbox.find(o => o.id === currentScannedOrderId);
-                if (ord) { ord.status = 'beres'; localStorage.setItem('wk_orders_inbox', JSON.stringify(ordersInbox)); renderOwnerOrders(); }
-            }
-
-            renderCashierHistory();
-            renderFinanceTable();
-            showToast("Pembayaran Lunas Dikonfirmasi!");
-        }
-
-        function saveExpenseRecord(e) {
-            e.preventDefault();
-            const desc = document.getElementById('exp-desc').value;
-            const amount = parseFloat(document.getElementById('exp-amount').value) || 0;
-            const date = document.getElementById('exp-date').value || new Date().toISOString().split('T')[0];
-
-            if (!desc || amount <= 0) return showToast("Lengkapi data pengeluaran!", "error");
-
-            financeRecords.unshift({ id: 'FIN-' + Math.floor(100000 + Math.random() * 900000), type: 'expense', desc, amount, date });
-            localStorage.setItem('wk_finance', JSON.stringify(financeRecords));
-
-            renderFinanceTable();
-            showToast("Pengeluaran Berhasil Dicatat!");
-            e.target.reset();
-            document.getElementById('exp-date').value = new Date().toISOString().split('T')[0];
-        }
-
-        function setFinanceQuickFilter(mode) {
-            const today = new Date();
-            const startInput = document.getElementById('fin-start-date');
-            const endInput = document.getElementById('fin-end-date');
-
-            if (mode === 'today') {
-                const str = today.toISOString().split('T')[0];
-                startInput.value = str;
-                endInput.value = ''; // Dikosongkan sesuai permintaan
-            } else if (mode === 'month') {
-                const year = today.getFullYear();
-                const month = String(today.getMonth() + 1).padStart(2, '0');
-                startInput.value = `${year}-${month}-01`;
-                const lastDay = new Date(year, today.getMonth() + 1, 0).getDate();
-                endInput.value = `${year}-${month}-${lastDay}`;
-            } else {
-                startInput.value = '';
-                endInput.value = '';
-            }
-            renderFinanceTable();
-        }
-
-        function renderCashierHistory() {
-            document.getElementById('cashier-history-list').innerHTML = cashierTransactions.map(t => `
-                <div class="p-2.5 rounded-xl bg-brown-950/60 border border-gold-500/20 flex justify-between text-xs">
-                    <div><b class="text-cream-50">${t.item}</b><p class="text-[10px] text-cream-200/70">${t.customer} • ${t.date || ''}</p></div>
-                    <span class="font-extrabold text-emerald-400">+Rp ${t.amount.toLocaleString('id-ID')}</span>
-                </div>
-            `).join('');
-        }
-
-        let currentOrderFilter = 'all';
-        function renderOwnerOrders() {
-            const filtered = currentOrderFilter === 'all' ? ordersInbox : ordersInbox.filter(o => o.status === currentOrderFilter);
-            document.getElementById('owner-orders-grid').innerHTML = filtered.map(o => `
-                <div class="glass-card p-3.5 text-xs space-y-2.5">
-                    <div class="flex justify-between font-bold text-cream-50"><span>${o.id} - ${o.name}</span><span class="px-2 py-0.5 rounded-lg text-[9px] uppercase ${o.status === 'beres' ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/30' : 'bg-amber-500/20 text-amber-300 border border-amber-500/30'}">${o.status}</span></div>
-                    <p class="text-cream-200/80 font-light">${o.service} - <b class="text-gold-400 font-bold">Rp ${o.total.toLocaleString('id-ID')}</b></p>
-                    <div class="flex gap-2 pt-1 border-t border-gold-500/20">
-                        <button onclick="toggleOrderStatus('${o.id}')" class="px-3.5 py-1.5 rounded-xl bg-gold-500 text-brown-950 font-bold text-[10px] shadow">Ubah Status</button>
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        function filterOwnerOrders(status, btn) {
-            document.querySelectorAll('.ord-status-btn').forEach(b => b.className = "ord-status-btn px-4 py-2 rounded-xl text-[10px] font-bold text-cream-200");
-            btn.className = "ord-status-btn px-4 py-2 rounded-xl text-[10px] font-bold bg-gold-500 text-brown-950 shadow";
-            currentOrderFilter = status;
-            renderOwnerOrders();
-        }
-
-        function toggleOrderStatus(id) {
-            const o = ordersInbox.find(x => x.id === id);
-            if (o) { o.status = o.status === 'beres' ? 'belum' : 'beres'; localStorage.setItem('wk_orders_inbox', JSON.stringify(ordersInbox)); renderOwnerOrders(); updateOwnerBadgeCount(); showToast("Status diperbarui!"); }
-        }
-
-        function renderFinanceTable() {
-            const startDate = document.getElementById('fin-start-date').value;
-            const endDate = document.getElementById('fin-end-date').value;
-
-            let totalInc = 0, totalExp = 0;
-            const filteredRecords = financeRecords.filter(r => {
-                if (!r.date) return true;
-                if (startDate && r.date < startDate) return false;
-                if (endDate && r.date > endDate) return false;
-                return true;
-            });
-
-            filteredRecords.forEach(r => {
-                if (r.type === 'income') totalInc += r.amount;
-                else totalExp += r.amount;
-            });
-
-            document.getElementById('fin-total-income').innerText = `Rp ${totalInc.toLocaleString('id-ID')}`;
-            document.getElementById('fin-total-expense').innerText = `Rp ${totalExp.toLocaleString('id-ID')}`;
-            document.getElementById('fin-net-balance').innerText = `Rp ${(totalInc - totalExp).toLocaleString('id-ID')}`;
-
-            document.getElementById('finance-history-list').innerHTML = filteredRecords.length === 0 ? 
-                `<p class="text-[11px] text-cream-200/50 italic text-center py-3">Tidak ada riwayat pada rentang tanggal ini.</p>` :
-                filteredRecords.map(r => `
-                    <div class="p-2.5 rounded-xl bg-brown-950/60 border border-gold-500/20 flex justify-between items-center text-xs">
-                        <div>
-                            <span class="text-[9px] px-2 py-0.5 rounded font-bold uppercase ${r.type === 'income' ? 'bg-emerald-500/20 text-emerald-300' : 'bg-red-500/20 text-red-300'}">${r.type === 'income' ? 'Masuk' : 'Keluar'}</span>
-                            <b class="text-cream-50 ml-1.5">${r.desc}</b>
-                            <p class="text-[9px] text-cream-200/60 mt-0.5">${r.date || 'Tanggal tidak dicatat'}</p>
-                        </div>
-                        <span class="font-extrabold ${r.type === 'income' ? 'text-emerald-400' : 'text-red-400'}">${r.type === 'income' ? '+' : '-'}Rp ${r.amount.toLocaleString('id-ID')}</span>
-                    </div>
-                `).join('');
-        }
-
-        function saveCatalogProduct(e) {
-            e.preventDefault();
-            const name = document.getElementById('prod-name').value;
-            const price = parseFloat(document.getElementById('prod-price').value) || 0;
-            const fileInput = document.getElementById('prod-image-file');
-
-            if (fileInput.files && fileInput.files[0]) {
-                const reader = new FileReader();
-                reader.onload = function(uploadEvent) {
-                    catalogData.push({ 
-                        id: 'c_' + Date.now(), 
-                        category: document.getElementById('prod-cat').value, 
-                        name, 
-                        price, 
-                        desc: document.getElementById('prod-desc').value, 
-                        img: uploadEvent.target.result 
-                    });
-                    localStorage.setItem('wk_catalog', JSON.stringify(catalogData));
-                    renderMobileCatalog('desain');
-                    renderPortfolioShowcase();
-                    renderOwnerCatalogList();
-                    showToast("Produk dan gambar berhasil ditambahkan!");
-                    e.target.reset();
-                };
-                reader.readAsDataURL(fileInput.files[0]);
-            } else {
-                catalogData.push({ 
-                    id: 'c_' + Date.now(), 
-                    category: document.getElementById('prod-cat').value, 
-                    name, 
-                    price, 
-                    desc: document.getElementById('prod-desc').value, 
-                    img: 'https://placehold.co/300x300/3B2310/DFBA52?text=WK' 
-                });
-                localStorage.setItem('wk_catalog', JSON.stringify(catalogData));
-                renderMobileCatalog('desain');
-                renderPortfolioShowcase();
-                renderOwnerCatalogList();
-                showToast("Produk ditambahkan!");
-                e.target.reset();
-            }
-        }
-
-        function savePortfolioItem(e) {
-            e.preventDefault();
-            const name = document.getElementById('port-title').value;
-            const desc = document.getElementById('port-desc').value;
-            const fileInput = document.getElementById('port-image-file');
-
-            if (fileInput.files && fileInput.files[0]) {
-                const reader = new FileReader();
-                reader.onload = function(uploadEvent) {
-                    catalogData.push({ 
-                        id: 'p_' + Date.now(), 
-                        category: 'portfolio', 
-                        name, 
-                        price: 0, 
-                        desc, 
-                        img: uploadEvent.target.result 
-                    });
-                    localStorage.setItem('wk_catalog', JSON.stringify(catalogData));
-                    renderPortfolioShowcase();
-                    renderOwnerPortfolioList();
-                    showToast("Portfolio item dan foto berhasil ditambahkan!");
-                    e.target.reset();
-                };
-                reader.readAsDataURL(fileInput.files[0]);
-            } else {
-                catalogData.push({ 
-                    id: 'p_' + Date.now(), 
-                    category: 'portfolio', 
-                    name, 
-                    price: 0, 
-                    desc, 
-                    img: 'https://placehold.co/300x300/3B2310/DFBA52?text=Portfolio' 
-                });
-                localStorage.setItem('wk_catalog', JSON.stringify(catalogData));
-                renderPortfolioShowcase();
-                renderOwnerPortfolioList();
-                showToast("Portfolio item berhasil ditambahkan!");
-                e.target.reset();
-            }
-        }
-
-        function savePromoCampaign(e) {
-            e.preventDefault();
-            const title = document.getElementById('promo-title').value;
-            const price = parseFloat(document.getElementById('promo-price').value) || 0;
-            promoBanners.push({ id: 'p_' + Date.now(), title, price });
-            localStorage.setItem('wk_promos', JSON.stringify(promoBanners));
-            renderPromoBanners();
-            renderOwnerPromoList();
-            showToast("Promo & Campaign berhasil ditambahkan!");
-            e.target.reset();
-        }
-
-        function renderOwnerCatalogList() {
-            document.getElementById('owner-catalog-list').innerHTML = catalogData.filter(i => i.category !== 'portfolio').map(i => `
-                <div class="glass-card p-3 flex justify-between items-center text-xs">
-                    <div><b class="text-cream-50">${i.name}</b><p class="text-[10px] text-gold-400 font-semibold">Rp ${i.price.toLocaleString('id-ID')}</p></div>
-                    <button onclick="deleteCatalogProduct('${i.id}')" class="px-3 py-1.5 rounded-xl bg-red-950/80 text-red-300 border border-red-500/30 text-[10px] shadow">Hapus</button>
-                </div>
-            `).join('');
-        }
-
-        function renderOwnerPortfolioList() {
-            const listEl = document.getElementById('owner-portfolio-list');
-            if (!listEl) return;
-            const portfolios = catalogData.filter(i => i.category === 'portfolio');
-            listEl.innerHTML = portfolios.map(i => `
-                <div class="glass-card p-3 flex justify-between items-center text-xs">
-                    <div><b class="text-cream-50">${i.name}</b><p class="text-[10px] text-cream-200/60">${i.desc}</p></div>
-                    <button onclick="deleteCatalogProduct('${i.id}')" class="px-3 py-1.5 rounded-xl bg-red-950/80 text-red-300 border border-red-500/30 text-[10px] shadow">Hapus</button>
-                </div>
-            `).join('');
-        }
-
-        function renderOwnerPromoList() {
-            const listEl = document.getElementById('owner-promo-list');
-            if (!listEl) return;
-            listEl.innerHTML = promoBanners.map(p => `
-                <div class="glass-card p-3 flex justify-between items-center text-xs">
-                    <div><b class="text-cream-50">${p.title}</b><p class="text-[10px] text-gold-400 font-semibold">Rp ${p.price.toLocaleString('id-ID')}</p></div>
-                    <button onclick="deletePromoCampaign('${p.id}')" class="px-3 py-1.5 rounded-xl bg-red-950/80 text-red-300 border border-red-500/30 text-[10px] shadow">Hapus</button>
-                </div>
-            `).join('');
-        }
-
-        function deleteCatalogProduct(id) {
-            catalogData = catalogData.filter(i => i.id !== id);
-            localStorage.setItem('wk_catalog', JSON.stringify(catalogData));
-            renderMobileCatalog('desain');
-            renderPortfolioShowcase();
-            renderOwnerCatalogList();
-            renderOwnerPortfolioList();
-            showToast("Item dihapus.");
-        }
-
-        function deletePromoCampaign(id) {
-            promoBanners = promoBanners.filter(p => p.id !== id);
-            localStorage.setItem('wk_promos', JSON.stringify(promoBanners));
-            renderPromoBanners();
-            renderOwnerPromoList();
-            showToast("Promo campaign dihapus.");
-        }
-
-        function applyOwnerProfileUI() {
-            const loginAvatar = document.getElementById('login-owner-avatar');
-            const dashAvatar = document.getElementById('dash-owner-avatar');
-            const dashName = document.getElementById('dash-owner-name');
-            const dashRole = document.getElementById('dash-owner-role');
-
-            if (loginAvatar) loginAvatar.src = ownerProfile.avatar;
-            if (dashAvatar) dashAvatar.src = ownerProfile.avatar;
-            if (dashName) dashName.innerText = ownerProfile.name;
-            if (dashRole) dashRole.innerText = ownerProfile.role;
-
-            const profName = document.getElementById('prof-name');
-            const profRole = document.getElementById('prof-role');
-            const profWhatsapp = document.getElementById('prof-whatsapp');
-            const profPassword = document.getElementById('prof-password');
-
-            if (profName) profName.value = ownerProfile.name;
-            if (profRole) profRole.value = ownerProfile.role;
-            if (profWhatsapp) profWhatsapp.value = ownerProfile.whatsapp;
-            if (profPassword) profPassword.value = ownerProfile.password;
-        }
-
-        function saveOwnerProfile(e) {
-            e.preventDefault();
-            ownerProfile.name = document.getElementById('prof-name').value;
-            ownerProfile.role = document.getElementById('prof-role').value;
-            ownerProfile.whatsapp = document.getElementById('prof-whatsapp').value;
-            ownerProfile.password = document.getElementById('prof-password').value;
-
-            const fileInput = document.getElementById('prof-avatar-file');
-            if (fileInput && fileInput.files && fileInput.files[0]) {
-                const reader = new FileReader();
-                reader.onload = function(uploadEvent) {
-                    ownerProfile.avatar = uploadEvent.target.result;
-                    localStorage.setItem('wk_owner_profile', JSON.stringify(ownerProfile));
-                    applyOwnerProfileUI();
-                    fileInput.value = '';
-                    showToast("Profil & foto avatar berhasil diperbarui!");
-                };
-                reader.readAsDataURL(fileInput.files[0]);
-            } else {
-                localStorage.setItem('wk_owner_profile', JSON.stringify(ownerProfile));
-                applyOwnerProfileUI();
-                showToast("Profil diperbarui!");
-            }
+        function resetTestimonialGate() {
+            document.getElementById('testi-active-form').classList.add('hidden');
+            document.getElementById('testi-form-gate').classList.remove('hidden');
+            document.getElementById('testi-ticket-id').value = '';
         }
 
         function submitTestimonial(e) {
             e.preventDefault();
-            if (!verifiedTestiOrder) return showToast("Verifikasi tiket pesanan terlebih dahulu!", "error");
+            const name = document.getElementById('testi-name').value;
+            const service = document.getElementById('testi-service').value;
+            const rating = parseInt(document.getElementById('testi-rating').value);
+            const comment = document.getElementById('testi-comment').value;
 
-            testimonials.unshift({ 
-                name: document.getElementById('testi-name').value, 
-                service: document.getElementById('testi-service').value, 
-                rating: parseInt(document.getElementById('testi-rating').value), 
-                comment: document.getElementById('testi-comment').value, 
-                date: 'Baru saja' 
-            });
-            localStorage.setItem('wk_testimonials', JSON.stringify(testimonials));
+            appState.testimonials.unshift({ name, service, rating, comment, date: new Date().toISOString().split('T')[0] });
+            saveAppData();
             renderTestimonials();
-            showToast("Ulasan berhasil dikirim!");
             resetTestimonialGate();
-        }
-
-        function verifyOrderForTestimonial() {
-            const ticketIdInput = document.getElementById('testi-ticket-id').value.trim();
-            if (!ticketIdInput) return showToast("Masukkan ID Tiket Pesanan Anda!", "error");
-
-            const found = ordersInbox.find(o => o.id.toLowerCase() === ticketIdInput.toLowerCase());
-            if (!found) {
-                return showToast("Tiket Pesanan tidak ditemukan dalam sistem!", "error");
-            }
-            if (found.status !== 'beres') {
-                return showToast("Pesanan belum beres! Ulasan hanya dapat diberikan setelah status pesanan diselesaikan (Beres) oleh owner.", "error");
-            }
-
-            verifiedTestiOrder = found;
-            document.getElementById('verified-ticket-label').innerText = found.id;
-            document.getElementById('testi-name').value = found.name;
-            document.getElementById('testi-service').value = found.service;
-
-            document.getElementById('testi-form-gate').classList.add('hidden');
-            document.getElementById('testi-active-form').classList.remove('hidden');
-            showToast("Tiket Berhasil Diverifikasi!");
-        }
-
-        function resetTestimonialGate() {
-            verifiedTestiOrder = null;
-            document.getElementById('testi-ticket-id').value = '';
-            document.getElementById('testi-active-form').classList.add('hidden');
-            document.getElementById('testi-form-gate').classList.remove('hidden');
+            showToast('Ulasan berhasil dikirimkan!');
         }
 
         function renderTestimonials() {
-            document.getElementById('all-testimonials-grid').innerHTML = testimonials.map(t => `
-                <div class="glass-card p-4 text-xs space-y-2">
-                    <div class="flex justify-between items-center"><b class="text-cream-50">${t.name}</b><span class="text-gold-400 text-xs">${'⭐'.repeat(t.rating)}</span></div>
-                    <p class="text-cream-200/80 italic font-light">"${t.comment}"</p>
-                    <p class="text-[10px] text-gold-500 font-semibold uppercase tracking-wider">Layanan: ${t.service}</p>
+            const container = document.getElementById('all-testimonials-grid');
+            if (!container) return;
+            container.innerHTML = appState.testimonials.map(t => `
+                <div class="glass-card p-4 space-y-2">
+                    <div class="flex justify-between items-center">
+                        <h4 class="text-xs font-bold text-cream-50">${t.name}</h4>
+                        <div class="flex text-amber-400 text-xs">${'⭐'.repeat(t.rating)}</div>
+                    </div>
+                    <span class="text-[9px] text-gold-400 font-semibold block">${t.service}</span>
+                    <p class="text-xs text-cream-200/90 font-light italic">"${t.comment}"</p>
                 </div>
             `).join('');
+        }
+
+        function renderOwnerDashboard() {
+            const loginBox = document.getElementById('owner-login-box');
+            const dashBox = document.getElementById('owner-dashboard-box');
+            if (!loginBox || !dashBox) return;
+
+            if (appState.activeRole === 'owner') {
+                loginBox.classList.add('hidden');
+                dashBox.classList.remove('hidden');
+
+                let totalInc = 0;
+                appState.finance.forEach(f => {
+                    if (f.type === 'in') totalInc += f.amount;
+                    else totalInc -= f.amount;
+                });
+                document.getElementById('owner-stat-income').textContent = `Rp ${totalInc.toLocaleString('id-ID')}`;
+                document.getElementById('owner-stat-orders').textContent = `${appState.orders.length} Pesanan`;
+                document.getElementById('owner-order-count').textContent = `${appState.orders.length} Pesanan`;
+
+                // Render Orders List
+                const ordersList = document.getElementById('owner-orders-list');
+                ordersList.innerHTML = appState.orders.map((o, idx) => `
+                    <div class="glass-card p-3 space-y-2 text-xs">
+                        <div class="flex justify-between items-center border-b border-gold-500/20 pb-1.5">
+                            <span class="font-mono font-bold text-gold-400">${o.id}</span>
+                            <span class="px-2 py-0.5 rounded-full text-[9px] font-bold ${o.status === 'Beres' ? 'bg-emerald-500/20 text-emerald-300' : 'bg-amber-500/20 text-amber-300'}">${o.status}</span>
+                        </div>
+                        <div>
+                            <p class="font-bold text-cream-50">${o.name} <span class="text-[10px] font-normal text-cream-200/70">(${o.phone})</span></p>
+                            <p class="text-[10px] text-cream-200/90 mt-0.5">Item: ${o.items.map(i => i.title).join(', ')}</p>
+                            <p class="text-[10px] text-gold-400 font-semibold mt-0.5">Total: ${o.total}</p>
+                            <p class="text-[10px] text-cream-200/60 italic mt-0.5">Catatan: ${o.notes}</p>
+                        </div>
+                        <div class="flex justify-end gap-1.5 pt-1">
+                            <button onclick="updateOrderStatus(${idx}, 'Diproses')" class="px-2.5 py-1 rounded-lg bg-brown-900 text-cream-200 text-[9px] font-bold">Proses</button>
+                            <button onclick="updateOrderStatus(${idx}, 'Beres')" class="px-2.5 py-1 rounded-lg bg-gold-500 text-brown-950 text-[9px] font-bold">Selesai (Beres)</button>
+                            <button onclick="deleteOrder(${idx})" class="px-2 py-1 rounded-lg bg-red-950 text-red-300 text-[9px]"><i data-lucide="trash-2" class="w-3 h-3"></i></button>
+                        </div>
+                    </div>
+                `).join('');
+
+                // Render Finance List
+                const finList = document.getElementById('owner-finance-list');
+                finList.innerHTML = appState.finance.map((f, idx) => `
+                    <div class="flex justify-between items-center bg-brown-900/60 p-2.5 rounded-xl border border-gold-500/20 text-xs">
+                        <div>
+                            <span class="font-bold text-cream-50 block">${f.desc}</span>
+                            <span class="text-[9px] text-cream-200/60">${f.date}</span>
+                        </div>
+                        <span class="font-bold ${f.type === 'in' ? 'text-emerald-400' : 'text-red-400'}">${f.type === 'in' ? '+' : '-'} Rp ${f.amount.toLocaleString('id-ID')}</span>
+                    </div>
+                `).join('');
+
+                // Render Catalog List
+                const catList = document.getElementById('owner-catalog-list');
+                catList.innerHTML = appState.catalog.map((c, idx) => `
+                    <div class="flex justify-between items-center bg-brown-900/60 p-2.5 rounded-xl border border-gold-500/20 text-xs">
+                        <div class="flex items-center gap-2">
+                            <img src="${c.image}" class="w-10 h-10 rounded-lg object-cover">
+                            <div>
+                                <span class="font-bold text-cream-50 block line-clamp-1">${c.title}</span>
+                                <span class="text-[10px] text-gold-400">${c.price}</span>
+                            </div>
+                        </div>
+                        <button onclick="deleteCatalogItem(${c.id})" class="text-red-400 p-1"><i data-lucide="trash-2" class="w-4 h-4"></i></button>
+                    </div>
+                `).join('');
+
+                // Render Promo List
+                const promoList = document.getElementById('owner-promo-list');
+                promoList.innerHTML = appState.promos.map((p, idx) => `
+                    <div class="flex justify-between items-center bg-brown-900/60 p-2.5 rounded-xl border border-gold-500/20 text-xs">
+                        <div>
+                            <span class="font-bold text-cream-50 block">${p.title}</span>
+                            <span class="text-[10px] text-gold-400">${p.subtitle}</span>
+                        </div>
+                        <button onclick="deletePromo(${idx})" class="text-red-400 p-1"><i data-lucide="trash-2" class="w-4 h-4"></i></button>
+                    </div>
+                `).join('');
+
+            } else {
+                loginBox.classList.remove('hidden');
+                dashBox.classList.add('hidden');
+            }
+            lucide.createIcons();
+        }
+
+        function switchOwnerTab(tabName, btn) {
+            document.querySelectorAll('.owner-panel').forEach(p => p.classList.add('hidden'));
+            document.getElementById(`owner-panel-${tabName}`).classList.remove('hidden');
+
+            document.querySelectorAll('.owner-tab-btn').forEach(b => {
+                b.classList.remove('bg-gold-500', 'text-brown-950');
+                b.classList.add('text-cream-200');
+            });
+            btn.classList.add('bg-gold-500', 'text-brown-950');
+            btn.classList.remove('text-cream-200');
+            lucide.createIcons();
+        }
+
+        function updateOrderStatus(index, newStatus) {
+            appState.orders[index].status = newStatus;
+            saveAppData();
+            renderOwnerDashboard();
+            showToast(`Status pesanan diubah ke ${newStatus}`);
+        }
+
+        function deleteOrder(index) {
+            if (confirm('Hapus pesanan ini?')) {
+                appState.orders.splice(index, 1);
+                saveAppData();
+                renderOwnerDashboard();
+                showToast('Pesanan dihapus.');
+            }
+        }
+
+        function submitFinanceTx(e) {
+            e.preventDefault();
+            const type = document.getElementById('fin-type').value;
+            const amount = parseInt(document.getElementById('fin-amount').value) || 0;
+            const desc = document.getElementById('fin-desc').value;
+
+            appState.finance.unshift({ type, amount, desc, date: new Date().toISOString().split('T')[0] });
+            saveAppData();
+            renderOwnerDashboard();
+            document.getElementById('fin-amount').value = '';
+            document.getElementById('fin-desc').value = '';
+            showToast('Transaksi berhasil dicatat!');
+        }
+
+        function handleCatalogImageUpload(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    document.getElementById('cat-input-image').value = event.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        function submitCatalogItem(e) {
+            e.preventDefault();
+            const category = document.getElementById('cat-input-category').value;
+            const title = document.getElementById('cat-input-title').value;
+            const price = document.getElementById('cat-input-price').value;
+            const image = document.getElementById('cat-input-image').value;
+            const desc = document.getElementById('cat-input-desc').value;
+
+            const newItem = {
+                id: Date.now(),
+                category,
+                title,
+                price,
+                image,
+                desc: desc || 'Layanan profesional Wisesa Karsa.'
+            };
+
+            appState.catalog.unshift(newItem);
+            saveAppData();
+            renderAll();
+            e.target.reset();
+            showToast('Item katalog berhasil disimpan!');
+        }
+
+        function deleteCatalogItem(id) {
+            appState.catalog = appState.catalog.filter(c => c.id !== id);
+            saveAppData();
+            renderAll();
+            showToast('Item katalog dihapus.');
+        }
+
+        function submitPromoBanner(e) {
+            e.preventDefault();
+            const title = document.getElementById('promo-input-title').value;
+            const subtitle = document.getElementById('promo-input-subtitle').value;
+            const badge = document.getElementById('promo-input-badge').value;
+
+            appState.promos.unshift({ title, subtitle, badge });
+            saveAppData();
+            renderAll();
+            e.target.reset();
+            showToast('Promo banner ditambahkan!');
+        }
+
+        function deletePromo(index) {
+            appState.promos.splice(index, 1);
+            saveAppData();
+            renderAll();
+            showToast('Promo banner dihapus.');
         }
     </script>
 </body>
